@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.Main;
+import com.example.momoneynoproblem.MainActivity;
 import com.example.momoneynoproblem.R;
 import com.example.momoneynoproblem.UserSignUp.UserSignUp;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -61,7 +62,7 @@ public class Login extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(Login.this, "User logged in", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Login.this, Main.class));
+                        startActivity(new Intent(Login.this, MainActivity.class));
                     } else {
                         Toast.makeText(Login.this, "Login failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }

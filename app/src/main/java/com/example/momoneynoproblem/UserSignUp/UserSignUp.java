@@ -13,11 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.Login.Login;
 import com.example.momoneynoproblem.R;
+import com.example.momoneynoproblem.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class UserSignUp extends AppCompatActivity {
 
@@ -69,7 +71,20 @@ public class UserSignUp extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {  //Registration feedback
-                        Toast.makeText(UserSignUp.this, "User successfully registered", Toast.LENGTH_SHORT).show();
+                        User user = new User(name, email);
+
+                        FirebaseDatabase.getInstance().getReference("Users")
+                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(UserSignUp.this, "User successfully registered", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(UserSignUp.this, "Registration failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         startActivity(new Intent(UserSignUp.this, Login.class));
                     } else {
                         Toast.makeText(UserSignUp.this, "Registration failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
