@@ -1,0 +1,82 @@
+package com.example.momoneynoproblem.UserSignUp;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.momoneynoproblem.Login.Login;
+import com.example.momoneynoproblem.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
+public class UserSignUp extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
+
+    private EditText etName, etEmail, etPassword, etRePassword;
+    private TextView tvLogin;
+    private Button btnSignUp;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signup);
+
+        //Assign each variable with its respective layout names
+        etName = findViewById(R.id.etPersonName);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        etRePassword = findViewById(R.id.etRePassword);
+        btnSignUp = findViewById(R.id.btnSignUp);
+        tvLogin = findViewById(R.id.tvLogin);
+
+        btnSignUp.setOnClickListener(view -> {
+            registerUser();     //Registers the user when they press the signup button
+                });
+
+        mAuth = FirebaseAuth.getInstance(); //Obtaining an instance of FireBase to be used later
+
+        tvLogin.setOnClickListener(view -> {    //Redirect to login page when button is pressed
+            startActivity(new Intent(UserSignUp.this, Login.class));
+        });
+    }
+
+    private void registerUser() {
+        //converts all field to String and remove spaces (trim())
+        String name = etName.getText().toString().trim();
+        String email = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+        String rePassword = etRePassword.getText().toString().trim();
+
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || //Checks for empty field(s)
+                TextUtils.isEmpty(password) || TextUtils.isEmpty(rePassword)) {
+            Toast.makeText(this, "One or more fields is empty", Toast.LENGTH_SHORT).show();
+        } else if (!password.equals(rePassword)) { //Checks for matching passwords
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+        } else {
+            //Firebase function that registers the user using email/pass
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {  //Registration feedback
+                        Toast.makeText(UserSignUp.this, "User successfully registered", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(UserSignUp.this, Login.class));
+                    } else {
+                        Toast.makeText(UserSignUp.this, "Registration failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+    }
+}

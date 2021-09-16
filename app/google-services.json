@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "235314229184",
+    "firebase_url": "https://a-690e5-default-rtdb.firebaseio.com",
+    "project_id": "a-690e5",
+    "storage_bucket": "a-690e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235314229184:android:583b4202a95e454874a225",
+        "android_client_info": {
+          "package_name": "com.example.momoneynoproblem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "235314229184-v7dt5jh29jpfgr4pe03s2j426i49k746.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbfhPPIIk9eA3v4Ym4Ff_JdkeOv4npQmc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "235314229184-v7dt5jh29jpfgr4pe03s2j426i49k746.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
