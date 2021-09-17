@@ -3,13 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Rick/StudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_login.xml" value="0.23333333333333334" />
-        <entry key="..\:/Users/Rick/StudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/Rick/StudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_signup.xml" value="0.33" />
-        <entry key="..\:/Users/Rick/StudioProjects/test111/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.1" />
-        <entry key="..\:/Users/Rick/StudioProjects/test111/app/src/main/res/layout-w936dp/activity_login.xml" value="0.1" />
-        <entry key="..\:/Users/Rick/StudioProjects/test111/app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="..\:/Users/Rick/StudioProjects/test111/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_create_sub_accounts.xml" value="0.12590579710144928" />
+        <entry key="app/src/main/res/layout/activity_create_sub_accounts2.xml" value="0.23697916666666666" />
       </map>
     </option>
   </component>
@@ -18,12 +13,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.33" />
-      </ProjectState>
-    </option>
   </component>
 </project>

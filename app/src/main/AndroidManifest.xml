@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoMoneyNoProblem">
         <activity
+            android:name=".CreateSubAccounts"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
@@ -21,12 +30,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserSignUp.UserSignUp">
-        </activity>
-        <activity android:name=".Login.Login">
-        </activity>
-        <activity android:name=".Main">
-        </activity>
+        <activity android:name=".UserSignUp.UserSignUp" />
+        <activity android:name=".Login.Login" />
+        <activity android:name=".Main" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
