@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoMoneyNoProblem" >
+
+        <activity
+            android:name=".transaction"
+            android:exported="true" />
+
         <activity
             android:name=".ManageTransaction"
             android:exported="true" />
@@ -18,6 +23,7 @@
             android:name=".AddTransaction"
             android:exported="true" />
         <activity
+
             android:name=".CreateSubAccounts"
             android:exported="true" >
             <intent-filter>

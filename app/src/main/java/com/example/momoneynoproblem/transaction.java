@@ -7,15 +7,29 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class transaction extends AppCompatActivity {
+    FirebaseAuth mAuth;
+
     Button add_transaction;
+    Button manage_transaction;
     private Object transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
-        add_transaction = (Button) findViewById(R.id.Add_transaction);
+        add_transaction = (Button) findViewById(R.id.add_transaction);
+        manage_transaction = (Button) findViewById(R.id.manage_transaction);
+        add_transaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent j = new Intent(transaction.this, ManageTransaction.class);
+            }
+        });
+
+
         add_transaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

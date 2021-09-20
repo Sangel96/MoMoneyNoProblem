@@ -10,5 +10,26 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="add_transaction">Add Transaction</string>
-    <string name="manage_tansaction">Manage Transaction</string>
+    <string name="manage_transaction">Manage Transaction</string>
+    <string name="checkIncome">Income</string>
+    <string name="checkExpenses">Expenses</string>
+    <string name="txtSourcetype">Source Type</string>
+    <string name="txtTransaction">Transaction</string>
+    <string name="transaction">Transaction</string>
+    <string name="txtAmount">Amount</string>
+
+
+    textView7
+    <string-array name="soruce_array">
+        <item>Salary</item>
+        <item>Rent</item>
+        <item>Clothes</item>
+        <item>Travel</item>
+        <item>food</item>
+    </string-array>
+
+
+
+
+
 </resources>

@@ -44,6 +44,8 @@ public class Login extends AppCompatActivity {
             login();
         });
 
+
+
         //adds functionality to sign up
         btnSignUp.setOnClickListener(view -> {
             startActivity(new Intent(this, UserSignUp.class));
@@ -68,6 +70,7 @@ public class Login extends AppCompatActivity {
                     }
                 }
             });
+
         }
     }
 }
