@@ -18,9 +18,6 @@
             android:name=".AddTransaction"
             android:exported="true" />
         <activity
-            android:name=".Transaction"
-            android:exported="true" />
-        <activity
             android:name=".CreateSubAccounts"
             android:exported="true" >
             <intent-filter>
