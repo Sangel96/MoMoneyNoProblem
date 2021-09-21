@@ -13,6 +13,10 @@
         android:theme="@style/Theme.MoMoneyNoProblem" >
 
         <activity
+            android:name=".Login.ForgotPassword"
+            android:exported="true" />
+
+        <activity
             android:name=".transaction"
             android:exported="true" />
 
