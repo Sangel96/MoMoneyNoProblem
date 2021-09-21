@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout-w936dp/activity_login.xml" value="0.15390625" />
+        <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_create_sub_accounts.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_create_sub_accounts2.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_scanner.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_scanner_result.xml" value="0.2838541666666667" />
+        <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_signup.xml" value="0.22192028985507245" />
+        <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.26851851851851855" />
         <entry key="app/src/main/res/layout/activity_create_sub_accounts.xml" value="0.12590579710144928" />
         <entry key="app/src/main/res/layout/activity_create_sub_accounts2.xml" value="0.23697916666666666" />
       </map>
