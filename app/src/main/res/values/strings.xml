@@ -13,11 +13,23 @@
     <string name="manage_transaction">Manage Transaction</string>
     <string name="checkIncome">Income</string>
     <string name="checkExpenses">Expenses</string>
-    <string name="txtSourcetype">Source Type</string>
+    <string name="txtSourcetype2">Source Type</string>
+    <string name="txtSourcetype1">Source Type</string>
     <string name="txtTransaction">Transaction</string>
     <string name="transaction">Transaction</string>
     <string name="txtAmount">Amount</string>
+    <string name="txtManagetype">Manage Type</string>
+    <string name="delete_checkBox">Delete</string>
+    <string name="search_checkBox">Search</string>
+    <string name="modify_checkBox">Modify</string>
+    <string name="txtnew_amount">New amount</string>
+    <string name="btnSave">Save</string>
 
+
+    editTextnewAmount
+
+
+    delete_checkBox
 
     textView7
     <string-array name="soruce_array">

@@ -22,7 +22,7 @@
             android:id="@+id/income_checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="80dp"
             android:text="Income" />
 
@@ -30,17 +30,17 @@
             android:id="@+id/expenses_checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="250dp"
+            android:layout_marginStart="250dp"
             android:layout_marginTop="80dp"
             android:text="Expense" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/txtSourcetype1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="165dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:text="Source type"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -59,7 +59,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
             android:layout_marginTop="220dp"
             android:text="Amount"
             android:textSize="16sp"

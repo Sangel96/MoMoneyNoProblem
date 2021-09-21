@@ -25,15 +25,16 @@ public class transaction extends AppCompatActivity {
         add_transaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent j = new Intent(transaction.this, ManageTransaction.class);
+                Intent j = new Intent(transaction.this, AddTransaction.class);
+                startActivity(j);
             }
         });
 
 
-        add_transaction.setOnClickListener(new View.OnClickListener() {
+        manage_transaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(transaction.this,AddTransaction.class);
+                Intent i= new Intent(transaction.this,ManageTransaction.class);
                 startActivity(i);
 
             }
