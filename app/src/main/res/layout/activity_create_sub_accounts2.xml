@@ -4,90 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/cover_for_app"
     tools:context=".CreateSubAccounts">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
+
+    <EditText
+        android:id="@+id/subAccountNameInput"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="80dp"
-        android:fontFamily="@font/aclonica"
-        android:text="CREATING SUB ACCOUNTS"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        android:layout_marginTop="96dp"
+        android:hint="@string/SubAccountName"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="157dp"
-        android:layout_height="71dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="127dp"
-        android:layout_marginBottom="97dp"
-        android:text="Enter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
-
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
+        android:id="@+id/reasonsSubAccount"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="153dp"
-        android:layout_marginBottom="44dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_marginTop="8dp"
+        android:hint="@string/ReasonsSubAccountName"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
         android:minHeight="48dp"
-        android:text="Full Name"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName3"
+        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/subAccountNameInput" />
 
-    <EditText
-        android:id="@+id/editTextTextPassword"
+    <Button
+        android:id="@+id/createSubAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="152dp"
-        android:layout_marginBottom="82dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:text="Enter Password"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:layout_gravity="start"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="64dp"
+        android:enabled="true"
+        android:text="Enter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/reasonsSubAccount"
+        app:layout_constraintVertical_bias="0.198" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName3"
+    <TextView
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="155dp"
-        android:layout_marginBottom="1dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="E-mail"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.985"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        android:layout_marginStart="68dp"
+        android:text="New Sub Account"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="31dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

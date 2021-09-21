@@ -41,6 +41,22 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".SelectSubAccount"
+            android:exported="true" />
+        <activity
+            android:name=".Login.ForgotPassword"
+            android:exported="true" />
+
+        <activity
+            android:name=".transaction"
+            android:exported="true" />
+        <activity
+            android:name=".ManageTransaction"
+            android:exported="true" />
+        <activity
+            android:name=".AddTransaction"
+            android:exported="true" />
+        <activity
             android:name=".CreateSubAccounts"
             android:exported="true">
             <intent-filter>

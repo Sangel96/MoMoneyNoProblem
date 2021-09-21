@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/SubAccountName"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cover_for_app"
+    tools:context=".CreateSubAccounts">
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView5"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:layout_marginTop="32dp"-->
+    <!--        android:layout_marginBottom="80dp"-->
+    <!--        android:fontFamily="@font/aclonica"-->
+    <!--        android:text="CREATING SUB ACCOUNTS"-->
+    <!--        android:textSize="34sp"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="1.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/button"-->
+    <!--        android:layout_width="157dp"-->
+    <!--        android:layout_height="71dp"-->
+    <!--        android:layout_marginStart="128dp"-->
+    <!--        android:layout_marginTop="37dp"-->
+    <!--        android:layout_marginEnd="127dp"-->
+    <!--        android:layout_marginBottom="97dp"-->
+    <!--        android:text="Enter"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />-->
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/editTextTextPersonName"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="49dp"-->
+    <!--        android:layout_marginTop="80dp"-->
+    <!--        android:layout_marginEnd="153dp"-->
+    <!--        android:layout_marginBottom="44dp"-->
+    <!--        android:ems="10"-->
+    <!--        android:inputType="textPersonName"-->
+    <!--        android:minHeight="48dp"-->
+    <!--        android:text="Full Name"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName3"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/textView5" />-->
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/editTextTextPassword"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="50dp"-->
+    <!--        android:layout_marginTop="72dp"-->
+    <!--        android:layout_marginEnd="152dp"-->
+    <!--        android:layout_marginBottom="82dp"-->
+    <!--        android:ems="10"-->
+    <!--        android:inputType="textPassword"-->
+    <!--        android:minHeight="48dp"-->
+    <!--        android:text="Enter Password"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/button"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="1.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"-->
+    <!--        app:layout_constraintVertical_bias="0.0" />-->
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/editTextTextPersonName3"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="1dp"-->
+    <!--        android:layout_marginTop="4dp"-->
+    <!--        android:layout_marginEnd="155dp"-->
+    <!--        android:layout_marginBottom="1dp"-->
+    <!--        android:ems="10"-->
+    <!--        android:inputType="textPersonName"-->
+    <!--        android:text="E-mail"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.985"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/editTextTextPassword"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="Creating Sub Accounts"-->
+    <!--        android:textSize="34sp" />-->
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="121dp"
+        android:text="Select Sub Account"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:text="Select Sub Account"
+        android:textSize="34sp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="314dp"
+        android:layout_height="wrap_content"
+
+        android:layout_centerInParent="true"
+        android:layout_marginStart="167dp"
+        android:layout_marginTop="243dp"
+        android:text="Please Select a Sub Account from the List"></TextView>
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="245dp" />
+
+</RelativeLayout>

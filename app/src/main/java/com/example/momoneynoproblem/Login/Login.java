@@ -24,8 +24,9 @@ public class Login extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
-    private Button btnSignUp, btnLogin;
+    private Button btnSignUp, btnLogin, btnForgotPassword;
     private EditText etEmail, etPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class Login extends AppCompatActivity {
         btnLogin = findViewById(R.id.login);
         etPassword = findViewById(R.id.password);
         btnSignUp = findViewById(R.id.signup);
-
+        btnForgotPassword = findViewById(R.id.forgotPassword);
         mAuth = FirebaseAuth.getInstance();
 
         //adds functionality to login
@@ -44,9 +45,15 @@ public class Login extends AppCompatActivity {
             login();
         });
 
+
+
         //adds functionality to sign up
         btnSignUp.setOnClickListener(view -> {
             startActivity(new Intent(this, UserSignUp.class));
+        });
+
+        btnForgotPassword.setOnClickListener(view -> {
+            startActivity(new Intent(this, ForgotPassword.class));
         });
     }
 
@@ -68,6 +75,7 @@ public class Login extends AppCompatActivity {
                     }
                 }
             });
+
         }
     }
 }
