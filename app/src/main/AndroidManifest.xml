@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MoMoneyNoProblem" >
 
         <activity
-            android:name=".transaction"
+            android:name="transaction"
             android:exported="true" />
 
         <activity

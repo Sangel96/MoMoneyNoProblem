@@ -46,9 +46,10 @@
             android:textStyle="bold" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/transactionSourceTypeSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_blue_light"
             android:layout_marginStart="150dp"
             android:layout_marginTop="165dp"
             android:layout_marginEnd="50dp"
@@ -68,7 +69,7 @@
             android:id="@+id/editTextAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
+            android:layout_marginStart="150dp"
             android:layout_marginTop="200dp"
             android:ems="10" />
 
@@ -76,7 +77,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="320dp"
             android:text="Add Photo" />
 
@@ -84,7 +85,7 @@
             android:id="@+id/addPhotoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
+            android:layout_marginStart="150dp"
             android:layout_marginTop="300dp"
             android:text="Photo" />
 
@@ -103,6 +104,8 @@
             android:layout_marginStart="260dp"
             android:layout_marginTop="310dp"
             app:srcCompat="@android:drawable/ic_menu_camera" />
+
+
 
 
     </RelativeLayout>

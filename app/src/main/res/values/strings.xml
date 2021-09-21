@@ -26,22 +26,14 @@
     <string name="btnSave">Save</string>
 
 
-    editTextnewAmount
 
-
-    delete_checkBox
-
-    textView7
-    <string-array name="soruce_array">
+    <string-array name="source_list">
         <item>Salary</item>
         <item>Rent</item>
         <item>Clothes</item>
         <item>Travel</item>
-        <item>food</item>
+        <item>Food</item>
     </string-array>
-
-
-
 
 
 </resources>
