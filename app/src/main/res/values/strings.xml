@@ -24,6 +24,9 @@
     <string name="modify_checkBox">Modify</string>
     <string name="txtnew_amount">New amount</string>
     <string name="btnSave">Save</string>
+    <string name="SubAccountName">Enter Sub Account Name</string>
+    <string name="ReasonsSubAccountName">Enter Reasons for Sub Account</string>
+    <string name="EnterSubAccount">Enter</string>
 
 
     editTextnewAmount
