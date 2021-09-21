@@ -12,14 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoMoneyNoProblem">
         <activity
+            android:name=".SubAccountTemplate"
+            android:exported="true" />
+        <activity
             android:name=".SelectSubAccount"
             android:exported="true" />
         <activity
             android:name=".Login.ForgotPassword"
             android:exported="true" />
-
         <activity
-            android:name=".transaction"
+            android:name="transaction"
             android:exported="true" />
         <activity
             android:name=".ManageTransaction"

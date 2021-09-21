@@ -103,7 +103,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/selectSubAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -133,11 +133,13 @@
         android:text="Please Select a Sub Account from the List"></TextView>
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/SubAccountSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="245dp" />
+        android:layout_marginBottom="245dp"
+        android:spinnerMode="dropdown" />
+
 
 </RelativeLayout>
