@@ -29,6 +29,7 @@
     <string name="EnterSubAccount">Enter</string>
 
 
+
     editTextnewAmount
 
 
@@ -42,9 +43,6 @@
         <item>Travel</item>
         <item>food</item>
     </string-array>
-
-
-
 
 
 </resources>

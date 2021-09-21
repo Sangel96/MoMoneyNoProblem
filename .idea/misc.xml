@@ -17,6 +17,8 @@
         <entry key="app/src/main/res/layout/activity_create_sub_accounts2.xml" value="0.23697916666666666" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/activity_select_sub_account.xml" value="0.296195652173913" />
+        <entry key="app/src/main/res/layout/activity_sub_account_template.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/sub_account_selection.xml" value="0.23020833333333332" />
       </map>
     </option>
   </component>
