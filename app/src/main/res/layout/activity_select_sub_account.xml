@@ -102,64 +102,15 @@
     <!--        android:textSize="34sp" />-->
 
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="167dp"
-        android:layout_marginTop="243dp"
-        android:text=""
-        android:textColor="#004D40" />
-
-    <EditText
-        android:id="@+id/subAccountNameInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="117dp"
-        android:layout_marginTop="291dp"
-        android:autofillHints=""
-        android:ems="10"
-
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="Enter Sub Account Name" />
-
-    <EditText
-        android:id="@+id/reasonsSubAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="117dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="217dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:text = "Enter Reasons for Sub Account"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:autofillHints="" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/enter_reasons_for_subaccount"
-        android:textColor="#263238"
-        tools:ignore="TextContrastCheck" />
-
-
     <Button
-        android:id="@+id/createSubAccountButton"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="121dp"
-        android:text="@string/create_sub_account"
-        android:textColor="#81D4FA" />
+        android:text="Select Sub Account"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView9"
@@ -168,8 +119,25 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="54dp"
-        android:text="@string/creating_sub_accounts"
-        android:textColor="#00897B"
-        android:textSize="38sp" />
+        android:text="Select Sub Account"
+        android:textSize="34sp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="314dp"
+        android:layout_height="wrap_content"
+
+        android:layout_centerInParent="true"
+        android:layout_marginStart="167dp"
+        android:layout_marginTop="243dp"
+        android:text="Please Select a Sub Account from the List"></TextView>
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="245dp" />
 
 </RelativeLayout>
