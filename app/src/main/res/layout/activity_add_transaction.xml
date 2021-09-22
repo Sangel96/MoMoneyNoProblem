@@ -49,10 +49,10 @@
             android:id="@+id/transactionSourceTypeSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_light"
             android:layout_marginStart="150dp"
             android:layout_marginTop="165dp"
             android:layout_marginEnd="50dp"
+            android:textColor="@android:color/holo_blue_light"
             android:textSize="16sp" />
 
         <TextView
