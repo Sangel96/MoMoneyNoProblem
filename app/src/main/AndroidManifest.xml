@@ -49,7 +49,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".UserSignUp.UserSignUp" />
-        <activity android:name=".Login.Login" />
+        <activity android:name=".Login.Login"
+                android:exported="true"/>
         <activity android:name=".Main" />
 
         <meta-data
