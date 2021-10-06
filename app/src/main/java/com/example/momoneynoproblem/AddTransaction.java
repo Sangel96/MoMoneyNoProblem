@@ -113,7 +113,6 @@ public class AddTransaction extends AppCompatActivity {
 
                 // get selected radio button from radioGroup
                 int selectedId = radioGroup.getCheckedRadioButtonId();
-                //boolean checked = ((RadioButton) v).isChecked();
 
                 // find the radiobutton by returned id
                 radioSourceButton = (RadioButton) findViewById(selectedId);
@@ -173,11 +172,6 @@ public class AddTransaction extends AppCompatActivity {
             }
 
         });
-
-
-        //com.example.momoneynoproblem.transaction1 trans = new transaction1("1000","Income","Salary");
-        //databaseReference.push().setValue(trans);
-        //Toast.makeText(AddTransaction.this,"Data inserted!", Toast.LENGTH_SHORT).show();
 
     }
 }
