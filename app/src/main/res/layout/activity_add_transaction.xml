@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent">
+    android:background="@drawable/cover_for_app"
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,28 +20,13 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <CheckBox
-            android:id="@+id/income_checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="80dp"
-            android:text="Income" />
-
-        <CheckBox
-            android:id="@+id/expenses_checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="80dp"
-            android:text="Expense" />
 
         <TextView
-            android:id="@+id/txtSourcetype1"
+            android:id="@+id/txtSourcetype"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="165dp"
+            android:layout_marginTop="230dp"
             android:layout_marginEnd="10dp"
             android:text="Source type"
             android:textSize="16sp"
@@ -50,62 +37,73 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="150dp"
-            android:layout_marginTop="165dp"
+            android:layout_marginTop="219dp"
             android:layout_marginEnd="50dp"
+            android:minHeight="48dp"
             android:textColor="@android:color/holo_blue_light"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/txtAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="220dp"
-            android:text="Amount"
+            android:layout_marginTop="300dp"
+            android:text="Amount($)"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextAmount"
+            android:id="@+id/amountEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="150dp"
-            android:layout_marginTop="200dp"
-            android:ems="10" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="320dp"
-            android:text="Add Photo" />
+            android:layout_marginTop="288dp"
+            android:ems="10"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/addPhotoButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/scanButton"
+            android:layout_width="192dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:layout_marginTop="300dp"
-            android:text="Photo" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="112dp"
+            android:layout_marginTop="360dp"
+            android:layout_marginEnd="107dp"
+            android:text="Do you want to scan the invoice ?" />
 
         <Button
-            android:id="@+id/addTransactionButton"
+            android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="400dp"
-            android:text="Add Transaction" />
+            android:layout_marginTop="450dp"
+            android:text="Add" />
 
-        <ImageView
-            android:id="@+id/imageView"
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="260dp"
-            android:layout_marginTop="310dp"
-            app:srcCompat="@android:drawable/ic_menu_camera" />
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="90dp">
 
+            <RadioButton
+                android:id="@+id/incomeRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:onClick="checkButton"
+                android:text="Income" />
 
+            <RadioButton
+                android:id="@+id/expenseRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="checkButton"
+                android:text="expense" />
+        </RadioGroup>
 
 
     </RelativeLayout>

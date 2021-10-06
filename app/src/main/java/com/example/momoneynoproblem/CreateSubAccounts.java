@@ -44,12 +44,11 @@ public class CreateSubAccounts extends AppCompatActivity {
         // below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("SubAccounts");
         subAccountNameInput = (EditText) findViewById(R.id.subAccountNameInput);
-
         reasonsForSubAccountInput = (EditText) findViewById(R.id.reasonsSubAccount);
 
         submitButton = (Button) findViewById(R.id.createSubAccountButton);
 
-//
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
