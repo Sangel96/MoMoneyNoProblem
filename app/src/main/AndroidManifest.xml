@@ -30,6 +30,12 @@
             android:name=".AddTransaction"
             android:exported="true" />
         <activity
+            android:name=".Goals.AddGoals"
+            android:exported="true" />
+        <activity
+            android:name=".Goals.CreateGoal"
+            android:exported="true" />
+        <activity
             android:name=".CreateSubAccounts"
             android:exported="true">
             <intent-filter>
