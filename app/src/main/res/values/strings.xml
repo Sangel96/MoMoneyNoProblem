@@ -29,8 +29,6 @@
     <string name="EnterSubAccount">Enter</string>
 
 
-
-
     <string-array name="source_list">
         <item>Salary</item>
         <item>Rent</item>
