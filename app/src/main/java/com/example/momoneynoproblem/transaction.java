@@ -30,6 +30,7 @@ public class transaction extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+
         add_transaction = (Button) findViewById(R.id.add_transaction);
         manage_transaction = (Button) findViewById(R.id.manage_transaction);
         add_transaction.setOnClickListener(new View.OnClickListener() {

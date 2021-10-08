@@ -9,10 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,6 +94,15 @@ public class ManageTransaction extends AppCompatActivity {
 
                     }
                 });
+
+        // when click on the search button, go to the search screen
+        search_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent j = new Intent(ManageTransaction.this, searchForTransaction.class);
+                startActivity(j);
+            }
+        });
 
         //adds functionality to Add Transaction
         saveButton.setOnClickListener(new View.OnClickListener() {

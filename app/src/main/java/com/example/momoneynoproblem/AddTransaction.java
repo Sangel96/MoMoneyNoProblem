@@ -49,6 +49,9 @@ public class AddTransaction extends AppCompatActivity {
     public Button addButton = null;
     public Button scanButton = null;
     public EditText amountEditText = null;
+    public EditText DateEdit = null;
+    public EditText StoreNameEdit = null;
+
     public String transaction_type = "";
     public String transaction_source_type = "";
     public Spinner transactionSourceTypeSpinner = null;
@@ -71,6 +74,8 @@ public class AddTransaction extends AppCompatActivity {
         addButton = findViewById(R.id.addButton);
         scanButton = findViewById(R.id.scanButton);
         amountEditText = findViewById(R.id.amountEditText);
+        DateEdit = findViewById(R.id.DateEdit);
+        StoreNameEdit = findViewById(R.id.StoreNameEdit);
 
 
         // implement spinner
@@ -109,6 +114,8 @@ public class AddTransaction extends AppCompatActivity {
                 String trans_type = transaction_type.trim();
                 String trans_sourceType = transaction_source_type.trim();
                 String amount = amountEditText.getText().toString().trim();
+                String date = DateEdit.getText().toString().trim();
+                String storeName = StoreNameEdit.getText().toString().trim();
 
                 // get selected radio button from radioGroup
                 int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -131,7 +138,7 @@ public class AddTransaction extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                 } else {
                     // else call the method to add data to our database.
-                    addDatatoFirebase(amount, trans_type, trans_sourceType);
+                    addDatatoFirebase(amount, trans_type, trans_sourceType,date, storeName);
                 }
 
             }
@@ -140,12 +147,15 @@ public class AddTransaction extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();  //Obtaining an instance of FireBase to be used later
     }
 
-    private void addDatatoFirebase(String amount, String transaction_type, String transaction_source_type) {
+    private void addDatatoFirebase(String amount, String transaction_type,
+                                   String transaction_source_type, String date, String storeName) {
         // below 3 lines of code is used to set data in our object class.
         Transaction1 trans = new Transaction1();
         trans.setTransaction_type(transaction_type);
         trans.setTransaction_source_type(transaction_source_type);
         trans.setAmount(amount);
+        trans.setDate(date);
+        trans.setStoreName(storeName);
         DatabaseReference databaseReference = firebaseDatabase.getInstance().getReference().child("Transactions");
         // we are use add value event listener method which is called with database reference.
         databaseReference.addValueEventListener(new ValueEventListener() {
