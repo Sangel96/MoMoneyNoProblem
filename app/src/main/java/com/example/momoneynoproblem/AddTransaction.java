@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -66,18 +65,18 @@ public class AddTransaction extends AppCompatActivity {
 
         // below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("Transactions");
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        incomeRadioButton = (RadioButton) findViewById(R.id.incomeRadioButton);
-        expenseRadioButton = (RadioButton) findViewById(R.id.expenseRadioButton);
-        addButton = (Button) findViewById(R.id.addButton);
-        scanButton = (Button) findViewById(R.id.scanButton);
-        amountEditText = (EditText) findViewById(R.id.amountEditText);
+        radioGroup = findViewById(R.id.radioGroup);
+        incomeRadioButton = findViewById(R.id.incomeRadioButton);
+        expenseRadioButton = findViewById(R.id.expenseRadioButton);
+        addButton = findViewById(R.id.addButton);
+        scanButton = findViewById(R.id.scanButton);
+        amountEditText = findViewById(R.id.amountEditText);
 
 
         // implement spinner
-        transactionSourceTypeSpinner = (Spinner) findViewById((R.id.transactionSourceTypeSpinner));
+        transactionSourceTypeSpinner = findViewById((R.id.transactionSourceTypeSpinner));
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddTransaction.this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(AddTransaction.this,
                 android.R.layout.simple_list_item_1, paths);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -115,7 +114,7 @@ public class AddTransaction extends AppCompatActivity {
                 int selectedId = radioGroup.getCheckedRadioButtonId();
 
                 // find the radiobutton by returned id
-                radioSourceButton = (RadioButton) findViewById(selectedId);
+                radioSourceButton = findViewById(selectedId);
 
                 Toast.makeText(AddTransaction.this,
                         radioSourceButton.getText(), Toast.LENGTH_SHORT).show();
