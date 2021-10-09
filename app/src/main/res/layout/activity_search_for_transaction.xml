@@ -26,7 +26,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="250dp"
-            android:text="Search"
+            android:text="@string/search"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -38,7 +38,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="50dp"
             android:layout_marginTop="280dp"
-            android:text="Daily"
+            android:text="@string/daily"
             android:textAlignment="center"
             android:textStyle="bold" />
 
@@ -50,7 +50,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="50dp"
             android:layout_marginTop="350dp"
-            android:text="Monthly" />
+            android:text="@string/monthly" />
 
 
         <Button
@@ -60,7 +60,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="50dp"
             android:layout_marginTop="430dp"
-            android:text="Yearly" />
+            android:text="@string/yearly" />
 
 
     </RelativeLayout>

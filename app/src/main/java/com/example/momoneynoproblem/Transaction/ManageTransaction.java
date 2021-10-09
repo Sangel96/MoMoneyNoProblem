@@ -1,9 +1,7 @@
-package com.example.momoneynoproblem;
+package com.example.momoneynoproblem.Transaction;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,26 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import com.example.momoneynoproblem.Main;
-import com.example.momoneynoproblem.MainActivity;
-import com.example.momoneynoproblem.R;
-import com.example.momoneynoproblem.UserSignUp.UserSignUp;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Transaction;
-import com.google.firebase.database.ValueEventListener;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.momoneynoproblem.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ManageTransaction extends AppCompatActivity {
 
@@ -60,7 +46,6 @@ public class ManageTransaction extends AppCompatActivity {
 
         // below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("Transactions");
-        saveButton = (Button) findViewById(R.id.saveButton);
         modify_Button = (Button) findViewById(R.id.modify_Button);
         delete_Button = (Button) findViewById(R.id.delete_Button);
         search_Button = (Button) findViewById(R.id.search_Button);

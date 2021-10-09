@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoMoneyNoProblem">
         <activity
-            android:name=".searchForTransaction"
+            android:name=".Transaction.searchForTransaction"
             android:exported="true" />
         <activity
             android:name=".SubAccountTemplate"
@@ -24,13 +24,13 @@
             android:name=".Login.ForgotPassword"
             android:exported="true" />
         <activity
-            android:name=".transaction"
+            android:name=".Transaction.transaction"
             android:exported="true" />
         <activity
-            android:name=".ManageTransaction"
+            android:name=".Transaction.ManageTransaction"
             android:exported="true" />
         <activity
-            android:name=".AddTransaction"
+            android:name=".Transaction.AddTransaction"
             android:exported="true" />
         <activity
             android:name=".Goals.AddGoals"

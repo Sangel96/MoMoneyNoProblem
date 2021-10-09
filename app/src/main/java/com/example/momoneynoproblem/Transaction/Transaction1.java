@@ -1,4 +1,4 @@
-package com.example.momoneynoproblem;
+package com.example.momoneynoproblem.Transaction;
 import java.io.Serializable;
 
 public class Transaction1 implements Serializable {
