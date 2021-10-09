@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoMoneyNoProblem">
         <activity
+            android:name=".searchForTransaction"
+            android:exported="true" />
+        <activity
             android:name=".SubAccountTemplate"
             android:exported="true" />
         <activity
@@ -21,13 +24,19 @@
             android:name=".Login.ForgotPassword"
             android:exported="true" />
         <activity
-            android:name="transaction"
+            android:name=".transaction"
             android:exported="true" />
         <activity
             android:name=".ManageTransaction"
             android:exported="true" />
         <activity
             android:name=".AddTransaction"
+            android:exported="true" />
+        <activity
+            android:name=".Goals.AddGoals"
+            android:exported="true" />
+        <activity
+            android:name=".Goals.CreateGoal"
             android:exported="true" />
         <activity
             android:name=".CreateSubAccounts"
@@ -49,9 +58,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".UserSignUp.UserSignUp"
-                android:exported="true"/>
-        <activity android:name=".Login.Login"
-                android:exported="true"/>
+                    android:exported="true"/>
+        <activity
+            android:name=".Login.Login"
+            android:exported="true" />
         <activity android:name=".Main" />
 
         <meta-data

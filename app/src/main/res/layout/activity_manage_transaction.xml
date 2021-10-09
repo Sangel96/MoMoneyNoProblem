@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+  android:background="@drawable/gradient_background">
 
   <RelativeLayout
       android:layout_width="match_parent"
@@ -19,22 +21,45 @@ android:layout_width="match_parent" android:layout_height="match_parent">
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txtSourcetype2"
+        android:id="@+id/transactionType"
+        android:layout_width="148dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="10dp"
+        android:text="Transaction type (income/expenses)"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/transactionTypeEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/txtSourcetype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="165dp"
+        android:layout_marginTop="180dp"
         android:layout_marginEnd="10dp"
         android:text="Source type"
         android:textSize="16sp"
         android:textStyle="bold" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/transactionSourceTypeSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="165dp"
+        android:layout_marginTop="170dp"
         android:layout_marginEnd="50dp"
         android:textSize="16sp" />
 
@@ -50,24 +75,26 @@ android:layout_width="match_parent" android:layout_height="match_parent">
         android:textSize="18dp"
         android:textStyle="bold" />
 
-    <CheckBox
-        android:id="@+id/delete_checkBox"
+    <Button
+        android:id="@+id/delete_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="280dp"
         android:text="Delete" />
 
-    <CheckBox
-        android:id="@+id/modify_checkBox"
+
+    <Button
+        android:id="@+id/modify_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="280dp"
         android:text="Modify" />
 
-    <CheckBox
-        android:id="@+id/search_checkBox"
+
+    <Button
+        android:id="@+id/search_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="280dp"
@@ -80,20 +107,20 @@ android:layout_width="match_parent" android:layout_height="match_parent">
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="377dp"
-        android:text="New amount"
+        android:text="For Modify, New Amount"
         android:textSize="16sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editTextnewAmount"
-        android:layout_width="wrap_content"
+        android:id="@+id/amountEditText"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
+        android:layout_marginStart="240dp"
         android:layout_marginTop="360dp"
         android:ems="10" />
 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
