@@ -1,7 +1,5 @@
-package com.example.momoneynoproblem;
+package com.example.momoneynoproblem.Transaction;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,26 +11,17 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.momoneynoproblem.Main;
-import com.example.momoneynoproblem.MainActivity;
+
 import com.example.momoneynoproblem.R;
-import com.example.momoneynoproblem.UserSignUp.UserSignUp;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class AddTransaction extends AppCompatActivity {
 
@@ -149,14 +138,15 @@ public class AddTransaction extends AppCompatActivity {
 
     private void addDatatoFirebase(String amount, String transaction_type,
                                    String transaction_source_type, String date, String storeName) {
-        // below 3 lines of code is used to set data in our object class.
+        // set data in our object class.
         Transaction1 trans = new Transaction1();
         trans.setTransaction_type(transaction_type);
         trans.setTransaction_source_type(transaction_source_type);
         trans.setAmount(amount);
         trans.setDate(date);
         trans.setStoreName(storeName);
-        DatabaseReference databaseReference = firebaseDatabase.getInstance().getReference().child("Transactions");
+        DatabaseReference databaseReference = firebaseDatabase.getInstance().getReference().
+                child("Transactions");
         // we are use add value event listener method which is called with database reference.
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

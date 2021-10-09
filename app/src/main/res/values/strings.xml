@@ -19,14 +19,26 @@
     <string name="transaction">Transaction</string>
     <string name="txtAmount">Amount</string>
     <string name="txtManagetype">Manage Type</string>
-    <string name="delete_checkBox">Delete</string>
-    <string name="search_checkBox">Search</string>
-    <string name="modify_checkBox">Modify</string>
     <string name="txtnew_amount">New amount</string>
     <string name="btnSave">Save</string>
     <string name="SubAccountName">Enter Sub Account Name</string>
     <string name="ReasonsSubAccountName">Enter Reasons for Sub Account</string>
     <string name="EnterSubAccount">Enter</string>
+    <string name="transaction_type_income_expenses">Transaction type (income/expenses)</string>
+    <string name="source_type">Source type</string>
+    <string name="store_name">Store Name</string>
+    <string name="delete">Delete</string>
+    <string name="Modify_Transaction">Modify Transaction</string>
+    <string name="receipt_date">Receipt Date</string>
+    <string name="receipt_newdate">Receipt New Date</string>
+    <string name="save">Save</string>
+    <string name="new_amount">New Amount ($)</string>
+    <string name="modify">Modify</string>
+    <string name="horizontal_line">Horizontal Line</string>
+    <string name="search">Search</string>
+    <string name="daily">Daily</string>
+    <string name="yearly">Yearly</string>
+    <string name="monthly">Monthly</string>
 
 
     <string-array name="source_list">
