@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.momoneynoproblem.Goals.AddGoals;
+import com.example.momoneynoproblem.Goals.CreateGoal;
 import com.example.momoneynoproblem.UserSignUp.UserSignUp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -68,6 +71,7 @@ public class CreateSubAccounts extends AppCompatActivity {
                     // else call the method to add
                     // data to our database.
                     addDatatoFirebase(subAccountName,reasonSubAccount);
+                    startActivity(new Intent(CreateSubAccounts.this, SelectSubAccount.class));
                 }
             }
         });
@@ -98,7 +102,7 @@ public class CreateSubAccounts extends AppCompatActivity {
 
                 // after adding this data we are showing toast message.
                 Toast.makeText(CreateSubAccounts.this, "data added", Toast.LENGTH_SHORT).show();
-                System.exit(0);
+                //System.exit(0);
             }
 
             @Override
