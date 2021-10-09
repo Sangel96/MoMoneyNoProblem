@@ -1,10 +1,12 @@
 package com.example.momoneynoproblem.Login;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,42 +26,41 @@ public class Login extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
-    private Button btnSignUp, btnLogin, btnForgotPassword;
-    private EditText etEmail, etPassword;
 
+    private EditText username_input, password_input;
+    private ImageView signup, signin, forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etEmail = findViewById(R.id.username);
-        btnLogin = findViewById(R.id.login);
-        etPassword = findViewById(R.id.password);
-        btnSignUp = findViewById(R.id.signup);
-        btnForgotPassword = findViewById(R.id.forgotPassword);
+        username_input = (EditText) findViewById(R.id.username_input);
+        password_input = (EditText) findViewById(R.id.password_input);
+        forgotPassword = (ImageView) findViewById(R.id.forgotPassword);
+        signin = (ImageView) findViewById(R.id.signin);
+        signup = (ImageView) findViewById(R.id.signup);
+
         mAuth = FirebaseAuth.getInstance();
 
         //adds functionality to login
-        btnLogin.setOnClickListener(view -> {
+        signin.setOnClickListener(view -> {
             login();
         });
 
-
-
         //adds functionality to sign up
-        btnSignUp.setOnClickListener(view -> {
+        signup.setOnClickListener(view -> {
             startActivity(new Intent(this, UserSignUp.class));
         });
 
-        btnForgotPassword.setOnClickListener(view -> {
+        forgotPassword.setOnClickListener(view -> {
             startActivity(new Intent(this, ForgotPassword.class));
         });
     }
 
     private void login() {
-        String email = etEmail.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
+        String email = username_input.getText().toString().trim();
+        String password = password_input.getText().toString().trim();
 
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(Login.this, "One or more fields is empty", Toast.LENGTH_SHORT).show();

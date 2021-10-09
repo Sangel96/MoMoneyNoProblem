@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +27,7 @@ public class UserSignUp extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     private EditText etName, etEmail, etPassword, etRePassword;
-    private TextView tvLogin;
-    private Button btnSignUp;
+    private ImageView tvLogin, btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +35,12 @@ public class UserSignUp extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         //Assign each variable with its respective layout names
-        etName = findViewById(R.id.etPersonName);
-        etEmail = findViewById(R.id.etEmail);
-        etPassword = findViewById(R.id.etPassword);
-        etRePassword = findViewById(R.id.etRePassword);
-        btnSignUp = findViewById(R.id.btnSignUp);
-        tvLogin = findViewById(R.id.tvLogin);
+        etName = (EditText) findViewById(R.id.etName);
+        etEmail = (EditText) findViewById(R.id.etEmail);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        etRePassword = (EditText) findViewById(R.id.etRePassword);
+        btnSignUp = (ImageView) findViewById(R.id.btnSignUp);
+        tvLogin = (ImageView) findViewById(R.id.tvLogin);
 
         btnSignUp.setOnClickListener(view -> {
             registerUser();     //Registers the user when they press the signup button
