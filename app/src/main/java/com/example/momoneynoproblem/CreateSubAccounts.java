@@ -3,7 +3,6 @@ package com.example.momoneynoproblem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,12 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.momoneynoproblem.Goals.AddGoals;
 import com.example.momoneynoproblem.Goals.CreateGoal;
-import com.example.momoneynoproblem.UserSignUp.UserSignUp;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -52,31 +46,21 @@ public class CreateSubAccounts extends AppCompatActivity {
         submitButton = (Button) findViewById(R.id.createSubAccountButton);
 
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // getting text from our edittext fields.
-                String subAccountName = subAccountNameInput.getText().toString().trim();
-                String reasonSubAccount = reasonsForSubAccountInput.getText().toString().trim();
-//                String address = employeeAddressEdt.getText().toString();
-
-                // below line is for checking weather the
-                // edittext fields are empty or not.
-                if (TextUtils.isEmpty(subAccountName) && TextUtils.isEmpty(reasonSubAccount)) {
-                    // if the text fields are empty
-                    // then show the below message.
-                    Toast.makeText(CreateSubAccounts.this, "Please add some data.", Toast.LENGTH_SHORT).show();
-                } else {
-                    // else call the method to add
-                    // data to our database.
-                    addDatatoFirebase(subAccountName,reasonSubAccount);
-                    startActivity(new Intent(CreateSubAccounts.this, SelectSubAccount.class));
-                }
-            }
+        submitButton.setOnClickListener(view -> {
+            insertSubAccount();
         });
 
         mAuth = FirebaseAuth.getInstance(); //Obtaining an instance of FireBase to be used later
+    }
+
+    private void insertSubAccount() {
+        subAccountNameInput = (EditText) findViewById(R.id.subAccountNameInput);
+        reasonsForSubAccountInput = (EditText) findViewById(R.id.reasonsSubAccount);
+        subAccountName = subAccountNameInput.getText().toString().trim();
+        reasonsForSubAccount = reasonsForSubAccountInput.getText().toString().trim();
+        SubAccount newSubAccount = new SubAccount(subAccountName,reasonsForSubAccount);
+        databaseReference.push().setValue(newSubAccount);
+        Toast.makeText(CreateSubAccounts.this, "Successfully added Sub-Account", Toast.LENGTH_SHORT).show();
     }
 
     private void addDatatoFirebase(String subAccountName, String reasonsForSubAccount) {
@@ -102,7 +86,7 @@ public class CreateSubAccounts extends AppCompatActivity {
 
                 // after adding this data we are showing toast message.
                 Toast.makeText(CreateSubAccounts.this, "data added", Toast.LENGTH_SHORT).show();
-                //System.exit(0);
+
             }
 
             @Override

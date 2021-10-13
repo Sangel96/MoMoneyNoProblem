@@ -1,4 +1,4 @@
-package com.example.momoneynoproblem;
+package com.example.momoneynoproblem.UserSignUp;
 
 public class User {
 
