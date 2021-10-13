@@ -3,6 +3,8 @@
     package="com.example.momoneynoproblem">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoMoneyNoProblem">
+        <activity
+            android:name=".balance.account_balance"
+            android:exported="true" />
+        <activity
+            android:name=".Report.Report"
+            android:exported="true" />
         <activity
             android:name=".Transaction.searchForTransaction"
             android:exported="true" />
@@ -57,8 +65,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserSignUp.UserSignUp"
-                    android:exported="true"/>
+        <activity
+            android:name=".UserSignUp.UserSignUp"
+            android:exported="true" />
         <activity
             android:name=".Login.Login"
             android:exported="true" />
