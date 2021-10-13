@@ -39,6 +39,9 @@
             android:name=".Goals.CreateGoal"
             android:exported="true" />
         <activity
+            android:name=".FinancialAnalysis.FinAnalysis"
+            android:exported="true" />
+        <activity
             android:name=".CreateSubAccounts"
             android:exported="true">
             <intent-filter>
@@ -62,7 +65,6 @@
         <activity
             android:name=".Login.Login"
             android:exported="true" />
-        <activity android:name=".Main" />
 
         <meta-data
             android:name="preloaded_fonts"
