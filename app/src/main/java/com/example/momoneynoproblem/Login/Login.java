@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.momoneynoproblem.Main;
 import com.example.momoneynoproblem.MainActivity;
 import com.example.momoneynoproblem.R;
 import com.example.momoneynoproblem.UserSignUp.UserSignUp;

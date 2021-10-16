@@ -84,7 +84,7 @@
         android:layout_marginTop="9dp"
         android:background="@null"
         android:hint="Password"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:maxLines="1"
         app:layout_constraintStart_toStartOf="@+id/white_rect3"
         app:layout_constraintTop_toTopOf="@+id/white_rect3" />
@@ -97,7 +97,7 @@
         android:layout_marginTop="9dp"
         android:background="@null"
         android:hint="Re-enter Password"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:maxLines="1"
         app:layout_constraintStart_toStartOf="@+id/white_rect4"
         app:layout_constraintTop_toTopOf="@+id/white_rect4" />
