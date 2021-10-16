@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.Login.Login;
 import com.example.momoneynoproblem.R;
-import com.example.momoneynoproblem.User;
+import com.example.momoneynoproblem.UserSignUp.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
