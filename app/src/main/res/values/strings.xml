@@ -39,6 +39,7 @@
     <string name="daily">Daily</string>
     <string name="yearly">Yearly</string>
     <string name="monthly">Monthly</string>
+    <string name="amount">Amount($)</string>
 
 
     <string-array name="source_list">
@@ -48,6 +49,18 @@
         <item>Travel</item>
         <item>Food</item>
     </string-array>
+    <string name="title_activity_main2">MainActivity2</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="delete_transaction">Delete Transaction</string>
+    <string name="insert_date">Insert Date</string>
+    <string name="Delete">Delete</string>
 
 
 </resources>

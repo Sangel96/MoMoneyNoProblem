@@ -23,6 +23,15 @@
             android:name=".Transaction.searchForTransaction"
             android:exported="true" />
         <activity
+            android:name=".Transaction.ManageTransaction"
+            android:exported="true" />
+        <activity
+            android:name=".Transaction.modifyTransaction"
+            android:exported="true" />
+        <activity
+            android:name=".Transaction.deleteTransaction"
+            android:exported="true" />
+        <activity
             android:name=".SubAccountTemplate"
             android:exported="true" />
         <activity
@@ -34,9 +43,7 @@
         <activity
             android:name=".Transaction.transaction"
             android:exported="true" />
-        <activity
-            android:name=".Transaction.ManageTransaction"
-            android:exported="true" />
+
         <activity
             android:name=".Transaction.AddTransaction"
             android:exported="true" />

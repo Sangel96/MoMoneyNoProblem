@@ -41,8 +41,10 @@
             android:layout_marginTop="100dp"
             android:layout_marginEnd="50dp"
             android:ems="10"
+            android:minHeight="48dp"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
         <TextView
@@ -63,7 +65,9 @@
             android:layout_marginStart="150dp"
             android:layout_marginTop="230dp"
             android:layout_marginEnd="50dp"
-            android:textSize="16sp" />
+            android:minHeight="48dp"
+            android:textSize="16sp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/txtStoreName"
@@ -82,7 +86,9 @@
             android:layout_marginStart="145dp"
             android:layout_marginTop="260dp"
             android:layout_marginEnd="50dp"
-            android:ems="10" />
+            android:ems="10"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
         <Button
@@ -112,7 +118,9 @@
             android:layout_marginTop="405dp"
             android:layout_marginEnd="50dp"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/txtAmount"
@@ -120,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="340dp"
-            android:text="Amount($)"
+            android:text="@string/amount"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -132,7 +140,9 @@
             android:layout_marginTop="320dp"
             android:layout_marginEnd="50dp"
             android:ems="10"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
         <TextView
@@ -153,13 +163,15 @@
             android:layout_marginTop="160dp"
             android:layout_marginEnd="50dp"
             android:ems="10"
-            android:inputType="date" />
+            android:inputType="date"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="390dp"
             android:background="#3F51B5" />
 
@@ -181,7 +193,9 @@
             android:layout_marginTop="465dp"
             android:layout_marginEnd="50dp"
             android:ems="10"
-            android:inputType="date" />
+            android:inputType="date"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
     </RelativeLayout>
