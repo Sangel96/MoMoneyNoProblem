@@ -60,7 +60,7 @@ public class deleteTransaction extends AppCompatActivity {
 
     private void delteData(String date) {
         Task<Void> databaseReference = firebaseDatabase.getInstance().getReference("Transactions")
-                .child("date").removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                .child(date).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
