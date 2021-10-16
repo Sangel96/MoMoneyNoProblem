@@ -10,6 +10,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="add_transaction">Add Transaction</string>
+    <string name="delete_transaction">Delete Transaction</string>
     <string name="manage_transaction">Manage Transaction</string>
     <string name="checkIncome">Income</string>
     <string name="checkExpenses">Expenses</string>
@@ -41,6 +42,9 @@
     <string name="monthly">Monthly</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="insert_date">Insert Date</string>
+    <string name="Delete">Delete</string>
+    <string name="amount">Amount($)</string>
 
     <string-array name="source_list">
         <item>Salary</item>
