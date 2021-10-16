@@ -17,9 +17,6 @@
             android:name=".balance.account_balance"
             android:exported="true" />
         <activity
-            android:name=".Report.Report"
-            android:exported="true" />
-        <activity
             android:name=".Transaction.searchForTransaction"
             android:exported="true" />
         <activity
@@ -47,9 +44,6 @@
             android:name=".Goals.CreateGoal"
             android:exported="true" />
         <activity
-            android:name=".FinancialAnalysis.FinAnalysis"
-            android:exported="true" />
-        <activity
             android:name=".CreateSubAccounts"
             android:exported="true">
             <intent-filter>
@@ -60,6 +54,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.MoMoneyNoProblem.NoActionBar"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

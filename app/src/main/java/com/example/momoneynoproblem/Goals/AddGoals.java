@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.momoneynoproblem.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,9 +26,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+
 public class AddGoals extends AppCompatActivity {
     private FloatingActionButton faButton;
-
+    private Fragment fragment;
     DatabaseReference databaseReference;
 
     private EditText etName, etEmail, etPassword, etRePassword;

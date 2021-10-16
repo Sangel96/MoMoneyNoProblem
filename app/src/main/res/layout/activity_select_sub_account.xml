@@ -5,7 +5,7 @@
     android:id="@+id/SubAccountName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cover_for_app"
+    android:background="@drawable/gradient_background"
     tools:context=".CreateSubAccounts">
 
     <!--    <TextView-->

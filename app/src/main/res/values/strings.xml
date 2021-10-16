@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MoMoneyNoProblem</string>
+    <string name="app_name">Mo Money</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -39,7 +39,8 @@
     <string name="daily">Daily</string>
     <string name="yearly">Yearly</string>
     <string name="monthly">Monthly</string>
-
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string-array name="source_list">
         <item>Salary</item>
