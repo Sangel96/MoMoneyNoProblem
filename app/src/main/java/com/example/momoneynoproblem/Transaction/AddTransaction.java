@@ -156,11 +156,16 @@ public class AddTransaction extends AppCompatActivity {
                 // data base reference will sends data to firebase.
 //
                 DatabaseReference transChild = databaseReference.push();
-                databaseReference.child(transChild.getKey()).setValue(trans);
+                //databaseReference.child(transChild.getKey()).setValue(trans);
+                databaseReference.child("date").setValue(trans);
 
                 // after adding this data we are showing toast message.
                 Toast.makeText(AddTransaction.this, "data added", Toast.LENGTH_SHORT).show();
-                System.exit(0);
+                amountEditText.setText("");
+                DateEdit.setText("");
+                StoreNameEdit.setText("");
+
+                //System.exit(0);
             }
 
             @Override
