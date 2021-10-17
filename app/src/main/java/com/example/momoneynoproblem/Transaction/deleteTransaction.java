@@ -44,10 +44,10 @@ public class deleteTransaction extends AppCompatActivity {
         binding.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String date = binding.DateEdit2.getText().toString();
-                if(!date.isEmpty()){
+                String transID = binding.TransIDEdit.getText().toString();
+                if(!transID.isEmpty()){
 
-                    delteData(date);
+                    delteData(transID);
 
                 } else {
                     Toast.makeText(deleteTransaction.this, "Enter the transaction date for deleting",
@@ -66,7 +66,7 @@ public class deleteTransaction extends AppCompatActivity {
                 if(task.isSuccessful()){
 
                     Toast.makeText(deleteTransaction.this, "Successfully Deleted",Toast.LENGTH_SHORT).show();
-                    binding.DateEdit2.setText("");
+                    binding.TransIDEdit.setText("");
 
                 } else {
 

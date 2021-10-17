@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mo Money</string>
+    <string name="app_name">MoMoneyNoProblem</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -9,8 +9,6 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="add_transaction">Add Transaction</string>
-    <string name="delete_transaction">Delete Transaction</string>
     <string name="manage_transaction">Manage Transaction</string>
     <string name="checkIncome">Income</string>
     <string name="checkExpenses">Expenses</string>
@@ -26,11 +24,14 @@
     <string name="ReasonsSubAccountName">Enter Reasons for Sub Account</string>
     <string name="EnterSubAccount">Enter</string>
     <string name="transaction_type_income_expenses">Transaction type (income/expenses)</string>
-    <string name="source_type">Source type</string>
-    <string name="store_name">Store Name</string>
+
+    <string name="txtId">Transaction ID:</string>
+    <string name="txtStoreName">Store Name</string>
+    <string name="txtSourcetype">Source type</string>
+
     <string name="delete">Delete</string>
     <string name="Modify_Transaction">Modify Transaction</string>
-    <string name="receipt_date">Receipt Date</string>
+
     <string name="receipt_newdate">Receipt New Date</string>
     <string name="save">Save</string>
     <string name="new_amount">New Amount ($)</string>
@@ -40,11 +41,8 @@
     <string name="daily">Daily</string>
     <string name="yearly">Yearly</string>
     <string name="monthly">Monthly</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="insert_date">Insert Date</string>
-    <string name="Delete">Delete</string>
-    <string name="amount">Amount($)</string>
+
+
 
     <string-array name="source_list">
         <item>Salary</item>
@@ -53,6 +51,29 @@
         <item>Travel</item>
         <item>Food</item>
     </string-array>
+    <string name="title_activity_main2">MainActivity2</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="delete_transaction">Delete Transaction</string>
+    <string name="insert_date">Insert Date</string>
+    <string name="Delete">Delete</string>
+    <string name="store_name">Store Name</string>
+    <string name="do_you_want_to_scan_the_invoice">Do you want to scan the invoice ?</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="Id">Transaction ID:</string>
+    <string name="source_type">Source type</string>
+    <string name="amount">Amount($)</string>
+    <string name="add">Add</string>
+    <string name="receipt_date">Receipt Date</string>
+    <string name="income">Income</string>
+    <string name="expense">Expense</string>
+    <string name="txtID">Insert Transaction ID</string>
 
 
 </resources>

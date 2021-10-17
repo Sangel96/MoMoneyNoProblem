@@ -22,10 +22,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class searchForTransaction extends AppCompatActivity {
     FirebaseAuth mAuth;
-
+    public FirebaseDatabase firebaseDatabase;
+    public EditText DateEdit;
     Button daily_Button;
     Button monthly_Button;
     Button Yearly_Button;
@@ -52,6 +54,8 @@ public class searchForTransaction extends AppCompatActivity {
         monthly_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Task<Void> databaseReference = firebaseDatabase.getInstance().getReference("Transactions")
+                        .child("1-3-2000").setValue("amount",10);
                // Intent i= new Intent(searchForTransaction.this,ManageTransaction.class);
                 //startActivity(i);
 
