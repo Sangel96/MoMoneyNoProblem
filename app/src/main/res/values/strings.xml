@@ -74,6 +74,8 @@
     <string name="income">Income</string>
     <string name="expense">Expense</string>
     <string name="txtID">Insert Transaction ID</string>
+    <string name="navigation_drawer_open" />
+    <string name="navigation_drawer_close" />
 
 
 </resources>
