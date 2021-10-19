@@ -45,19 +45,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:23.0.3'
     implementation 'com.google.firebase:firebase-storage:20.0.0'
 
-
+    //PDFViewer Dependency (BETA https://github.com/barteksc/AndroidPdfViewer )
+    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
     //ml kit implementation for using firebase built in pdf to text reader
     //implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
 
-    // modified version, originally 17.0.0 to 16.2.0 from tutorial
     implementation 'com.google.android.gms:play-services-mlkit-text-recognition:17.0.0'
-    //implementation 'com.google.android.gms:play-services-mlkit-text-recognition-common:16.2.0'
     //implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
     implementation 'androidx.camera:camera-core:1.1.0-alpha08'
     implementation 'com.google.firebase:firebase-messaging:21.1.0'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
-    //implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition-common:16.0.0'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
     //implementation 'com.google.firebase:firebase-core:19.0.0'
     //
     testImplementation 'junit:junit:4.+'
