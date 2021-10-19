@@ -76,6 +76,11 @@
     <string name="navigation_drawer_open" />
     <string name="navigation_drawer_close" />
     <string name="EmergencyButton">Emergency BUtton</string>
+    <string name="Symptoms">Symptoms</string>
+    <string name="emergency_critical_level">How critical is your emergency?</string>
+    <string name="DateNeededBy">What date would you need this to be fixed?</string>
+    <string name="IncomeVerification">Will you be recieving income next month?</string>
+    <string name="EnterButton">Enter</string>
 
 
 </resources>
