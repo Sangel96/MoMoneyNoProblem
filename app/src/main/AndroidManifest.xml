@@ -14,9 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoMoneyNoProblem">
         <activity
-            android:name=".balance.account_balance"
-            android:exported="true" />
-        <activity
             android:name=".Report.Report"
             android:exported="true" />
         <activity
