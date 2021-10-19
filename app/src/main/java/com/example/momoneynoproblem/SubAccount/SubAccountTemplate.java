@@ -1,10 +1,12 @@
-package com.example.momoneynoproblem;
+package com.example.momoneynoproblem.SubAccount;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.momoneynoproblem.R;
 
 public class SubAccountTemplate extends AppCompatActivity {
     public TextView textView;

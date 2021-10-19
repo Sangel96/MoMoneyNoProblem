@@ -29,10 +29,10 @@
             android:name=".Transaction.deleteTransaction"
             android:exported="true" />
         <activity
-            android:name=".SubAccountTemplate"
+            android:name=".SubAccount.SubAccountTemplate"
             android:exported="true" />
         <activity
-            android:name=".SelectSubAccount"
+            android:name=".SubAccount.SelectSubAccount"
             android:exported="true" />
         <activity
             android:name=".Login.ForgotPassword"
@@ -51,7 +51,7 @@
             android:name=".Goals.CreateGoal"
             android:exported="true" />
         <activity
-            android:name=".CreateSubAccounts"
+            android:name=".SubAccount.CreateSubAccounts"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

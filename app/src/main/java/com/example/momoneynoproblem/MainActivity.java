@@ -6,27 +6,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.momoneynoproblem.Goals.AddGoals;
 import com.example.momoneynoproblem.Login.Login;
-import com.example.momoneynoproblem.Transaction.ManageTransaction;
+import com.example.momoneynoproblem.SubAccount.SelectSubAccount;
 import com.example.momoneynoproblem.Transaction.transaction;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

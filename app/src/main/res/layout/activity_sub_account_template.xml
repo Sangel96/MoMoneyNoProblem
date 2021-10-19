@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/cover_for_app"
-    tools:context=".SubAccountTemplate">
+    tools:context=".SubAccount.SubAccountTemplate">
 
-    <TextView
-        android:id="@+id/selection_Sub_Account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="194dp" />
+<!--    <TextView-->
+<!--        android:id="@+id/selection_Sub_Account"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="120dp"-->
+<!--        android:textSize="24sp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:layout_editor_absoluteX="194dp" />-->
 
     <TextView
         android:id="@+id/textView4"
