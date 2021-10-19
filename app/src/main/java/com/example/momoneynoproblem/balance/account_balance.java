@@ -18,11 +18,12 @@ import java.util.ArrayList;
 
 public class account_balance extends AppCompatActivity {
 
-    ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_balance);
+        ListView listView;
         listView = (ListView) findViewById(R.id.listView);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
