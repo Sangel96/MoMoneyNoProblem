@@ -75,6 +75,7 @@
     <string name="txtID">Insert Transaction ID</string>
     <string name="navigation_drawer_open" />
     <string name="navigation_drawer_close" />
+    <string name="EmergencyButton">Emergency BUtton</string>
 
 
 </resources>
