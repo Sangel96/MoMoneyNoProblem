@@ -81,6 +81,8 @@
     <string name="DateNeededBy">What date would you need this to be fixed?</string>
     <string name="IncomeVerification">Will you be recieving income next month?</string>
     <string name="EnterButton">Enter</string>
+    <string name="yes_selection">Yes</string>
+    <string name="no_selection">No</string>
 
 
 </resources>
