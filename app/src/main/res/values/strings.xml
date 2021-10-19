@@ -43,7 +43,6 @@
     <string name="monthly">Monthly</string>
 
 
-
     <string-array name="source_list">
         <item>Salary</item>
         <item>Rent</item>
