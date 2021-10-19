@@ -14,6 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoMoneyNoProblem">
         <activity
+            android:name=".balance.account_balance"
+            android:exported="true" />
+        <activity
+            android:name=".Report.Report"
+            android:exported="true" />
+        <activity
+            android:name=".PDF.PDFViewer"
+            android:exported="true" />
+        <activity
+            android:name=".PDF.PDFMaker"
+            android:exported="true" />
+        <activity
             android:name=".DescribeBudgetAnalysis.AnalysisPage"
             android:exported="true" />
         <activity
