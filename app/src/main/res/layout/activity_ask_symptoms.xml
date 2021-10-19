@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".DescribeBudgetAnalysis.AskSymptoms">
 
@@ -11,7 +11,9 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Symptoms" />
+        android:gravity="center"
+        android:text="@string/Symptoms"
+        android:textSize="28sp" />
 
     <TextView
         android:id="@+id/textView5"
@@ -22,7 +24,7 @@
     <Spinner
         android:id="@+id/critical_emergency_level_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:minHeight="48dp" />
 
     <TextView
@@ -33,9 +35,9 @@
 
     <DatePicker
         android:id="@+id/DateInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:datePickerMode="spinner"/>
+        android:layout_width="314dp"
+        android:layout_height="203dp"
+        android:datePickerMode="spinner" />
 
     <TextView
         android:id="@+id/textView10"
@@ -43,26 +45,29 @@
         android:layout_height="wrap_content"
         android:text="@string/IncomeVerification" />
 
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    <RadioGroup
+        android:id="@+id/yesNoGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/yesNoGroup">
-        <RadioButton android:id="@+id/radio_yes"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/yes_selection"
-            />
-        <RadioButton android:id="@+id/radio_no"
+            android:text="@string/yes_selection" />
+
+        <RadioButton
+            android:id="@+id/radio_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_selection"
-            />
+            android:text="@string/no_selection" />
+
+        <Button
+            android:id="@+id/EnterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/EnterButton" />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/EnterButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/EnterButton" />
 </LinearLayout>
