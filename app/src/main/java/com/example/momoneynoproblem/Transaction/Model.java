@@ -15,12 +15,12 @@ public class Model extends Application {
         this.transID = "t1" ;
         this.transaction_type = "t1";
         this.transaction_source_type = "t1";
-        this.amount = "t1";
+        this.amount = 0.01;
         this.date = "t1";
         this.storeName = "t1";
     }
 
-    public Model(String transID, String transaction_type, String transaction_source_type, String amount, String date, String storeName) {
+    public Model(String transID, String transaction_type, String transaction_source_type, double amount, String date, String storeName) {
 //        this.garrList = garrList;
 //        this.garrAdp = garrAdp;
         this.transID = transID;
@@ -33,7 +33,7 @@ public class Model extends Application {
 
     public String transaction_type;
     public String transaction_source_type;
-    public String amount;
+    public double amount;
     public String date;
     public String storeName;
 
@@ -54,10 +54,10 @@ public class Model extends Application {
         return transaction_source_type;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
-    public String getAmount() {
+    public double getAmount() {
         return amount;
     }
 

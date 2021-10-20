@@ -16,7 +16,7 @@ public class PDFViewer extends AppCompatActivity {
 
         PDFView pdfView = findViewById(R.id.pdfView);
         //opens the pdf located in assets folder only
-        pdfView.fromAsset("samplePDF.pdf").load();
+        pdfView.fromAsset("Generated Financial Report.pdf").load();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){

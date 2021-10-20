@@ -15,7 +15,7 @@ public class Transaction1 implements Serializable {
 
     }
     public Transaction1(String amount,String transaction_type, String transaction_source_type,
-                        String transID) {
+                        String transID, String date, String storeName) {
         this.transaction_type = transaction_type;
         this.transaction_source_type = transaction_source_type;
         this.amount = amount;

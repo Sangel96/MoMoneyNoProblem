@@ -4,16 +4,18 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Camera;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,23 +26,30 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.momoneynoproblem.R;
-import com.google.android.gms.tasks.*;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
+import java.io.InputStream;
+
 public class scanner extends AppCompatActivity {
 
-    private ImageView capture;
-    private TextView resultTV;
+    private ImageView image;
+    private EditText resultTV;
     private Bitmap imageBitmap;
 
     private Button btnCapture;
     private Button btnupload;
+    private Button btnRecognize;
 
+    private static Uri Source;
     private Camera Camera;
+    private static final int SELECT_IMAGE_FROM_STORAGE = 100;
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -49,17 +58,23 @@ public class scanner extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
 
-        //capture = (Button) findViewById(R.id.captureimage);
-        resultTV = (TextView) findViewById(R.id.text);
+        image = (ImageView) findViewById(R.id.imageView2);
+        resultTV = (EditText) findViewById(R.id.resultTV);
 
         btnupload = (Button) findViewById(R.id.uploadfile);
         btnCapture = (Button) findViewById(R.id.captureimage);
+        btnRecognize = (Button) findViewById(R.id.convert);
 
         // this code will open the file manager and import the pdf to be used to scan
         btnupload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(scanner.this, scannerResult.class);
+                //Intent i = new Intent(scanner.this, scannerResult.class);
+                InputImage userimage;
+                Intent photoPicker = new Intent(Intent.ACTION_PICK);
+                photoPicker.setType("image/*");
+                startActivityForResult(photoPicker, SELECT_IMAGE_FROM_STORAGE);
+//
             }
         });
         // this code will be used to open camera and convert to text
@@ -77,6 +92,23 @@ public class scanner extends AppCompatActivity {
                 //captureImage();
                 detectTxt();
                 //Manifest.permission.CAMERA.release();
+
+            }
+        });
+
+        btnRecognize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputImage testInput = null;
+                TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+                try {
+                    testInput = InputImage.fromFilePath(getApplicationContext(), Source );
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                detectTxt();
+
 
             }
         });
@@ -116,6 +148,24 @@ public class scanner extends AppCompatActivity {
                 Bundle extras = data.getExtras();
 
                 imageBitmap = (Bitmap) extras.get("data");
+            }
+            if (requestCode == SELECT_IMAGE_FROM_STORAGE) {
+                if (resultCode == RESULT_OK) {
+                    Uri select = data.getData();
+                    InputStream inputStream = null;
+
+                    try {
+                        assert select != null;
+                        inputStream = getContentResolver().openInputStream(select);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    BitmapFactory.decodeStream(inputStream);
+                    image.setImageURI(select);
+                    Source = select;
+                    //btnconv.setVisibility(View.VISIBLE);
+                }
             }
         }
 

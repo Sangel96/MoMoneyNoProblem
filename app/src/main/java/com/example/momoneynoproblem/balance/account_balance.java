@@ -26,7 +26,7 @@ public class account_balance extends AppCompatActivity {
         ListView listView;
         listView = (ListView) findViewById(R.id.listView);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Balance");
 
         ArrayList<String> Account_Balance = new ArrayList<>();
         ArrayAdapter<String> ArrayAdapter = new ArrayAdapter<String>(account_balance.this, android.R.layout.simple_list_item_1, Account_Balance);
@@ -34,10 +34,16 @@ public class account_balance extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int counter=0;
                 Account_Balance.clear();
                 for (DataSnapshot temp : snapshot.getChildren()){
-                    Account_Balance.add("Account Balance: " + temp.getValue().toString());
-
+                    if (counter == 0){
+                        Account_Balance.add("Name of User: " + temp.getValue().toString());
+                    }
+                    else {
+                        Account_Balance.add("Account Balance " + counter+": " + temp.getValue().toString());
+                    }
+                    counter++;
                 }
                 ArrayAdapter.notifyDataSetChanged();
             }

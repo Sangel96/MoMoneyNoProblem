@@ -1,5 +1,9 @@
 package com.example.momoneynoproblem.PDF;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -14,6 +18,8 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.momoneynoproblem.R;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +32,6 @@ import java.io.File;
 import java.util.Date;
 
 public class PDFMaker extends AppCompatActivity {
-
     // variables for our buttons.
     // Button btnPDFMake;
 
@@ -61,7 +66,9 @@ public class PDFMaker extends AppCompatActivity {
         setContentView(R.layout.activity_pdfmaker);
         callFindViewById();
         callOnClickListener();
-
+        if (checkPermission() == false){
+            requestPermission();
+        }
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -164,6 +171,19 @@ public class PDFMaker extends AppCompatActivity {
     adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemList  );
     spinner.setAdapter(adapter);
     }
+
+    private boolean checkPermission() {
+        // checking of permissions.
+        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermission() {
+        // requesting permissions if not provided.
+        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
+    }
+
 }
 
 
