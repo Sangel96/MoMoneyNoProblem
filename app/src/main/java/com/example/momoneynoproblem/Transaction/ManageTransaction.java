@@ -50,7 +50,7 @@ public class ManageTransaction extends AppCompatActivity {
         delete_Button = (Button) findViewById(R.id.delete_Button);
         search_Button = (Button) findViewById(R.id.search_Button);
         amountEditText = (EditText) findViewById(R.id.amountEditText);
-        transactionTypeEditText = (EditText) findViewById(R.id.transactionTypeEditText);
+        //transactionTypeEditText = (EditText) findViewById(R.id.transactionTypeEditText);
 
         // implement spinner
         transactionSourceTypeSpinner = (Spinner) findViewById((R.id.transactionSourceTypeSpinner));
