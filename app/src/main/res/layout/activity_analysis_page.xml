@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context=".DescribeBudgetAnalysis.AnalysisPage">
 
+    <SeekBar
+        android:id="@+id/seekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="3000"
+        android:min="1000"
+        android:progress="300" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
@@ -14,14 +23,6 @@
         android:gravity="center"
         android:text="New Monthly Spending "
         android:textSize="30sp" />
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="10"
-        android:progress="3" />
 
     <TextView
         android:id="@+id/textView27"
@@ -36,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="New:"
+        android:text="New($):"
         android:textSize="20sp" />
 
     <TextView
@@ -44,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="$1500"
+        android:text="1500"
         android:textSize="20sp" />
 
     <TextView
@@ -60,7 +61,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Restaurants($700)"
+        android:text="Restaurants($):"
+        android:textSize="20sp" />
+
+    <SeekBar
+        android:id="@+id/seekBarRestaurant"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="1500"
+        android:min="0"
+        android:progress="300" />
+
+    <TextView
+        android:id="@+id/restauranBudget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="700"
         android:textSize="20sp" />
 
     <TextView
@@ -68,15 +86,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Vacations/Flights($500)"
+        android:text="Vacations/Flights($):"
         android:textSize="20sp" />
 
+    <SeekBar
+        android:id="@+id/seekBarVacation"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="1500"
+        android:min="0"
+        android:progress="300" />
+
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/vacationBudget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Toys($500)"
+        android:text="500"
         android:textSize="20sp" />
 
     <TextView
