@@ -31,7 +31,7 @@ public class ManageTransaction extends AppCompatActivity {
 
     public Button delete_Button = null;
     public Button modify_Button = null;
-    public Button search_Button = null;
+    //public Button search_Button = null;
 
     //from show data
     ListView listshow;
@@ -53,25 +53,27 @@ public class ManageTransaction extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("Transactions");
         modify_Button = (Button) findViewById(R.id.modify_Button);
         delete_Button = (Button) findViewById(R.id.delete_Button);
-        search_Button = (Button) findViewById(R.id.search_Button);
+        //search_Button = (Button) findViewById(R.id.search_Button);
 
 
         // when click on the search button, go to the search screen
-        search_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent j = new Intent(ManageTransaction.this, searchForTransaction.class);
-                startActivity(j);
-            }
-        });
+//        search_Button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent j = new Intent(ManageTransaction.this, searchForTransaction.class);
+//                startActivity(j);
+//            }
+//        });
 
         modify_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent j = new Intent(ManageTransaction.this, modifyTransaction.class);
+                j.putExtra("Transaction",listshow.getItemIdAtPosition(selection[0]));
                 startActivity(j);
             }
         });
+
 
         delete_Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +119,5 @@ public class ManageTransaction extends AppCompatActivity {
             }
         });
     }
-
-
 }
+

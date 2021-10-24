@@ -45,8 +45,6 @@ public class modifyTransaction extends AppCompatActivity {
     public String transaction_source_type = "";
     public Spinner transactionSourceTypeSpinner;
 
-
-
     //grabs extra data from intent
     //Intent intent = getIntent();
     //public Transaction1 trans;
