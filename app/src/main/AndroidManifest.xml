@@ -64,6 +64,12 @@
         <activity
             android:name=".Transaction.AddTransaction"
             android:exported="true" />
+<!--        <activity-->
+<!--            android:name=".Transaction.showData"-->
+<!--            android:exported="true" />-->
+        <activity
+            android:name=".FinAnalysis.FinAnalysis"
+            android:exported="true" />
         <activity
             android:name=".Goals.AddGoals"
             android:exported="true" />
