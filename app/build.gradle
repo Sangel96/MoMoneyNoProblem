@@ -44,6 +44,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.0.2'
     implementation 'com.google.firebase:firebase-firestore:23.0.3'
     implementation 'com.google.firebase:firebase-storage:20.0.0'
+    implementation 'com.jjoe64:graphview:4.2.2'
 
     //PDFViewer Dependency (BETA https://github.com/barteksc/AndroidPdfViewer )
     implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
