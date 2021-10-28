@@ -1,9 +1,11 @@
 package com.example.momoneynoproblem.Transaction;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class transaction extends AppCompatActivity {
     FirebaseAuth mAuth;
 
-    Button add_transaction;
-    Button manage_transaction;
+    ImageView add_transaction;
+    ImageView manage_transaction;
     private Object transaction;
 
     @Override
@@ -22,8 +24,8 @@ public class transaction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
 
-        add_transaction = (Button) findViewById(R.id.add_transaction);
-        manage_transaction = (Button) findViewById(R.id.manage_transaction);
+        add_transaction = (ImageView) findViewById(R.id.add_transaction);
+        manage_transaction = (ImageView) findViewById(R.id.manage_transaction);
         add_transaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
