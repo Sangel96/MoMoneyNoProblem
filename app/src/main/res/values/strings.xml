@@ -83,6 +83,9 @@
     <string name="EnterButton">Enter</string>
     <string name="yes_selection">Yes</string>
     <string name="no_selection">No</string>
+    <string name="txtSubAccounts">SubAccounts</string>
+    <string name="add_sub_account">Add Sub Account</string>
+    <string name="txtManageSubAccount">Manage SubAccount</string>
 
 
 </resources>

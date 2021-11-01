@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoMoneyNoProblem">
         <activity
+            android:name=".SubAccount.sub_accounts"
+            android:exported="true" />
+        <activity
             android:name=".Transaction.showData"
             android:exported="true" />
         <activity
@@ -55,6 +58,9 @@
         <activity
             android:name=".SubAccount.SelectSubAccount"
             android:exported="true" />
+<!--        <activity -->
+<!--            android:name=".SubAccount.sub_accounts"-->
+<!--            android:exported="true" />-->
         <activity
             android:name=".Login.ForgotPassword"
             android:exported="true" />
