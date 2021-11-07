@@ -119,30 +119,40 @@ public class modifyTransaction extends AppCompatActivity {
                 } else {
 
                     Transaction1 transaction1 = new Transaction1(amount,transaction_type, transaction_source_type,ID,date, storename);
-                    databaseReference.child("Transactions").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    databaseReference = FirebaseDatabase.getInstance().getReference();
-                                    databaseReference.child("Transactions").child(ID)
-                                            .child(amount).setValue(amount);
-                                    databaseReference.child("Transactions").child(ID)
-                                            .child(date).setValue(date);
-                                    databaseReference.child("Transactions").child(ID)
-                                            .child(storename).setValue(storename);
-                                    databaseReference.child("Transactions").child(ID)
-                                            .child(transaction_type).setValue(transaction_type);
-                                    databaseReference.child("Transactions").child(ID)
-                                            .child(transaction_source_type).setValue(transaction_source_type);
+                    HashMap hashMap = new HashMap();
+                    hashMap.put("amount", amount);
+                    hashMap.put("date", date);
+                    hashMap.put("storeName", storename);
+                    hashMap.put("transID", ID);
+                    hashMap.put("transaction_source_type", transaction_source_type);
+                    hashMap.put("transaction_type", transaction_type);
 
-                                }
+                    databaseReference.child(ID).setValue(hashMap);
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-                    Toast.makeText(modifyTransaction.this,"Your Data is Successfully Updated",Toast.LENGTH_SHORT).show();
-
+                    //                    databaseReference.child("Transactions").addListenerForSingleValueEvent(new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                    databaseReference = FirebaseDatabase.getInstance().getReference("Transactions");
+//                                    databaseReference.child(ID)
+//                                            .child(amount).setValue(transaction1.getAmount());
+//                                    databaseReference.child(ID)
+//                                            .child(date).setValue(transaction1.getDate());
+//                                    databaseReference.child(ID)
+//                                            .child(storename).setValue(transaction1.getStoreName());
+//                                    databaseReference.child(ID)
+//                                            .child(transaction_type).setValue(transaction1.getTransaction_type());
+//                                    databaseReference.child(ID)
+//                                            .child(transaction_source_type).setValue(transaction1.getTransaction_source_type());
+//
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                }
+//                            });
+//                    Toast.makeText(modifyTransaction.this,"Your Data is Successfully Updated",Toast.LENGTH_SHORT).show();
+//
 
                 }
 
