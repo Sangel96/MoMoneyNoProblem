@@ -26,7 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 public class AddTransaction extends AppCompatActivity {
 
     public FirebaseAuth mAuth;
-    public DatabaseReference mDatabase;
     public FirebaseDatabase firebaseDatabase;
     public DatabaseReference databaseReference;
 
@@ -171,18 +170,14 @@ public class AddTransaction extends AppCompatActivity {
                 StoreNameEdit.setText("");
                 TranIDEdit.setText("");
 
-                //System.exit(0);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // if the data is not added or it is cancelled then
                 // we are displaying a failure toast message.
                 Toast.makeText(AddTransaction.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
             }
-
         });
-
     }
 }
 

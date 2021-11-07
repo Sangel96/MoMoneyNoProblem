@@ -31,13 +31,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class modifyTransaction extends AppCompatActivity {
-    private static com.example.momoneynoproblem.Transaction.Model module;
-    public FirebaseAuth mAuth;
-    public DatabaseReference mDatabase;
+
     public DatabaseReference firebaseDatabase;
     public DatabaseReference databaseReference;
-
-    public EditText input1, input2, input3;
 
     public RadioGroup radioGroup;
     public RadioButton incomeRadioButton;
@@ -50,7 +46,6 @@ public class modifyTransaction extends AppCompatActivity {
     public String transaction_source_type = "";
     public Spinner transactionSourceTypeSpinner;
 
-    //Model m1 = new Model() ;
     private static final String[] paths = {"Salary", "Rent", "Cloths", "Gifts", "Shopping",
             "Eating out", "Entertainment", "Fuel", "Holiday",
             "Kids", "Sports", "Travel", "Other sources"};
@@ -90,7 +85,6 @@ public class modifyTransaction extends AppCompatActivity {
                         transaction_source_type = (String)
                                 parent.getItemAtPosition(position);
                     }
-
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
                         Toast.makeText(modifyTransaction.this, "Please choose source type.",
@@ -99,9 +93,11 @@ public class modifyTransaction extends AppCompatActivity {
                     }
                 });
 
-        modifyButton.setOnClickListener(new View.OnClickListener() {
+        modifyButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 final String ID = TranIDEdit.getText().toString().trim();
                 final String amount = amountEditText.getText().toString().trim();
                 final String date = DateEdit.getText().toString().trim();
@@ -109,15 +105,9 @@ public class modifyTransaction extends AppCompatActivity {
                 final String trans_type = transaction_type.trim();
                 final String trans_sourceType = transaction_source_type.trim();
                 if (TextUtils.isEmpty(ID)) {
-                    TranIDEdit.setError("Please enter your ID!");
-                } else if (TextUtils.isEmpty((amount))) {
-                    amountEditText.setError("Please enter new amount!");
-                } else if (TextUtils.isEmpty((date))) {
-                    DateEdit.setError("Please enter the new date!");
-                } else if (TextUtils.isEmpty((storename))) {
-                    StoreNameEdit.setError("Please enter the new store name!");
-                } else {
-
+                    TranIDEdit.setError("Please enter The Transaction ID!");
+                } else
+                    {
                     Transaction1 transaction1 = new Transaction1(amount,transaction_type, transaction_source_type,ID,date, storename);
                     HashMap hashMap = new HashMap();
                     hashMap.put("amount", amount);
@@ -129,44 +119,12 @@ public class modifyTransaction extends AppCompatActivity {
 
                     databaseReference.child(ID).setValue(hashMap);
 
-                    //                    databaseReference.child("Transactions").addListenerForSingleValueEvent(new ValueEventListener() {
-//                                @Override
-//                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                    databaseReference = FirebaseDatabase.getInstance().getReference("Transactions");
-//                                    databaseReference.child(ID)
-//                                            .child(amount).setValue(transaction1.getAmount());
-//                                    databaseReference.child(ID)
-//                                            .child(date).setValue(transaction1.getDate());
-//                                    databaseReference.child(ID)
-//                                            .child(storename).setValue(transaction1.getStoreName());
-//                                    databaseReference.child(ID)
-//                                            .child(transaction_type).setValue(transaction1.getTransaction_type());
-//                                    databaseReference.child(ID)
-//                                            .child(transaction_source_type).setValue(transaction1.getTransaction_source_type());
-//
-//                                }
-//
-//                                @Override
-//                                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                                }
-//                            });
-//                    Toast.makeText(modifyTransaction.this,"Your Data is Successfully Updated",Toast.LENGTH_SHORT).show();
-//
-
                 }
-
             }
         });
+        Toast.makeText(modifyTransaction.this,"Your Data is Successfully Updated",Toast.LENGTH_SHORT).show();
+
     }
-
-
-//        public Transaction1(String amount,String transaction_type, String transaction_source_type,
-//                                String transID, String date, String storeName) {
-//        Transaction1 transaction1 = new Transaction1("500", "Income", "Salary", "T001", "11-1-21", "Target");
-//        databaseReference.push().setValue(transaction1);
-
-
 }
 
 

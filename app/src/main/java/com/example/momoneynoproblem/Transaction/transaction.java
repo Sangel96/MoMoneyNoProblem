@@ -34,7 +34,6 @@ public class transaction extends AppCompatActivity {
             }
         });
 
-
         manage_transaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
