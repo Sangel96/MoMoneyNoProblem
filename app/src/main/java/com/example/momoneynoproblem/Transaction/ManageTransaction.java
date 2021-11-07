@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,39 +32,25 @@ public class ManageTransaction extends AppCompatActivity {
 
     public Button delete_Button = null;
     public Button modify_Button = null;
-    //public Button search_Button = null;
 
-    //from show data
+
+
     ListView listshow;
-    Button btnUpdate;
     ArrayList<String> arrList = new ArrayList<>();
     ArrayAdapter<String> arrAdp;
 
     final int[] selection = new int[1];
 
-    //end show data
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_transaction);
-        firebaseDatabase = FirebaseDatabase.getInstance();
 
+        firebaseDatabase = FirebaseDatabase.getInstance();
         // below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("Transactions");
         modify_Button = (Button) findViewById(R.id.modify_Button);
         delete_Button = (Button) findViewById(R.id.delete_Button);
-        //search_Button = (Button) findViewById(R.id.search_Button);
-
-
-        // when click on the search button, go to the search screen
-//        search_Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent j = new Intent(ManageTransaction.this, searchForTransaction.class);
-//                startActivity(j);
-//            }
-//        });
 
         modify_Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +58,7 @@ public class ManageTransaction extends AppCompatActivity {
                 Intent j = new Intent(ManageTransaction.this, modifyTransaction.class);
                 j.putExtra("Transaction",listshow.getItemIdAtPosition(selection[0]));
                 startActivity(j);
+
             }
         });
 
@@ -86,7 +74,7 @@ public class ManageTransaction extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();  //Obtaining an instance of FireBase to be used later
         databaseReference = FirebaseDatabase.getInstance().getReference("Transactions");
         listshow = (ListView) findViewById(R.id.Listviewtxt);
-        btnUpdate= (Button)findViewById(R.id.btnUpdate);
+
         arrAdp = new ArrayAdapter<String>(this, android.R.layout
                 .simple_list_item_1,arrList);
         listshow.setAdapter(arrAdp);

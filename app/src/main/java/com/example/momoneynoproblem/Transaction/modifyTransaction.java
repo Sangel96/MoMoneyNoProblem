@@ -2,6 +2,7 @@ package com.example.momoneynoproblem.Transaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class modifyTransaction extends AppCompatActivity {
     private static com.example.momoneynoproblem.Transaction.Model module;
@@ -33,6 +36,8 @@ public class modifyTransaction extends AppCompatActivity {
     public DatabaseReference mDatabase;
     public DatabaseReference firebaseDatabase;
     public DatabaseReference databaseReference;
+
+    public EditText input1, input2, input3;
 
     public RadioGroup radioGroup;
     public RadioButton incomeRadioButton;
@@ -45,10 +50,7 @@ public class modifyTransaction extends AppCompatActivity {
     public String transaction_source_type = "";
     public Spinner transactionSourceTypeSpinner;
 
-    //grabs extra data from intent
-    //Intent intent = getIntent();
-    //public Transaction1 trans;
-    Model m1 = new Model() ;
+    //Model m1 = new Model() ;
     private static final String[] paths = {"Salary", "Rent", "Cloths", "Gifts", "Shopping",
             "Eating out", "Entertainment", "Fuel", "Holiday",
             "Kids", "Sports", "Travel", "Other sources"};
@@ -68,13 +70,6 @@ public class modifyTransaction extends AppCompatActivity {
         amountEditText = (EditText) findViewById(R.id.amountEditText);
         DateEdit = (EditText) findViewById(R.id.DateEdit);
         StoreNameEdit = (EditText) findViewById(R.id.StoreNameEdit);
-
-
-        //final String str = m1.getTransID();
-
-        //TranIDEdit.setText(str);
-        //TranIDEdit.setEnabled(false);
-
 
         // implement spinner
         transactionSourceTypeSpinner = (android.widget.Spinner) findViewById(R.id.transactionSourceTypeSpinner);
@@ -104,97 +99,64 @@ public class modifyTransaction extends AppCompatActivity {
                     }
                 });
 
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                Transaction1 transactions = snapshot.child(str).getValue(Transaction1.class);
-//                amountEditText.setText(transactions.getAmount());
-//                DateEdit.setText(transactions.getDate());
-//                StoreNameEdit.setText(transactions.getStoreName());
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        });
-
         modifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateArrayList();
-                Intent intent = new Intent(modifyTransaction.this, showData.class);
-                startActivity(intent);
+                final String ID = TranIDEdit.getText().toString().trim();
+                final String amount = amountEditText.getText().toString().trim();
+                final String date = DateEdit.getText().toString().trim();
+                final String storename = StoreNameEdit.getText().toString().trim();
+                final String trans_type = transaction_type.trim();
+                final String trans_sourceType = transaction_source_type.trim();
+                if (TextUtils.isEmpty(ID)) {
+                    TranIDEdit.setError("Please enter your ID!");
+                } else if (TextUtils.isEmpty((amount))) {
+                    amountEditText.setError("Please enter new amount!");
+                } else if (TextUtils.isEmpty((date))) {
+                    DateEdit.setError("Please enter the new date!");
+                } else if (TextUtils.isEmpty((storename))) {
+                    StoreNameEdit.setError("Please enter the new store name!");
+                } else {
 
-                // Model m1 = new Model(TranIDEdit.toString().trim(), String transaction_type, String transaction_source_type, String amount, String date, String storeName);
+                    Transaction1 transaction1 = new Transaction1(amount,transaction_type, transaction_source_type,ID,date, storename);
+                    databaseReference.child("Transactions").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    databaseReference = FirebaseDatabase.getInstance().getReference();
+                                    databaseReference.child("Transactions").child(ID)
+                                            .child(amount).setValue(amount);
+                                    databaseReference.child("Transactions").child(ID)
+                                            .child(date).setValue(date);
+                                    databaseReference.child("Transactions").child(ID)
+                                            .child(storename).setValue(storename);
+                                    databaseReference.child("Transactions").child(ID)
+                                            .child(transaction_type).setValue(transaction_type);
+                                    databaseReference.child("Transactions").child(ID)
+                                            .child(transaction_source_type).setValue(transaction_source_type);
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                    Toast.makeText(modifyTransaction.this,"Your Data is Successfully Updated",Toast.LENGTH_SHORT).show();
+
+
+                }
+
             }
         });
     }
 
-//    private void Cleartext() {
-//        TranIDEdit.setText("");
-//        amountEditText.setText("");
-//        DateEdit.setText("");
-//        StoreNameEdit.setText("");
-//        TranIDEdit.requestFocus();
-//    }
 
-    private void updateArrayList() {
-        final String ID = TranIDEdit.getText().toString().trim();
-        final String amount = amountEditText.getText().toString().trim();
-        final String date = DateEdit.getText().toString().trim();
-        final String storename = StoreNameEdit.getText().toString().trim();
-        final String trans_type = transaction_type.trim();
-        final String trans_sourceType = transaction_source_type.trim();
+//        public Transaction1(String amount,String transaction_type, String transaction_source_type,
+//                                String transID, String date, String storeName) {
+//        Transaction1 transaction1 = new Transaction1("500", "Income", "Salary", "T001", "11-1-21", "Target");
+//        databaseReference.push().setValue(transaction1);
 
-        //        public Transaction1(String amount,String transaction_type, String transaction_source_type,
-        //                        String transID, String date, String storeName) {
-        Transaction1 transaction1 = new Transaction1("500", "Income", "Salary", "T001", "11-1-21", "Target");
-        databaseReference.push().setValue(transaction1);
 
-//    private void updateArrayList() {
-//        final String ID = TranIDEdit.getText().toString().trim();
-//        final String amount = amountEditText.getText().toString().trim();
-//        final String date = DateEdit.getText().toString().trim();
-//        final String storename = StoreNameEdit.getText().toString().trim();
-//        final String trans_type = transaction_type.trim();
-//        final String trans_sourceType = transaction_source_type.trim();
-//
-//        if (TextUtils.isEmpty(ID)) {
-//            TranIDEdit.setError("Please enter your ID!");
-//        } else if (TextUtils.isEmpty((amount))) {
-//            amountEditText.setError("Please enter new amount!");
-//        } else if (TextUtils.isEmpty((date))) {
-//            DateEdit.setError("Please enter the new date!");
-//        } else if (TextUtils.isEmpty((storename))) {
-//            StoreNameEdit.setError("Please enter the new store name!");
-//        } else {
-//
-//            Transaction1 transaction1 = new Transaction1(ID, amount, date, storename);
-//            databaseReference.child("Transactions").child(ID).
-//                    addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            databaseReference = FirebaseDatabase.getInstance().getReference();
-//                            databaseReference.child("Transactions").child(ID)
-//                                    .child(amount).setValue(amount);
-//                            databaseReference.child("Transactions").child(ID)
-//                                    .child(date).setValue(date);
-//                            databaseReference.child("Transactions").child(ID)
-//                                    .child(storename).setValue(storename);
-//
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                        }
-//                    });
-//            Toast.makeText(this, "Transaction is updated", Toast.LENGTH_SHORT).show();
-//            Cleartext();
-        //    }
-
-    }
 }
 
 

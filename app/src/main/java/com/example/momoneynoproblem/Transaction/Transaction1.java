@@ -25,6 +25,7 @@ public class Transaction1 implements Serializable {
 
     }
 
+
     public void setTransaction_type(String transaction_type) {
         this.transaction_type = transaction_type;
     }
