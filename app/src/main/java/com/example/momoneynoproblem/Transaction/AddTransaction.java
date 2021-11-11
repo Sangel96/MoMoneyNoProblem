@@ -1,5 +1,6 @@
 package com.example.momoneynoproblem.Transaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.R;
+import com.example.momoneynoproblem.scanner.scanner;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -90,11 +92,20 @@ public class AddTransaction extends AppCompatActivity {
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-                        Toast.makeText(AddTransaction.this, "Please choose sour type.",
+                        Toast.makeText(AddTransaction.this, "Please choose source type.",
                                 Toast.LENGTH_SHORT).show();
 
                     }
                 });
+
+//        scanButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i= new Intent(AddTransaction.this, scanner.class);
+//                startActivity(i);
+//
+//            }
+//        });
 
         //adds functionality to Add Transaction
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +189,7 @@ public class AddTransaction extends AppCompatActivity {
                 Toast.makeText(AddTransaction.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }
 

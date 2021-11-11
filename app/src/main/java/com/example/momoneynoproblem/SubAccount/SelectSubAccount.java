@@ -27,13 +27,12 @@ public class SelectSubAccount extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_sub_account);
+
         FirebaseDatabase.getInstance().getReference().child("SubAccounts")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        String[] subAccountArray = new String[]{};
                         ArrayList<String> subAccountArrayList = new ArrayList<>();
-//                      ArrayList<String> subAccountArrayList = new ArrayList<String>();
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             SubAccount subAccount = new SubAccount();
                             subAccount = snapshot.getValue(SubAccount.class);
@@ -45,7 +44,8 @@ public class SelectSubAccount extends AppCompatActivity {
                         }
                         subAccountArray = subAccountArrayList.toArray(subAccountArray);
                         Spinner s = (Spinner) findViewById(R.id.SubAccountSpinner);
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(SelectSubAccount.this, android.R.layout.simple_spinner_item, subAccountArray);
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(SelectSubAccount.this,
+                                android.R.layout.simple_spinner_item, subAccountArray);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         s.setAdapter(adapter);
                     }

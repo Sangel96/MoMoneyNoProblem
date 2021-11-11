@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoMoneyNoProblem">
-        
+        <activity
+            android:name=".Transaction.showData"
+            android:exported="false" />
         <activity
             android:name=".Report.Report"
             android:exported="true" />
@@ -58,10 +60,9 @@
             android:exported="true" />
         <activity
             android:name=".Transaction.AddTransaction"
-            android:exported="true" />
-<!--        <activity-->
-<!--            android:name=".Transaction.showData"-->
-<!--            android:exported="true" />-->
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".Transaction.showData" -->
+        <!-- android:exported="true" /> -->
         <activity
             android:name=".FinAnalysis.FinAnalysis"
             android:exported="true" />
@@ -72,8 +73,8 @@
             android:name=".Goals.CreateGoal"
             android:exported="true" />
         <activity
-        android:name=".Calendar.FinancialCalendar"
-        android:exported="true" />
+            android:name=".Calendar.FinancialCalendar"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

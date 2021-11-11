@@ -83,6 +83,9 @@
     <string name="EnterButton">Enter</string>
     <string name="yes_selection">Yes</string>
     <string name="no_selection">No</string>
+    <string name="select_account">Select a Sub Account</string>
+    <string name="Show_data">Show Data</string>
+    <string name="update">Update</string>
 
 
 </resources>
