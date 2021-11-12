@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 30
-
+    compileSdk 29
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.example.momoneynoproblem"
         minSdk 22
-        targetSdk 30
+        targetSdk 29
         versionCode 1
         versionName "1.0"
 
@@ -29,11 +29,27 @@ android {
     buildFeatures {
         viewBinding true
     }
+    packagingOptions {
+        // Exclude file to avoid
+        // Error: Duplicate files during packaging of APK
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/*.kotlin_module'
+    }
 }
 
 dependencies {
+    implementation 'com.itextpdf:itext7-core:7.1.8'
+    //needed for google play service (mlkit Vision)
+    implementation 'com.google.android.gms:play-services-vision:19.0.0'
 
-    
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.annotation:annotation:1.2.0'
@@ -51,7 +67,8 @@ dependencies {
     //ml kit implementation for using firebase built in pdf to text reader
     //implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
 
-    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:17.0.0'
+    //temporarily disabling mlkit text recognition (already included in play service, delete later if not needed)
+    //implementation 'com.google.android.gms:play-services-mlkit-text-recognition:17.0.0'
     //implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
     implementation 'androidx.camera:camera-core:1.1.0-alpha08'
     implementation 'com.google.firebase:firebase-messaging:21.1.0'
@@ -61,8 +78,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:22.0.0'
     //implementation 'com.google.firebase:firebase-core:19.0.0'
     //
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 }

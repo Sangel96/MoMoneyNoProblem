@@ -30,7 +30,7 @@ public class Report extends AppCompatActivity {
         setContentView(R.layout.activity_report);
         ListView listView;
         listView = (ListView) findViewById(R.id.listView);
-        final int[] PDFSelection = new int[1];
+        final int[] Selection = new int[1];
 
         Button btnLoadReport = (Button) findViewById(R.id.PDFMaker_Button);
 
@@ -45,7 +45,6 @@ public class Report extends AppCompatActivity {
                 Report.clear();
                 for (DataSnapshot temp : snapshot.getChildren()){
                     Report.add("Report for: " + temp.getValue().toString());
-
                 }
                 ArrayAdapter.notifyDataSetChanged();
             }
@@ -59,8 +58,8 @@ public class Report extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PDFSelection[0] = position;
-                String text = "position: " + PDFSelection[0];
+                Selection[0] = position;
+                String text = "position: " + Selection[0];
                 Toast.makeText(Report.this, text, Toast.LENGTH_LONG).show();
             }
         });
@@ -69,12 +68,15 @@ public class Report extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Report.this, PDFViewer.class);
-                intent.putExtra("PDFtoOpen",listView.getItemIdAtPosition(PDFSelection[0]));
+                intent.putExtra("PDFtoOpen",listView.getItemIdAtPosition(Selection[0]));
                 startActivity(intent);
             }
         });
 
 
 
+
+
     }
 }
+

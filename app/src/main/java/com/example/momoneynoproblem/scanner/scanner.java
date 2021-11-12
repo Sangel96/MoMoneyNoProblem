@@ -1,212 +1,138 @@
 package com.example.momoneynoproblem.scanner;
+import static android.Manifest.permission.CAMERA;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Camera;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Handler;
+import android.os.Looper;
+import android.speech.tts.TextToSpeech;
+import android.util.SparseArray;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.example.momoneynoproblem.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.mlkit.vision.common.InputImage;
-import com.google.mlkit.vision.text.Text;
-import com.google.mlkit.vision.text.TextRecognition;
-import com.google.mlkit.vision.text.TextRecognizer;
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
+import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.vision.Detector;
+import com.google.android.gms.vision.text.TextBlock;
+import com.google.android.gms.vision.text.TextRecognizer;
 
-import java.io.InputStream;
+import java.io.IOException;
 
 public class scanner extends AppCompatActivity {
+    private TextView textView;
+    private SurfaceView surfaceView;
 
-    private ImageView image;
-    private EditText resultTV;
-    private Bitmap imageBitmap;
+    private CameraSource cameraSource;
+    private TextRecognizer textRecognizer;
 
-    private Button btnCapture;
-    private Button btnupload;
-    private Button btnRecognize;
-
-    private static Uri Source;
-    private Camera Camera;
-    private static final int SELECT_IMAGE_FROM_STORAGE = 100;
-
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private TextToSpeech textToSpeech;
+    private String stringResult = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
 
-        image = (ImageView) findViewById(R.id.imageView2);
-        resultTV = (EditText) findViewById(R.id.resultTV);
-
-        btnupload = (Button) findViewById(R.id.uploadfile);
-        btnCapture = (Button) findViewById(R.id.captureimage);
-        btnRecognize = (Button) findViewById(R.id.convert);
-
-        // this code will open the file manager and import the pdf to be used to scan
-        btnupload.setOnClickListener(new View.OnClickListener() {
+        ActivityCompat.requestPermissions(this, new String[]{CAMERA}, PackageManager.PERMISSION_GRANTED);
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
-            public void onClick(View v) {
-                //Intent i = new Intent(scanner.this, scannerResult.class);
-                InputImage userimage;
-                Intent photoPicker = new Intent(Intent.ACTION_PICK);
-                photoPicker.setType("image/*");
-                startActivityForResult(photoPicker, SELECT_IMAGE_FROM_STORAGE);
-//
-            }
-        });
-        // this code will be used to open camera and convert to text
-        btnCapture.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View v) {
-                //if we do not have permission to use camera then request permission
-                if(checkPermissions()){
-                    captureImage();
-                }
-                else{
-                    requestPermission();
-                }
-                //captureImage();
-                detectTxt();
-                //Manifest.permission.CAMERA.release();
-
-            }
-        });
-
-        btnRecognize.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputImage testInput = null;
-                TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
-                try {
-                    testInput = InputImage.fromFilePath(getApplicationContext(), Source );
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                detectTxt();
-
-
+            public void onInit(int status) {
             }
         });
     }
-
-    private boolean checkPermissions(){
-        int cameraPermission = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
-        return cameraPermission == PackageManager.PERMISSION_GRANTED;
-    }
-
-    private void requestPermission(){
-        int PERMISSION_CODE = 200;
-        ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, PERMISSION_CODE);
-    }
-
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,  int[] grantResults){
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(grantResults.length> 0){
-            boolean cameraPermission = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-            if(cameraPermission){
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
-                captureImage();
-            }
-            else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-
+    protected void onDestroy() {
+        super.onDestroy();
+        cameraSource.release();
     }
 
+    private void textRecognizer() {
+        textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
+        cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
+                .setRequestedPreviewSize(1280, 1024)
+                .build();
 
-        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-            super.onActivityResult(requestCode, resultCode, data);
-            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-                Bundle extras = data.getExtras();
-
-                imageBitmap = (Bitmap) extras.get("data");
-            }
-            if (requestCode == SELECT_IMAGE_FROM_STORAGE) {
-                if (resultCode == RESULT_OK) {
-                    Uri select = data.getData();
-                    InputStream inputStream = null;
-
-                    try {
-                        assert select != null;
-                        inputStream = getContentResolver().openInputStream(select);
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        surfaceView = findViewById(R.id.surfaceView);
+        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                try {
+                    if (ActivityCompat.checkSelfPermission(scanner.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        ActivityCompat.requestPermissions(scanner.this, new String[]{CAMERA}, PackageManager.PERMISSION_GRANTED);
+                        return;
                     }
-                    BitmapFactory.decodeStream(inputStream);
-                    image.setImageURI(select);
-                    Source = select;
-                    //btnconv.setVisibility(View.VISIBLE);
+                    cameraSource.start(surfaceView.getHolder());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-        }
 
-        private void captureImage(){
-            Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if(takePicture.resolveActivity(getPackageManager()) != null){
-                startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE);
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
             }
 
-        }
-        private void detectTxt () {
-
-        InputImage image = InputImage.fromBitmap(imageBitmap, 0);
-        TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
-
-        Task<Text> result = recognizer.process(image).addOnSuccessListener(new OnSuccessListener<Text>() {
             @Override
-            public void onSuccess(@NonNull Text text) {
-                StringBuilder result = new StringBuilder();
-                for (Text.TextBlock block: text.getTextBlocks()){
-                    String blockText = block.getText();
-                    Point[] blockCornerPoint = block.getCornerPoints();
-                    Rect blockFrame = block.getBoundingBox();
-                    for (Text.Line line : block.getLines()){
-                        String lineText = line.getText();
-                        Point[] lineCornerPoint = line.getCornerPoints();
-                        Rect lineRect = line.getBoundingBox();
-                        for (Text.Element element: line.getElements()){
-                            String elementText = element.getText();
-                            result.append(elementText);
-                        }
-                        resultTV.setText(blockText);
-                    }
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(scanner.this, "fail to detect text from image" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                cameraSource.stop();
             }
         });
-        }
 
+
+        textRecognizer.setProcessor(new Detector.Processor<TextBlock>() {
+            @Override
+            public void release() {
+            }
+
+            @Override
+            public void receiveDetections(Detector.Detections<TextBlock> detections) {
+
+                SparseArray<TextBlock> sparseArray = detections.getDetectedItems();
+                StringBuilder stringBuilder = new StringBuilder();
+
+                for (int i = 0; i<sparseArray.size(); ++i){
+                    TextBlock textBlock = sparseArray.valueAt(i);
+                    if (textBlock != null && textBlock.getValue() !=null){
+                        stringBuilder.append(textBlock.getValue() + " ");
+                    }
+                }
+
+                final String stringText = stringBuilder.toString();
+
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        stringResult = stringText;
+                        resultObtained();
+                    }
+                });
+            }
+        });
+    }
+
+    private void resultObtained(){
+        setContentView(R.layout.activity_scanner);
+        textView = findViewById(R.id.textView);
+        textView.setText(stringResult);
+        textToSpeech.speak(stringResult, TextToSpeech.QUEUE_FLUSH, null, null);
+    }
+
+    public void buttonStart(View view){
+        setContentView(R.layout.surfaceview);
+        textRecognizer();
+    }
 }

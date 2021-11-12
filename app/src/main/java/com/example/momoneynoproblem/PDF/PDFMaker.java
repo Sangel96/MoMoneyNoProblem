@@ -1,35 +1,25 @@
 package com.example.momoneynoproblem.PDF;
 
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
-import android.content.pm.PackageManager;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.DashPathEffect;
-import android.graphics.Paint;
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
+import android.os.Environment;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.example.momoneynoproblem.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 
 import java.io.File;
-import java.util.Date;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class PDFMaker extends AppCompatActivity {
     // variables for our buttons.
@@ -44,147 +34,149 @@ public class PDFMaker extends AppCompatActivity {
     // for storing our images
     //Bitmap bmp, scaledbmp;
 
-    // constant code for runtime permissions
-    private static final int PERMISSION_REQUEST_CODE = 200;
-
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("report");
-    Dataobj object = new Dataobj();
 
-    Button saveNprintbtn,printButton;
-    EditText editTextName, editQty;
-    Spinner spinner;
-    String[] itemList;
-    double[] itemPrice;
-    ArrayAdapter<String> adapter;
 
-    long invoiceNo = 0;
+    ActivityResultLauncher<String> mgetContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfmaker);
-        callFindViewById();
-        callOnClickListener();
-        if (checkPermission() == false){
-            requestPermission();
+
+        createPdf();
+
+//
+//
+//        callFindViewById();
+//        callOnClickListener();
+//        if (checkPermission() == false){
+//            requestPermission();
+//        }
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                invoiceNo = snapshot.getChildrenCount();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
+
+//    private void callOnClickListener() {
+//        saveNprintbtn.setOnClickListener(v -> {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+//               mgetContent.launch("download/*");
+//
+//            }
+//            object.setInvoiceNo(invoiceNo + 1);
+//            object.setName(String.valueOf(editTextName.getText()));
+//            object.setDate(new Date().getTime());
+//            object.setFuelType(spinner.getSelectedItem().toString());
+//            object.setFuelQty(Double.valueOf(String.valueOf(editQty.getText())));
+//            object.setAmount(Double.valueOf(object.getFuelQty()*itemPrice[spinner.getSelectedItemPosition()]));
+//
+//            //object is saved into the database
+//            myRef.child(String.valueOf(invoiceNo + 1)).setValue(object);
+//
+//            //printPDF();
+//            Toast.makeText(this, "Starting PDF Creator", Toast.LENGTH_SHORT).show();
+//            createPdf();
+//            //
+//
+//        });
+    }
+
+    private void createPdf() {
+        String mFileName = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault()).format(System.currentTimeMillis());
+        // alternative "yyyy_MM_dd_HH_mm_ss
+        String pdfpath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+        File file = new File(pdfpath, mFileName + ".pdf");
+        OutputStream outputStream = null;
+        try {
+            outputStream = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                invoiceNo = snapshot.getChildrenCount();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        PdfWriter writer = null;
+        try {
+            writer = new PdfWriter(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-            }
-        });
-    }
+        com.itextpdf.kernel.pdf.PdfDocument pdfDocument = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+        Document document = new Document(pdfDocument);
 
-    private void callOnClickListener() {
-        saveNprintbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                object.setInvoiceNo(invoiceNo + 1);
-                object.setName(String.valueOf(editTextName.getText()));
-                object.setDate(new Date().getTime());
-                object.setFuelType(spinner.getSelectedItem().toString());
-                object.setFuelQty(Double.valueOf(String.valueOf(editQty.getText())));
-                object.setAmount(Double.valueOf(object.getFuelQty()*itemPrice[spinner.getSelectedItemPosition()]));
+        Paragraph paragraph = new Paragraph("Hello f");
 
-                //object is saved into the database
-                myRef.child(String.valueOf(invoiceNo + 1)).setValue(object);
-
-                printPDF();
-
-
-
-            }
-        });
-    }
-
-    private void printPDF() {
-        PdfDocument pdfDocument = new PdfDocument();
-        Paint paint = new Paint();
-        Paint title = new Paint();
-        PdfDocument.PageInfo mypageInfo = new PdfDocument.PageInfo.Builder(pagewidth, pageHeight, 1).create();
-        PdfDocument.Page myPage = pdfDocument.startPage(mypageInfo);
-        Canvas canvas = myPage.getCanvas();
-
-        paint.setTextSize(15.5f);
-        paint.setColor(Color.rgb(0,50,250));
-
-        canvas.drawText("Account Report", 20, 20, paint);
-        paint.setTextSize(8.5f);
-        canvas.drawText("By: Mo Money No Problem",20,40,paint);
-        canvas.drawText("Beginning of Report",20,55,paint);
-
-        title.setStyle(Paint.Style.STROKE);
-        title.setPathEffect(new DashPathEffect(new float[]{5,5}, 0));
-        title.setStrokeWidth(2);
-        canvas.drawLine(20,65,230,65, title);
-
-        String test = "Customer Name: " + editTextName.getText();
-        canvas.drawText(test, 20,80, paint);
-        canvas.drawLine(20,90,230,90, title);
-
-        canvas.drawText("Purchase", 20,105, paint);
-
-        canvas.drawText(spinner.getSelectedItem().toString(), 20,135,paint);
-        canvas.drawText(editQty.toString(), 120,135, paint);
-
-        double amount = itemPrice[spinner.getSelectedItemPosition()]*Double.parseDouble(editQty.getText().toString());
-        paint.setTextAlign(Paint.Align.RIGHT);
-        canvas.drawText(String.valueOf((amount)), 230,135, paint    );
-
-        paint.setTextAlign(Paint.Align.LEFT);
-
-        canvas.drawLine(20,210,230,210, title);
-
-        paint.setTextSize(10.0f);
-        canvas.drawText("total", 120, 225,paint);
-        paint.setTextAlign(Paint.Align.RIGHT);
-        canvas.drawText("Date: " + new Date().getTime(), 20,260,paint);
-        paint.setTextAlign(Paint.Align.LEFT);
-        paint.setTextSize(8.5f);
-
-        canvas.drawText(String.valueOf(invoiceNo+1), 20, 275,paint);
-        canvas.drawText("Method: Tap", 20,290,paint);
-        canvas.drawText("thanks", canvas.getWidth()/2, 320, paint);
-
-        pdfDocument.finishPage(myPage);
-
-        File file = new File(this.getExternalFilesDir("/"), "PDFMaker_PDF.pdf");
-
-        pdfDocument.close();
-    }
-
-    private void callFindViewById() {
-    saveNprintbtn = findViewById(R.id.btnSaveAndPrint);
-    printButton = findViewById(R.id.btnPrint);
-    editTextName = findViewById(R.id.editTextName);
-    editQty = findViewById(R.id.editTextQty);
-    spinner = findViewById(R.id.spinner);
-    itemList = new String[]{"test"};
-    itemPrice = new double[]{600};
-    adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemList  );
-    spinner.setAdapter(adapter);
-    }
-
-    private boolean checkPermission() {
-        // checking of permissions.
-        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
-        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
-        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
-    }
-
-    private void requestPermission() {
-        // requesting permissions if not provided.
-        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
-    }
-
+        document.add(paragraph);
+        document.close();
+        Toast.makeText(this, "created", Toast.LENGTH_SHORT).show();
+     }
 }
+
+//
+//    private boolean checkPermission() {
+//        //ContextCompat.checkSelfPermission(WRITE_EXTERNAL_STORAGE);
+//        // checking of permissions.
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            return Environment.isExternalStorageManager();
+//        }
+//        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+//        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+//        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
+//    }
+//
+//    private void requestPermission() {
+//        // requesting permissions if not provided.
+//        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+//        //ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            try {
+//                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+//                intent.addCategory("android.intent.category.DEFAULT");
+//                intent.setData(Uri.parse(String.format("package:%s",getApplicationContext().getPackageName())));
+//                startActivityForResult(intent, 2296);
+//            } catch (Exception e) {
+//                Intent intent = new Intent();
+//                intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+//                startActivityForResult(intent, 2296);
+//            }
+//        } else {
+//            //below android 11
+//            ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+//        }
+//    }
+//
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == PERMISSION_REQUEST_CODE) {
+//            if (grantResults.length > 0) {
+//
+//                // after requesting permissions we are showing
+//                // users a toast message of permission granted.
+//                boolean writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+//                boolean readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+//
+//                if (writeStorage && readStorage) {
+//                    Toast.makeText(this, "Permission Granted..", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(this, "Permission Denined :(", Toast.LENGTH_SHORT).show();
+//                    finish();
+//                }
+//            }
+//        }
+//    }
+//
+//}
 
 
 //        requestPermission();
