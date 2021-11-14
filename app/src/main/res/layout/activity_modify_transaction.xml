@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
     tools:ignore="ExtraText">
@@ -27,22 +26,43 @@
             android:id="@+id/txtId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="70dp"
             android:text="@string/Id"
-            android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/TranIDEdit"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="50dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:minHeight="48dp"
+            android:inputType="text"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/txtSubAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="170dp"
+            android:layout_marginStart="172dp"
+            android:layout_marginTop="70dp"
+            android:text="@string/SubAccountID"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/EditAccountId"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="250dp"
             android:layout_marginTop="50dp"
-            android:layout_marginEnd="50dp"
             android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -51,7 +71,7 @@
             android:id="@+id/txtSourcetype"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="275dp"
             android:layout_marginEnd="10dp"
             android:text="@string/source_type"
@@ -76,7 +96,7 @@
             android:id="@+id/txtAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="330dp"
             android:text="@string/amount"
             android:textAlignment="center"
@@ -91,6 +111,7 @@
             android:layout_marginStart="150dp"
             android:layout_marginTop="310dp"
             android:layout_marginEnd="50dp"
+            android:importantForAutofill="no"
             android:ems="10"
             android:inputType="number"
             android:minHeight="48dp"
@@ -109,11 +130,9 @@
             android:id="@+id/txtDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="150dp"
             android:text="@string/receipt_date"
-            android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -124,6 +143,7 @@
             android:layout_marginStart="150dp"
             android:layout_marginTop="137dp"
             android:layout_marginEnd="50dp"
+            android:importantForAutofill="no"
             android:ems="10"
             android:inputType="date"
             android:minHeight="48dp"
@@ -133,12 +153,11 @@
             android:id="@+id/txtStoreName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="210dp"
             android:text="@string/store_name"
             android:textAlignment="center"
             android:textColor="@color/black"
-
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -149,6 +168,8 @@
             android:layout_marginStart="145dp"
             android:layout_marginTop="198dp"
             android:layout_marginEnd="50dp"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:ems="10"
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -165,11 +186,9 @@
                 android:id="@+id/incomeRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:checked="true"
-                android:text="@string/income"
-                android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:text="@string/income" />
 
             <RadioButton
                 android:id="@+id/expenseRadioButton"
@@ -177,9 +196,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="90dp"
                 android:layout_marginEnd="50dp"
-                android:text="@string/expense"
-                android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:text="@string/expense" />
         </RadioGroup>
 
 

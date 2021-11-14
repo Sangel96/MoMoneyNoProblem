@@ -9,19 +9,21 @@ public class Transaction1 implements Serializable {
     public String date;
     public String storeName;
     public String transID;
+    public String accountId;
 
 
     public Transaction1() {
 
     }
     public Transaction1(String amount,String transaction_type, String transaction_source_type,
-                        String transID, String date, String storeName) {
+                        String transID, String date, String storeName, String accountId) {
         this.transaction_type = transaction_type;
         this.transaction_source_type = transaction_source_type;
         this.amount = amount;
         this.date = date;
         this.storeName = storeName;
         this.transID = transID;
+        this.accountId = accountId;
 
     }
 
@@ -32,6 +34,11 @@ public class Transaction1 implements Serializable {
     public void setTransID(String transID) {
 
         this.transID = transID;
+    }
+
+    public void setAccountId(String accountId) {
+
+        this.accountId = accountId;
     }
 
     public void setTransaction_source_type(String transaction_source_type) {
@@ -49,9 +56,8 @@ public class Transaction1 implements Serializable {
         this.storeName = storeName;
     }
 
-    public String getTransaction_type() {
-        return transaction_type;
-    }
+
+    public String getTransaction_type() { return transaction_type; }
 
     public String getTransaction_source_type() {
         return transaction_source_type;
@@ -64,10 +70,11 @@ public class Transaction1 implements Serializable {
         return date;
     }
 
-    public String getStoreName() {
-        return storeName;
-    }
+    public String getStoreName() {return storeName; }
     public String getTransID() {
         return transID;
+    }
+    public String getAccountId() {
+        return accountId;
     }
 }

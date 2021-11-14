@@ -41,7 +41,7 @@ public class modifyTransaction extends AppCompatActivity {
     public RadioButton radioSourceButton;
 
     public Button modifyButton;
-    public EditText amountEditText, TranIDEdit, DateEdit, StoreNameEdit;
+    public EditText amountEditText, TranIDEdit, DateEdit, StoreNameEdit,EditAccountId;
     public String transaction_type = "";
     public String transaction_source_type = "";
     public Spinner transactionSourceTypeSpinner;
@@ -65,6 +65,7 @@ public class modifyTransaction extends AppCompatActivity {
         amountEditText = (EditText) findViewById(R.id.amountEditText);
         DateEdit = (EditText) findViewById(R.id.DateEdit);
         StoreNameEdit = (EditText) findViewById(R.id.StoreNameEdit);
+        EditAccountId = findViewById(R.id.EditAccountId);
 
         // implement spinner
         transactionSourceTypeSpinner = (android.widget.Spinner) findViewById(R.id.transactionSourceTypeSpinner);
@@ -99,6 +100,7 @@ public class modifyTransaction extends AppCompatActivity {
             public void onClick(View v)
             {
                 final String ID = TranIDEdit.getText().toString().trim();
+                final String accountId = EditAccountId.getText().toString().trim();
                 final String amount = amountEditText.getText().toString().trim();
                 final String date = DateEdit.getText().toString().trim();
                 final String storename = StoreNameEdit.getText().toString().trim();
@@ -108,7 +110,7 @@ public class modifyTransaction extends AppCompatActivity {
                     TranIDEdit.setError("Please enter The Transaction ID!");
                 } else
                     {
-                    Transaction1 transaction1 = new Transaction1(amount,transaction_type, transaction_source_type,ID,date, storename);
+                    Transaction1 transaction1 = new Transaction1(amount,transaction_type, transaction_source_type,ID,date, storename,accountId);
                     HashMap hashMap = new HashMap();
                     hashMap.put("amount", amount);
                     hashMap.put("date", date);
@@ -116,6 +118,7 @@ public class modifyTransaction extends AppCompatActivity {
                     hashMap.put("transID", ID);
                     hashMap.put("transaction_source_type", transaction_source_type);
                     hashMap.put("transaction_type", transaction_type);
+                    hashMap.put("accountId", accountId);
 
                     databaseReference.child(ID).setValue(hashMap);
 

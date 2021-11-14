@@ -42,6 +42,7 @@ public class AddTransaction extends AppCompatActivity {
     public EditText TranIDEdit = null;
     public EditText DateEdit = null;
     public EditText StoreNameEdit = null;
+    public  EditText EditAccountId= null;
 
     public String transaction_type = "";
     public String transaction_source_type = "";
@@ -68,6 +69,7 @@ public class AddTransaction extends AppCompatActivity {
         amountEditText = findViewById(R.id.amountEditText);
         DateEdit = findViewById(R.id.DateEdit);
         StoreNameEdit = findViewById(R.id.StoreNameEdit);
+        EditAccountId = findViewById(R.id.EditAccountId);
 
 
         // implement spinner
@@ -118,6 +120,8 @@ public class AddTransaction extends AppCompatActivity {
                 String date = DateEdit.getText().toString().trim();
                 String storeName = StoreNameEdit.getText().toString().trim();
                 String transID = TranIDEdit.getText().toString().trim();
+                String accountId = EditAccountId.getText().toString().trim();
+
 
                 // get selected radio button from radioGroup
                 int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -140,7 +144,7 @@ public class AddTransaction extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                 } else {
                     // else call the method to add data to our database.
-                    addDatatoFirebase(amount, trans_type, trans_sourceType,date, storeName, transID);
+                    addDatatoFirebase(amount, trans_type, trans_sourceType,date, storeName, transID, accountId);
                 }
 
             }
@@ -151,7 +155,8 @@ public class AddTransaction extends AppCompatActivity {
 
     private void addDatatoFirebase(String amount, String transaction_type,
                                    String transaction_source_type, String date, String storeName,
-                                   String transID) {
+                                   String transID, String accountId) {
+
         // set data in our object class.
         Transaction1 trans = new Transaction1();
         trans.setTransaction_type(transaction_type);
@@ -160,6 +165,8 @@ public class AddTransaction extends AppCompatActivity {
         trans.setDate(date);
         trans.setStoreName(storeName);
         trans.setTransID(transID);
+        trans.setAccountId(accountId);
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().
                 child("Transactions");
         // we are use add value event listener method which is called with database reference.
@@ -180,6 +187,7 @@ public class AddTransaction extends AppCompatActivity {
                 DateEdit.setText("");
                 StoreNameEdit.setText("");
                 TranIDEdit.setText("");
+                EditAccountId.setText("");
 
             }
             @Override
