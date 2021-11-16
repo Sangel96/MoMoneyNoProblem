@@ -2,6 +2,7 @@ package com.example.momoneynoproblem.Transaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -85,7 +86,23 @@ public class ManageTransaction extends AppCompatActivity {
 
                 arrList.clear();
                 for (DataSnapshot temp : snapshot.getChildren()){
-                    arrList.add("Transaction: " + temp.getValue().toString());
+                    String transID = temp.child("transID").getValue(String.class);
+                    String accountId = temp.child("accountId").getValue(String.class);
+                    String transaction_type = temp.child("transaction_type").getValue(String.class);
+                    String date = temp.child("date").getValue(String.class);
+                    String storeName = temp.child("storeName").getValue(String.class);
+                    String transaction_source_type = temp.child("transaction_source_type").getValue(String.class);
+                    String amount = temp.child("amount").getValue(String.class);
+                    arrList.add("Transaction ID: " + transID);
+                    arrList.add("Sub_Account ID: " + accountId + " / " + "transaction Type: "
+                            + transaction_type + " / " + "Date: " + date
+                            + " / " + "Store Name " + storeName + " / " + "Soruce Type: " + transaction_source_type + " / " + "Amount: " +  amount +"$");
+
+                    arrList.add("----------------------------------------------------");
+                   // arrList.add("Transaction: " + temp.getValue().toString());
+                    Log.d("TAG", transID + " / " + accountId + " / " + transaction_type + " / " + date
+                            + " / "+ storeName + " / " + transaction_source_type + " / " + amount +"$");
+
                 }
 
                 arrAdp.notifyDataSetChanged();
@@ -97,6 +114,24 @@ public class ManageTransaction extends AppCompatActivity {
 
             }
         });
+
+//        ValueEventListener eventListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+//                    String userId = ds.child("userId").getValue(String.class);
+//                    String score = ds.child("score").getValue(String.class);
+//                    list.add(userId + " / " +  score);
+//                    Log.d("TAG", userId + " / " +  score);
+//                }
+//                arrayAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                Log.d(TAG, task.getException().getMessage());
+//            }
+//        };
 
         listshow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

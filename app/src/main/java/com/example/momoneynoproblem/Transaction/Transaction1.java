@@ -77,4 +77,14 @@ public class Transaction1 implements Serializable {
     public String getAccountId() {
         return accountId;
     }
+
+    // arrange the data inside the list view
+    public String toString() {
+        return "Transaction1{" +
+                "transID='" + transID + '\'' +
+                ", accountId='" + accountId + '\'' +  ", transaction_type='" + transaction_type + '\'' +
+                ", date='" + date +  ", storeName='" + storeName +
+                ", transaction_source_type='" + transaction_source_type + ", amount='" + amount +
+                '}';
+    }
 }
