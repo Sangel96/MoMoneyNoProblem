@@ -98,7 +98,7 @@ public class ManageTransaction extends AppCompatActivity {
                             + transaction_type + " / " + "Date: " + date
                             + " / " + "Store Name " + storeName + " / " + "Soruce Type: " + transaction_source_type + " / " + "Amount: " +  amount +"$");
 
-                    arrList.add("----------------------------------------------------");
+                    arrList.add("--------------------------------------------------");
                    // arrList.add("Transaction: " + temp.getValue().toString());
                     Log.d("TAG", transID + " / " + accountId + " / " + transaction_type + " / " + date
                             + " / "+ storeName + " / " + transaction_source_type + " / " + amount +"$");
@@ -114,24 +114,6 @@ public class ManageTransaction extends AppCompatActivity {
 
             }
         });
-
-//        ValueEventListener eventListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    String userId = ds.child("userId").getValue(String.class);
-//                    String score = ds.child("score").getValue(String.class);
-//                    list.add(userId + " / " +  score);
-//                    Log.d("TAG", userId + " / " +  score);
-//                }
-//                arrayAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                Log.d(TAG, task.getException().getMessage());
-//            }
-//        };
 
         listshow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
