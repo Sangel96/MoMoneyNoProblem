@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background">
@@ -10,7 +10,7 @@
         android:id="@+id/manage_rect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="223dp"
+        android:layout_marginTop="264dp"
         android:src="@drawable/ic_add_transaction_rect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,7 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="48dp"
         android:src="@drawable/ic_add_transaction_rect"
         app:layout_constraintStart_toStartOf="@+id/manage_rect"
         app:layout_constraintTop_toBottomOf="@+id/manage_rect" />
@@ -65,24 +65,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
         android:text="@string/select_account"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/SubAccountSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.425"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/SubAccountSpinner"
-        android:layout_width="302dp"
-        android:layout_height="wrap_content"
+        android:layout_width="266dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="400dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="356dp"
         android:spinnerMode="dropdown"
         android:textColor="@android:color/holo_blue_light"
         app:layout_constraintBottom_toBottomOf="parent"
