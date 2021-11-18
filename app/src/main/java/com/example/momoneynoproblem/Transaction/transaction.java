@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,26 +27,27 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class transaction extends AppCompatActivity {
+public class transaction extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] subAccountArray = new String[]{};
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     public DatabaseReference firebaseDatabase;
     public DatabaseReference databaseReference;
 
-    ImageView add_transaction;
-    ImageView manage_transaction;
+    Button add_transaction;
+    Button manage_transaction;
     private Object transaction;
 
     // Spinner for select account
     public Spinner SubAccountSpinner = null;
-    public static final ArrayList<String> SubAccounts = new ArrayList<String>();
+    public static final ArrayList<String> SubAccounts = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
 
-        add_transaction = (ImageView) findViewById(R.id.add_transaction);
-        manage_transaction = (ImageView) findViewById(R.id.manage_transaction);
+        add_transaction = (Button) findViewById(R.id.add_transaction);
+        manage_transaction = (Button) findViewById(R.id.manage_transaction);
+
 
         FirebaseDatabase.getInstance().getReference().child("SubAccounts")
                 .addValueEventListener(new ValueEventListener() {
@@ -55,17 +58,20 @@ public class transaction extends AppCompatActivity {
                         for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                             SubAccount subAccount = new SubAccount();
                             subAccount = snapshot1.getValue(SubAccount.class);
+                            assert subAccount != null;
                             subAccountArrayList.add(subAccount.getSubAccountName());
                         }
                         subAccountArray = subAccountArrayList.toArray(subAccountArray);
                         Spinner SubAccountSpinner = (Spinner) findViewById((R.id.SubAccountSpinner));
-                        ArrayAdapter<String> accountsAdapter = new ArrayAdapter<String>(transaction.this,
+                        ArrayAdapter<String> accountsAdapter = new ArrayAdapter<>(transaction.this,
                                 android.R.layout.simple_spinner_item, subAccountArray);
 
                         accountsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         SubAccountSpinner.setAdapter(accountsAdapter);
+                        SubAccountSpinner.setOnItemSelectedListener(transaction.this);
 
                     }
+
 
              @Override
              public void onCancelled(DatabaseError databaseError) {
@@ -73,22 +79,29 @@ public class transaction extends AppCompatActivity {
              }
          });
 
-        add_transaction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent j = new Intent(transaction.this, AddTransaction.class);
-                startActivity(j);
-            }
+        add_transaction.setOnClickListener(v -> {
+            Intent j = new Intent(transaction.this, AddTransaction.class);
+            startActivity(j);
         });
 
-        manage_transaction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(transaction.this, ManageTransaction.class);
-                startActivity(i);
+        manage_transaction.setOnClickListener(v -> {
+            Intent i= new Intent(transaction.this, ManageTransaction.class);
+            startActivity(i);
 
-            }
         });
+    }
+
+
+    // To show the selected item in the spinner at the bottom of the screen
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String text = adapterView.getItemAtPosition(i).toString();
+        Toast.makeText(adapterView.getContext(),text,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
 

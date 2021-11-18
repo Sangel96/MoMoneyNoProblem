@@ -64,7 +64,7 @@
     <string name="Delete">Delete</string>
     <string name="store_name">Store Name</string>
     <string name="do_you_want_to_scan_the_invoice">Do you want to scan the invoice ?</string>
-    <string name="add_transaction">Add Transaction</string>
+
     <string name="Id">Trans ID:</string>
     <string name="source_type">Source type</string>
     <string name="amount">Amount($)</string>
@@ -87,6 +87,7 @@
     <string name="Show_data">Show Data</string>
     <string name="update">Update</string>
     <string name="SubAccountID">Account ID:</string>
+    <string name="add_transaction">Add Transaction</string>
 
 
 </resources>
