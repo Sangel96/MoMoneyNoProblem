@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button btnLogout;
     private DrawerLayout drawer;
     private NavigationView navigationView;
-
+    public static String user_ID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //current user
         mAuth = FirebaseAuth.getInstance();
 
+        if(mAuth.getCurrentUser().getUid() != null){
+            user_ID = mAuth.getCurrentUser().getUid();
+            Toast.makeText(this, user_ID, Toast.LENGTH_SHORT).show();
+        }
         //drawer layout
         drawer = findViewById(R.id.drawer_layout);
 

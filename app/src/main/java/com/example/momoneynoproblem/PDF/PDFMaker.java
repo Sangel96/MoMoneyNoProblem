@@ -1,23 +1,34 @@
 package com.example.momoneynoproblem.PDF;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.momoneynoproblem.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.List;
 import com.itextpdf.layout.element.Paragraph;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -44,7 +55,9 @@ public class PDFMaker extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfmaker);
-
+        if (checkPermission() == false){
+            requestPermission();
+        }
         createPdf();
 
 //
@@ -90,6 +103,17 @@ public class PDFMaker extends AppCompatActivity {
 //
 //        });
     }
+    private boolean checkPermission() {
+        // checking of permissions.
+        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermission() {
+        // requesting permissions if not provided.
+        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
+    }
 
     private void createPdf() {
         String mFileName = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault()).format(System.currentTimeMillis());
@@ -103,21 +127,38 @@ public class PDFMaker extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        PdfWriter writer = null;
         try {
-            writer = new PdfWriter(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            PdfWriter writer = new PdfWriter(file);
+            com.itextpdf.kernel.pdf.PdfDocument pdfDocument = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+            Document document = new Document(pdfDocument);
+
+            Paragraph paragraph = new Paragraph("Hello f");
+
+            document.add(paragraph);
+            document.close();
+            Toast.makeText(this, "created", Toast.LENGTH_SHORT).show();
+
+
+            //itext 7 start
+            //paragraph
+            Paragraph paragraph1 = new Paragraph("Hello f");
+            document.add(paragraph1);
+            //adding image
+            String imgSrc = "filelocation";
+            ImageData data = ImageDataFactory.create(imgSrc);
+            Image image = new Image(data);
+            document.add(image);
+            //list
+            List list1 = new List();
+            list1.add("Java");
+            //itext7 end
+
+
+
+
+        } catch (FileNotFoundException | MalformedURLException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
         }
-
-        com.itextpdf.kernel.pdf.PdfDocument pdfDocument = new com.itextpdf.kernel.pdf.PdfDocument(writer);
-        Document document = new Document(pdfDocument);
-
-        Paragraph paragraph = new Paragraph("Hello f");
-
-        document.add(paragraph);
-        document.close();
-        Toast.makeText(this, "created", Toast.LENGTH_SHORT).show();
      }
 }
 
