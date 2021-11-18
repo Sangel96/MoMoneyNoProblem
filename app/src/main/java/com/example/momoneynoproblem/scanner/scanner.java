@@ -117,6 +117,7 @@ public class scanner extends AppCompatActivity {
                     @Override
                     public void run() {
                         stringResult = stringText;
+                        stringResult = stringResult.substring(stringResult.lastIndexOf("SUBTOTAL"));
                         resultObtained();
                     }
                 });
@@ -128,7 +129,7 @@ public class scanner extends AppCompatActivity {
         setContentView(R.layout.activity_scanner);
         textView = findViewById(R.id.textView);
         textView.setText(stringResult);
-        textToSpeech.speak(stringResult, TextToSpeech.QUEUE_FLUSH, null, null);
+        //textToSpeech.speak(stringResult, TextToSpeech.QUEUE_FLUSH, null, null);
     }
 
     public void buttonStart(View view){
