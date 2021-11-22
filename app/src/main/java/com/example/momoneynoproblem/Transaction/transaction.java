@@ -35,26 +35,30 @@ public class transaction extends AppCompatActivity implements AdapterView.OnItem
 
     Button add_transaction;
     Button manage_transaction;
-    private Object transaction;
+    //private Object transaction;
 
     // Spinner for select account
-    public Spinner SubAccountSpinner = null;
-    public static final ArrayList<String> SubAccounts = new ArrayList<>();
+    // public Spinner SubAccountSpinner = null;
+    //public static final ArrayList<String> SubAccounts = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
 
-        add_transaction = (Button) findViewById(R.id.add_transaction);
-        manage_transaction = (Button) findViewById(R.id.manage_transaction);
+        add_transaction =(Button) findViewById(R.id.add_transaction);
+        manage_transaction =  (Button) findViewById(R.id.manage_transaction);
+        //Spinner SubAccountSpinner = (Spinner) findViewById((R.id.SubAccountSpinner));
+
 
 
         FirebaseDatabase.getInstance().getReference().child("SubAccounts")
-                .addValueEventListener(new ValueEventListener() {
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(DataSnapshot snapshot) {
                         //String[] subAccountArray = new String[]{};
                         ArrayList<String> subAccountArrayList = new ArrayList<>();
+
                         for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                             SubAccount subAccount = new SubAccount();
                             subAccount = snapshot1.getValue(SubAccount.class);
@@ -63,7 +67,7 @@ public class transaction extends AppCompatActivity implements AdapterView.OnItem
                         }
                         subAccountArray = subAccountArrayList.toArray(subAccountArray);
                         Spinner SubAccountSpinner = (Spinner) findViewById((R.id.SubAccountSpinner));
-                        ArrayAdapter<String> accountsAdapter = new ArrayAdapter<>(transaction.this,
+                        ArrayAdapter<String> accountsAdapter = new ArrayAdapter<String>(transaction.this,
                                 android.R.layout.simple_spinner_item, subAccountArray);
 
                         accountsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -73,11 +77,11 @@ public class transaction extends AppCompatActivity implements AdapterView.OnItem
                     }
 
 
-             @Override
-             public void onCancelled(DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-             }
-         });
+                    }
+                });
 
         add_transaction.setOnClickListener(v -> {
             Intent j = new Intent(transaction.this, AddTransaction.class);
