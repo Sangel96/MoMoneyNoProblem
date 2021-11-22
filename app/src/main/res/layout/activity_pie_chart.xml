@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <lecho.lib.hellocharts.view.PieChartView
+        android:id="@+id/chartView"
+        android:layout_width="match_parent"
+        android:layout_height="534dp" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pie Graph Analysis"
+        android:gravity="center"
+        android:textSize="30dp"
+        />
+
+</LinearLayout>
