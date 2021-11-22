@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoMoneyNoProblem">
         <activity
+            android:name=".SubAccount.SubAccountMainMenu"
+            android:exported="true" />
+        <activity
             android:name=".Report.Report"
             android:exported="true" />
         <activity
@@ -36,6 +39,10 @@
             android:exported="true" />
         <activity
             android:name=".DescribeBudgetAnalysis.AskSymptoms"
+            android:exported="true" />
+        <activity android:name=".SubAccount.CreateSubAccounts"
+            android:exported="true" />
+        <activity android:name=".SubAccount.SelectSubAccount"
             android:exported="true" />
         <activity
             android:name=".DescribeBudgetAnalysis.EmergencyButton"
@@ -81,6 +88,7 @@
         <activity
             android:name=".Calendar.FinancialCalendar"
             android:exported="true" />
+
         <activity
             android:name=".scanner.scanner"
             android:exported="true" />

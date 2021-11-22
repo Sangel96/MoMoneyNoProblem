@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.momoneynoproblem.R;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class SelectSubAccount extends AppCompatActivity {
     String[] subAccountArray = new String[]{};
 //    public Button submitButton;
+    ImageView submitButton;
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 //    public ArrayList<String> subAccountArrayList;
     @Override
@@ -59,8 +61,8 @@ public class SelectSubAccount extends AppCompatActivity {
 //        String[] subAccountArray = Arrays.copyOf(subAccountArrayObject, subAccountArrayObject.length, String[].class);
 //        System.out.println(subAccountArray);
 //        subAccountArray = new String[]{"0", "1"};
-        Button submitButton = new Button(this);
-        submitButton = (Button) findViewById(R.id.selectSubAccountButton);
+//        Button submitButton = new Button(this);
+        submitButton = (ImageView) findViewById(R.id.enterbuttontextmanagesubaccount);
 
 //
           submitButton.setOnClickListener(new View.OnClickListener() {

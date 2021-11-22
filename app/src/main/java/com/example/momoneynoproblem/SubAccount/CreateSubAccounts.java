@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.momoneynoproblem.R;
@@ -24,7 +25,7 @@ public class CreateSubAccounts extends AppCompatActivity {
     public EditText subAccountNameInput;
     public EditText reasonsForSubAccountInput;
     public FirebaseDatabase firebaseDatabase;
-    public Button submitButton;
+    public ImageView submitButton;
     public DatabaseReference databaseReference;
     public SubAccount subAccount;
 
@@ -40,7 +41,7 @@ public class CreateSubAccounts extends AppCompatActivity {
         subAccountNameInput = (EditText) findViewById(R.id.subAccountNameInput);
         reasonsForSubAccountInput = (EditText) findViewById(R.id.reasonsSubAccount);
 
-        submitButton = (Button) findViewById(R.id.createSubAccountButton);
+        submitButton = (ImageView) findViewById(R.id.enterbuttontextaddsubaccount);
 
 
         submitButton.setOnClickListener(view -> {

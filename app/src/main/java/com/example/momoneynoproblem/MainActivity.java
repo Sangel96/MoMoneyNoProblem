@@ -17,6 +17,7 @@ import com.example.momoneynoproblem.Goals.AddGoals;
 import com.example.momoneynoproblem.Login.Login;
 import com.example.momoneynoproblem.Report.Report;
 import com.example.momoneynoproblem.SubAccount.SelectSubAccount;
+import com.example.momoneynoproblem.SubAccount.SubAccountMainMenu;
 import com.example.momoneynoproblem.Transaction.transaction;
 import com.example.momoneynoproblem.balance.account_balance;
 import com.google.android.material.navigation.NavigationView;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_transactions) {
             startActivity(new Intent(MainActivity.this, transaction.class));
         } else if (id == R.id.nav_accounts) {
-            startActivity(new Intent(MainActivity.this, SelectSubAccount.class));
+            startActivity(new Intent(MainActivity.this, SubAccountMainMenu.class));
         } else if (id == R.id.nav_balance) {
             startActivity(new Intent(MainActivity.this, account_balance.class));
         }else if (id == R.id.nav_report) {

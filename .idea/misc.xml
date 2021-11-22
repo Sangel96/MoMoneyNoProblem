@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/13107/StudioProjects/MoMoneyNoProblem_FINAL/app/src/main/res/layout-v26/activity_transaction.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/13107/StudioProjects/MoMoneyNoProblem_FINAL/app/src/main/res/layout/activity_analysis_page.xml" value="0.271286231884058" />
+        <entry key="..\:/Users/13107/StudioProjects/MoMoneyNoProblem_FINAL/app/src/main/res/layout/activity_ask_symptoms.xml" value="0.271286231884058" />
+        <entry key="..\:/Users/13107/StudioProjects/MoMoneyNoProblem_FINAL/app/src/main/res/layout/activity_create_sub_accounts2.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/13107/StudioProjects/MoMoneyNoProblem_FINAL/app/src/main/res/layout/activity_emergency_button.xml" value="0.271286231884058" />
+        <entry key="..\:/Users/13107/StudioProjects/MoMoneyNoProblem_FINAL/app/src/main/res/layout/activity_select_sub_account.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/13107/StudioProjects/MoMoneyNoProblem_FINAL/app/src/main/res/layout/activity_sub_account_main_menu.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/13107/StudioProjects/MoMoneyNoProblem_FINAL/app/src/main/res/layout/activity_transaction.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/drawable/AddSubAccountText_background.xml" value="0.29375" />
         <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout-v26/activity_transaction.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout-w936dp/activity_login.xml" value="0.15390625" />

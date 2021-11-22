@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -50,7 +52,7 @@ public class AskSymptoms extends AppCompatActivity {
     String emergLevelSelection;
     DatabaseReference dbReference;
     FirebaseDatabase firebaseDatabase;
-    Button enterButton;
+    ImageView enterButton;
     FirebaseAuth mAuth;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -97,7 +99,7 @@ public class AskSymptoms extends AppCompatActivity {
             }
         });
 
-        enterButton = (Button) findViewById(R.id.EnterButton);
+        enterButton = (ImageView) findViewById(R.id.enterbutton_asksymptoms);
         // inserting values into firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         dbReference = firebaseDatabase.getReference("Symptoms");
@@ -116,7 +118,7 @@ public class AskSymptoms extends AppCompatActivity {
 
     private void submitSypmtom() {
         //Create new Goal object
-        Symptom newSymptom = new Symptom(radioButtonSelection,emergLevelSelection);
+        Symptom newSymptom = new Symptom("Yes",emergLevelSelection);
 
         //insert value into database
         dbReference.push().setValue(newSymptom);
