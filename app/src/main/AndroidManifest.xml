@@ -73,6 +73,12 @@
             android:name=".FinAnalysis.FinAnalysis"
             android:exported="true" />
         <activity
+            android:name=".FinAnalysis.FinAnalysisMenu"
+            android:exported="true" />
+        <activity
+            android:name=".FinAnalysis.PieChart"
+            android:exported="true" />
+        <activity
             android:name=".Goals.AddGoals"
             android:exported="true" />
         <activity
