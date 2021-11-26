@@ -117,7 +117,7 @@ public class scanner extends AppCompatActivity {
                     @Override
                     public void run() {
                         stringResult = stringText;
-                        stringResult = stringResult.substring(stringResult.lastIndexOf("SUBTOTAL"));
+                        stringResult = stringResult.substring(stringResult.lastIndexOf("TOTAL"));
                         resultObtained();
                     }
                 });
