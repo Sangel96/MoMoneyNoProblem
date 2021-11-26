@@ -4,101 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    android:background="@drawable/gradient_background">
+  android:background="@drawable/gradient_background">
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginBottom="10dp">
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="91dp"
+        android:src="@drawable/ic_transaction_title"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtSelectaccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="91dp"
+        android:text="@string/select_account"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/SubAccountSpinner"
+        android:layout_width="236dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="390dp"
+        android:spinnerMode="dropdown"
+        android:textColor="@android:color/holo_blue_light"
+        app:layout_constraintTop_toTopOf="@+id/txtSelectaccount" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="10dp">
+        android:layout_marginTop="260dp"
+        android:layout_marginBottom="280dp">
+
+      <ImageView
+          android:id="@+id/manage_rect"
+          android:layout_width="356dp"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_marginStart="86dp"
+          android:src="@drawable/ic_add_transaction_rect" />
 
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="91dp"
-            android:src="@drawable/ic_transaction_title"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+      <Button
+          android:id="@+id/add_transaction"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_marginStart="180dp"
+          android:background="@android:color/transparent"
+          android:src="@drawable/ic_add_transaction_text"
+          android:text="@string/add_transaction"
+          android:textColor="@color/black"
+          android:textStyle="bold"
+          app:layout_constraintTop_toTopOf="@+id/manage_rect" />
 
-        <TextView
-            android:id="@+id/txtSelectaccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="150dp"
-            android:layout_marginBottom="91dp"
-            android:text="@string/select_account"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/SubAccountSpinner"
-            android:layout_width="236dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="90dp"
-            android:layout_marginTop="180dp"
-            android:layout_marginEnd="390dp"
-            android:spinnerMode="dropdown"
-            android:textColor="@android:color/holo_blue_light"
-            app:layout_constraintTop_toTopOf="@+id/txtSelectaccount"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="300dp"
-            android:layout_marginBottom="240dp">
-
-            <ImageView
-                android:id="@+id/manage_rect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="86dp"
-                android:src="@drawable/ic_add_transaction_rect" />
-
-            <Button
-                android:id="@+id/add_transaction"
-                android:layout_width="141dp"
-                android:layout_height="32dp"
-                android:layout_centerHorizontal="true"
-
-                android:layout_marginStart="180dp"
-                android:fillColor="#0BCB85"
-                android:src="@drawable/ic_add_transaction_text"
-                android:visibility="invisible"
-
-                app:layout_constraintTop_toTopOf="@+id/manage_rect" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="400dp"
-            android:layout_marginBottom="150dp">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="86dp"
-                android:fillColor="#0BCB85"
-                android:src="@drawable/ic_add_transaction_rect" />
-
-            <Button
-                android:id="@+id/manage_transaction"
-                android:layout_width="174dp"
-                android:layout_height="34dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="180dp"
-                android:src="@drawable/ic_manage_transaction_text"
-                android:visibility="invisible" />
-        </RelativeLayout>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="370dp"
+        android:layout_marginBottom="160dp">
+
+      <ImageView
+          android:id="@+id/imageView3"
+          android:layout_width="356dp"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_marginStart="86dp"
+          android:src="@drawable/ic_add_transaction_rect" />
+
+      <Button
+          android:id="@+id/manage_transaction"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_marginStart="180dp"
+          android:background="@android:color/transparent"
+          android:src="@drawable/ic_manage_transaction_text"
+          android:text="@string/manage_transaction"
+          android:textColor="@color/black"
+          android:textStyle="bold" />
+    </RelativeLayout>
+
+  </RelativeLayout>
 
 </RelativeLayout>

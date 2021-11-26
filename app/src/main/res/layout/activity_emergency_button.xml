@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DescribeBudgetAnalysis.EmergencyButton">
 
-    <Button
-        android:id="@+id/EmergencyButtonID"
-        android:layout_width="0dp"
+    <ImageView
+        android:id="@+id/greenButtonRectangleBackgroundEmergencyButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/EmergencyButton" />
-</LinearLayout>
+        android:layout_marginTop="84dp"
+        android:src="@drawable/ic_green_background_rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/emergencyButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:src="@drawable/ic_emergency_button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/greenButtonRectangleBackgroundEmergencyButton">
+
+    </ImageView>
+</androidx.constraintlayout.widget.ConstraintLayout>

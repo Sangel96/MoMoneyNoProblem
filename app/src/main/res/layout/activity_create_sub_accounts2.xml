@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cover_for_app"
+
     tools:context=".SubAccount.CreateSubAccounts">
 
 
@@ -37,31 +37,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subAccountNameInput" />
 
-    <Button
-        android:id="@+id/createSubAccountButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="64dp"
-        android:enabled="true"
-        android:text="Enter"
+    <ImageView
+        android:id="@+id/enterbuttonaddsubaccount"
+        android:layout_width="305dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="158dp"
+        android:src="@drawable/ic_enter_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reasonsSubAccount"
-        app:layout_constraintVertical_bias="0.198" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/textView6"
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/addsubaccount_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:text="New Sub Account"
-        android:textSize="34sp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/ic_add_sub_account_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="31dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/enterbuttontextaddsubaccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_enter_button_text"
+        app:layout_constraintBottom_toBottomOf="@+id/enterbuttonaddsubaccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </ImageView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
