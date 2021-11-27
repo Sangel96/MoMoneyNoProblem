@@ -16,7 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.momoneynoproblem.Goals.AddGoals;
 import com.example.momoneynoproblem.Login.Login;
 import com.example.momoneynoproblem.Report.Report;
-import com.example.momoneynoproblem.SubAccount.SelectSubAccount;
+import com.example.momoneynoproblem.SubAccount.CreateSubAccounts;
 import com.example.momoneynoproblem.SubAccount.SubAccountMainMenu;
 import com.example.momoneynoproblem.Transaction.transaction;
 import com.example.momoneynoproblem.balance.account_balance;
@@ -35,6 +35,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //global variable for userID
+//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putString("usedID",user_ID);
+//        editor.apply();
+//
+//        String name = preferences.getString("userID", "");
+//        Log.i("MainActivity", name);
+        //userID
 
         //show toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -93,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, account_balance.class));
         }else if (id == R.id.nav_report) {
                 startActivity(new Intent(MainActivity.this, Report.class));
+        }else if (id == R.id.nav_createSubAccounts) {
+            startActivity(new Intent(MainActivity.this, CreateSubAccounts.class));
         }else if (id == R.id.nav_logout) {
             mAuth.signOut();
             startActivity(new Intent(MainActivity.this, Login.class));
