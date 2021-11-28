@@ -2,13 +2,11 @@ package com.example.momoneynoproblem;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +17,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.momoneynoproblem.Goals.AddGoals;
 import com.example.momoneynoproblem.Login.Login;
 import com.example.momoneynoproblem.Report.Report;
-import com.example.momoneynoproblem.SubAccount.SelectSubAccount;
 import com.example.momoneynoproblem.SubAccount.SubAccountMainMenu;
 import com.example.momoneynoproblem.Transaction.transaction;
 import com.example.momoneynoproblem.balance.account_balance;
@@ -51,12 +48,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Singleton user = Singleton.getInstance();
 
-
-        if (mAuth.getCurrentUser().getUid() != null) {
-            user_ID = mAuth.getCurrentUser().getUid();
-            Toast.makeText(this, user_ID, Toast.LENGTH_SHORT).show();
-        }
+//        if (mAuth.getCurrentUser().getUid() != null) {
+//            //user_ID = mAuth.getCurrentUser().getUid();
+//            //Log.i("Main Activity: ",mAuth.getCurrentUser().getUid().toString());
+//            user.setUserID(mAuth.getCurrentUser().getUid());
+//            Toast.makeText(this, user.getUserID(), Toast.LENGTH_SHORT).show();
+//        }
         //drawer layout
         drawer = findViewById(R.id.drawer_layout);
 

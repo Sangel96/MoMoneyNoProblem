@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.momoneynoproblem.R;
+import com.example.momoneynoproblem.Singleton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -102,7 +103,9 @@ public class PDFMaker extends AppCompatActivity {
             PdfWriter writer = new PdfWriter(file);
             com.itextpdf.kernel.pdf.PdfDocument pdfDocument = new com.itextpdf.kernel.pdf.PdfDocument(writer);
             Document document = new Document(pdfDocument);
-
+            Singleton user = Singleton.getInstance();
+            String temp = new String(user.getUserID());
+            document.add(new Paragraph("USER :" + temp));
             Paragraph paragraph = new Paragraph("TEST");
 
             for (int i = 0; i< data.size(); i++){
@@ -110,6 +113,8 @@ public class PDFMaker extends AppCompatActivity {
             }
 
             document.add(paragraph);
+
+
             document.close();
             Toast.makeText(this, "created", Toast.LENGTH_SHORT).show();
 

@@ -221,8 +221,6 @@ public class scanner extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        resultObtained(temp);
     }
 
     private void resultObtained(String s){
