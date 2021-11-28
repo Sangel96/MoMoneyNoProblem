@@ -2,9 +2,12 @@ package com.example.momoneynoproblem;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -31,19 +34,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private NavigationView navigationView;
     public static String user_ID;
+    TextView account_name;
+    TextView account_email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        //current user
+        mAuth = FirebaseAuth.getInstance();
+
+        //change name
+
 
         //show toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //current user
-        mAuth = FirebaseAuth.getInstance();
 
-        if(mAuth.getCurrentUser().getUid() != null){
+
+        if (mAuth.getCurrentUser().getUid() != null) {
             user_ID = mAuth.getCurrentUser().getUid();
             Toast.makeText(this, user_ID, Toast.LENGTH_SHORT).show();
         }
@@ -57,7 +67,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        account_name = (TextView) headerView.findViewById(R.id.account_name);
+        account_email = (TextView) headerView.findViewById(R.id.account_email);
+        account_name.setText(mAuth.getCurrentUser().getDisplayName());
+        account_email.setText(mAuth.getCurrentUser().getEmail());
 
     }
 
@@ -71,9 +85,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         super.onBackPressed();
     }
+
     @Override
     //inflate the menu - adds items ot the action bar if it is present
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.drawer_menu, menu);
         return true;
     }
@@ -91,9 +106,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, SubAccountMainMenu.class));
         } else if (id == R.id.nav_balance) {
             startActivity(new Intent(MainActivity.this, account_balance.class));
-        }else if (id == R.id.nav_report) {
-                startActivity(new Intent(MainActivity.this, Report.class));
-        }else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_report) {
+            startActivity(new Intent(MainActivity.this, Report.class));
+        } else if (id == R.id.nav_logout) {
             mAuth.signOut();
             startActivity(new Intent(MainActivity.this, Login.class));
         }
