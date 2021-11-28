@@ -67,6 +67,24 @@ public class PieChart extends AppCompatActivity {
                 }
                 Log.d("Debug", "Travel Total: " + total);
                 transactionData.add(new SliceValue(total, Color.GRAY).setLabel("Travel: $" + total));   //"Travel: $1332
+
+                //PieChartData class instance to pass data in
+                PieChartData pieTransData = new PieChartData(transactionData);
+
+                //Set pieChartVIew data to data of the instance of pieTransData variable
+                pieChartView.setPieChartData(pieTransData);
+
+                //Change label size of pie graph
+                pieTransData.setHasLabels(true).setValueLabelTextSize(10);
+
+                //Set title of centered text in the middle of the screen
+                pieTransData.setHasCenterCircle(true).setCenterText1("Monthly Spending");
+
+                // Set font size of the centered text in the middle of the screen
+                pieTransData.setHasCenterCircle(true).setCenterText1FontSize(14);
+
+                //assign data of pieTransData to pieChartView
+                pieChartView.setPieChartData(pieTransData);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -84,6 +102,24 @@ public class PieChart extends AppCompatActivity {
                 }
                 Log.d("Debug", "Travel Total: " + total);
                 transactionData.add(new SliceValue(total, Color.RED).setLabel("Shopping: $" + total));   //"Travel: $1332
+
+                //PieChartData class instance to pass data in
+                PieChartData pieTransData = new PieChartData(transactionData);
+
+                //Set pieChartVIew data to data of the instance of pieTransData variable
+                pieChartView.setPieChartData(pieTransData);
+
+                //Change label size of pie graph
+                pieTransData.setHasLabels(true).setValueLabelTextSize(10);
+
+                //Set title of centered text in the middle of the screen
+                pieTransData.setHasCenterCircle(true).setCenterText1("Monthly Spending");
+
+                // Set font size of the centered text in the middle of the screen
+                pieTransData.setHasCenterCircle(true).setCenterText1FontSize(14);
+
+                //assign data of pieTransData to pieChartView
+                pieChartView.setPieChartData(pieTransData);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -101,6 +137,24 @@ public class PieChart extends AppCompatActivity {
                 }
                 Log.d("Debug", "Travel Total: " + total);
                 transactionData.add(new SliceValue(total, Color.BLUE).setLabel("Rent: $" + total));   //"Travel: $1332
+
+                //PieChartData class instance to pass data in
+                PieChartData pieTransData = new PieChartData(transactionData);
+
+                //Set pieChartVIew data to data of the instance of pieTransData variable
+                pieChartView.setPieChartData(pieTransData);
+
+                //Change label size of pie graph
+                pieTransData.setHasLabels(true).setValueLabelTextSize(10);
+
+                //Set title of centered text in the middle of the screen
+                pieTransData.setHasCenterCircle(true).setCenterText1("Monthly Spending");
+
+                // Set font size of the centered text in the middle of the screen
+                pieTransData.setHasCenterCircle(true).setCenterText1FontSize(14);
+
+                //assign data of pieTransData to pieChartView
+                pieChartView.setPieChartData(pieTransData);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -118,6 +172,24 @@ public class PieChart extends AppCompatActivity {
                 }
                 Log.d("Debug", "Travel Total: " + total);
                 transactionData.add(new SliceValue(total, Color.YELLOW).setLabel("Sports: $" + total));   //"Travel: $1332
+
+                //PieChartData class instance to pass data in
+                PieChartData pieTransData = new PieChartData(transactionData);
+
+                //Set pieChartVIew data to data of the instance of pieTransData variable
+                pieChartView.setPieChartData(pieTransData);
+
+                //Change label size of pie graph
+                pieTransData.setHasLabels(true).setValueLabelTextSize(10);
+
+                //Set title of centered text in the middle of the screen
+                pieTransData.setHasCenterCircle(true).setCenterText1("Monthly Spending");
+
+                // Set font size of the centered text in the middle of the screen
+                pieTransData.setHasCenterCircle(true).setCenterText1FontSize(14);
+
+                //assign data of pieTransData to pieChartView
+                pieChartView.setPieChartData(pieTransData);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
