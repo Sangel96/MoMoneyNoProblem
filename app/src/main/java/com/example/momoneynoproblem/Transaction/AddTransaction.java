@@ -1,6 +1,5 @@
 package com.example.momoneynoproblem.Transaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,11 +12,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.R;
-import com.example.momoneynoproblem.scanner.scanner;
+import com.example.momoneynoproblem.Singleton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -69,7 +69,7 @@ public class AddTransaction extends AppCompatActivity {
         amountEditText = findViewById(R.id.amountEditText);
         DateEdit = findViewById(R.id.DateEdit);
         StoreNameEdit = findViewById(R.id.StoreNameEdit);
-        EditAccountId = findViewById(R.id.EditAccountId);
+        //EditAccountId = findViewById(R.id.EditAccountId);
 
 
         // implement spinner
@@ -88,8 +88,7 @@ public class AddTransaction extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> parent, View
                             view, int position, long id) {
                         Log.i("item", (String) parent.getItemAtPosition(position));
-                        transaction_source_type = (String)
-                                parent.getItemAtPosition(position);
+                        Singleton.getInstance().setTransType((String) parent.getItemAtPosition(position));
                     }
 
                     @Override
@@ -110,19 +109,37 @@ public class AddTransaction extends AppCompatActivity {
 //        });
 
         //adds functionality to Add Transaction
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // getting text from our edittext fields.
+                /**
+                 * the add Value Event Listener below was returning null value regardless of using Singleton
+                 * FIX: move snapshot.getChildren to AddDataToFirebase under SingleValueEventListner
+                 */
+                // getting text from our edittext fields
+//                databaseReference.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        long temp= snapshot.getChildrenCount() + 1;
+////                        Log.i("HELPPPPPPPPPPPP:", String.valueOf(temp));
+//                        Singleton.getInstance().setTransID(String.valueOf(temp));
+////                        Log.i("HELPPPPPPPPPPPP:", Singleton.getInstance().getTransID());
+//                    }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
                 String trans_type = transaction_type.trim();
-                String trans_sourceType = transaction_source_type.trim();
+                String trans_sourceType = Singleton.getInstance().getTransType();
                 String amount = amountEditText.getText().toString().trim();
                 String date = DateEdit.getText().toString().trim();
                 String storeName = StoreNameEdit.getText().toString().trim();
-                String transID = TranIDEdit.getText().toString().trim();
-                String accountId = EditAccountId.getText().toString().trim();
+                //String transID = Singleton.getInstance().getTransID();
+                String accountId = Singleton.getInstance().getUserID();
 
-
+                //Log.i("HELPPPPPPPPPPPP:", transID);
                 // get selected radio button from radioGroup
                 int selectedId = radioGroup.getCheckedRadioButtonId();
 
@@ -144,19 +161,22 @@ public class AddTransaction extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                 } else {
                     // else call the method to add data to our database.
-                    addDatatoFirebase(amount, trans_type, trans_sourceType,date, storeName, transID, accountId);
+                    addDatatoFirebase(amount, String.valueOf(radioSourceButton.getText()), trans_sourceType, date, storeName, "0", accountId);
+                    //sets the Transaction Type to null because the value doesn't need to be stored after passing it to the method above
+//                    Singleton.getInstance().setTransType(null);
+//                    Singleton.getInstance().setTransID(null);
                 }
-
             }
         });
 
         mAuth = FirebaseAuth.getInstance();  //Obtaining an instance of FireBase to be used later
     }
 
+
+
     private void addDatatoFirebase(String amount, String transaction_type,
                                    String transaction_source_type, String date, String storeName,
                                    String transID, String accountId) {
-
         // set data in our object class.
         Transaction1 trans = new Transaction1();
         trans.setTransaction_type(transaction_type);
@@ -164,31 +184,37 @@ public class AddTransaction extends AppCompatActivity {
         trans.setAmount(amount);
         trans.setDate(date);
         trans.setStoreName(storeName);
-        trans.setTransID(transID);
+//      trans.setTransID(transID);
         trans.setAccountId(accountId);
+        Toast.makeText(this, accountId, Toast.LENGTH_SHORT).show();
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().
                 child("Transactions");
         // we are use add value event listener method which is called with database reference.
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // inside the method of on Data change we are setting
                 // our object class to our database reference.
                 // data base reference will sends data to firebase.
-//
-                DatabaseReference transChild = databaseReference.push();
+                Singleton.getInstance().setTransID(String.valueOf( snapshot.getChildrenCount() + 1));
+                trans.setTransID(Singleton.getInstance().getTransID());
+                databaseReference.child(Singleton.getInstance().getTransID()).setValue(trans);
+//                trans.setTransID(String.valueOf(Singleton.getInstance().setTransID(String.valueOf(snapshot.getChildrenCount())));
+
+//                DatabaseReference transChild = databaseReference.push();
+
                 //databaseReference.child(transChild.getKey()).setValue(trans);
-                databaseReference.child(transID).setValue(trans);
+//                databaseReference.child(String.valueOf(temp)).setValue(trans);
 
                 // after adding this data we are showing toast message.
+                Log.i("AddTranscation:", trans.toString());
                 Toast.makeText(AddTransaction.this, "data added", Toast.LENGTH_SHORT).show();
-                amountEditText.setText("");
-                DateEdit.setText("");
-                StoreNameEdit.setText("");
-                TranIDEdit.setText("");
-                EditAccountId.setText("");
-
+//                amountEditText.setText("");
+//                DateEdit.setText("");
+//                StoreNameEdit.setText("");
+//                TranIDEdit.setText("");
+                //EditAccountId.setText("");
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -198,7 +224,6 @@ public class AddTransaction extends AppCompatActivity {
             }
         });
 
+
     }
 }
-
-
