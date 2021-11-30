@@ -42,7 +42,7 @@ public class AddTransaction extends AppCompatActivity {
     public EditText TranIDEdit = null;
     public EditText DateEdit = null;
     public EditText StoreNameEdit = null;
-    public  EditText EditAccountId= null;
+    //public  EditText EditAccountId= null;
 
     public String transaction_type = "";
     public String transaction_source_type = "";
