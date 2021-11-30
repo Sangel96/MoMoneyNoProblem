@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,12 +50,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         Singleton user = Singleton.getInstance();
-
+        Toast.makeText(this, Singleton.getInstance().getUserID(), Toast.LENGTH_SHORT).show();
 //        if (mAuth.getCurrentUser().getUid() != null) {
 //            //user_ID = mAuth.getCurrentUser().getUid();
 //            //Log.i("Main Activity: ",mAuth.getCurrentUser().getUid().toString());
 //            user.setUserID(mAuth.getCurrentUser().getUid());
-//            Toast.makeText(this, user.getUserID(), Toast.LENGTH_SHORT).show();
+//
 //        }
         //drawer layout
         drawer = findViewById(R.id.drawer_layout);
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, Report.class));
         } else if (id == R.id.nav_logout) {
             mAuth.signOut();
+            //Singleton.getInstance().reset();
             startActivity(new Intent(MainActivity.this, Login.class));
         }
 
