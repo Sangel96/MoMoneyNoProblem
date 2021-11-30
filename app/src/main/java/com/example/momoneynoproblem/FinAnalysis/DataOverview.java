@@ -50,7 +50,7 @@ public class DataOverview extends AppCompatActivity {
                 t2.setTextColor(Color.BLACK);
                 t3.setTextColor(Color.BLACK);
                 t1.setText("$" + Long.toString(total));
-                long weekly = total/7;
+                long weekly = total/4;
                 t2.setText("$" + Long.toString(weekly));
                 t3.setText("Travel,\n" +
                         "Shopping,\n" +
