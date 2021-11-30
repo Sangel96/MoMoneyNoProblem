@@ -48,10 +48,10 @@ public class AddTransaction extends AppCompatActivity {
     public String transaction_source_type = "";
     public Spinner transactionSourceTypeSpinner = null;
     public Transaction1 trans;
-    private static final String[] paths = {"Salary", "Rent", "Cloths", "Gifts", "Shopping",
-            "Eating out", "Entertainment", "Fuel", "Holiday",
-            "Kids", "Sports", "Travel", "Other sources"};
-
+//    private static final String[] paths = {"Salary", "Rent", "Cloths", "Gifts", "Shopping",
+//            "Eating out", "Entertainment", "Fuel", "Holiday",
+//            "Kids", "Sports", "Travel", "Other sources"};
+    private static final String[] paths = {"Travel", "Shopping", "Sports", "Other", "Rent"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
