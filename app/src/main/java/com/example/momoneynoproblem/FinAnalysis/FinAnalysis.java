@@ -55,7 +55,7 @@ public class FinAnalysis extends AppCompatActivity {
 
                 graphView.setTitle("Monthly Graph Analysis");
 
-                graphView.setTitleColor(R.color.black);
+                 graphView.setTitleColor(R.color.black);
 
                 graphView.setTitleTextSize(26);
 

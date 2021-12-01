@@ -202,7 +202,7 @@ public class scanner extends AppCompatActivity {
                         public void run() {
                             stringResult = stringText;
                             //stringResult = stringResult.substring(stringResult.lastIndexOf("SUBTOTAL"));
-                            //Log.i("Scanner Class", "Debugging Purposes: " + stringResult);
+                            Log.i("Scanner Class", "Debugging Purposes: " + stringResult);
                             resultObtained(stringResult);
 
                         }

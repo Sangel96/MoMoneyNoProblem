@@ -2,7 +2,6 @@ package com.example.momoneynoproblem;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,26 +21,9 @@ import com.example.momoneynoproblem.Report.Report;
 import com.example.momoneynoproblem.SubAccount.SubAccountMainMenu;
 import com.example.momoneynoproblem.Transaction.transaction;
 import com.example.momoneynoproblem.balance.account_balance;
-import com.google.android.material.datepicker.CalendarConstraints;
-import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -53,16 +34,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static String user_ID;
     TextView account_name;
     TextView account_email;
-    private Button datePicker;
-    private TextView selectedDateText;
-    DatabaseReference databaseReference;
-    ArrayList<Double> list = new ArrayList<>();
-    private TextView amount;
-    private TextView balance;
-    String date;
-    SimpleDateFormat format = new SimpleDateFormat("MM-dd-yy", Locale.US);
-    Calendar calendar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         //current user
         mAuth = FirebaseAuth.getInstance();
-
 
         //change name
 
@@ -103,100 +73,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         account_name.setText(mAuth.getCurrentUser().getDisplayName());
         account_email.setText(mAuth.getCurrentUser().getEmail());
 
-        balance = (TextView) findViewById(R.id.balance);
-        //balance
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String email = mAuth.getCurrentUser().getEmail();
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    String db_email = ds.child("email").getValue(String.class);
-                    Log.i("db_email", db_email);
-                    Log.i("email", email);
-                    if (db_email.equals(email)){
-                        Long db_balance = ds.child("balance").getValue(Long.class);
-                        //Log.i("balance", Long.parseLong(db_balance));
-                        balance.setText("Balance: \n" + "$" + db_balance);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-
-        //calendar
-        datePicker = (Button) findViewById(R.id.date_picker);
-        selectedDateText = (TextView) findViewById(R.id.selectedDate);
-        amount = (TextView) findViewById(R.id.amount);
-        calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC)"));
-        calendar.clear();
-
-        long today = MaterialDatePicker.todayInUtcMilliseconds();
-        calendar.setTimeInMillis(today);
-
-        calendar.set(Calendar.MONTH, Calendar.JANUARY);
-        Long january = calendar.getTimeInMillis();
-
-        calendar.set(Calendar.MONTH, Calendar.DECEMBER);
-        Long december = calendar.getTimeInMillis();
-
-        //calendar constraints
-        CalendarConstraints.Builder constraints = new CalendarConstraints.Builder();
-        constraints.setStart(january);
-        constraints.setEnd(december);
-
-
-        MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
-        builder.setTitleText("SELECT A DATE");
-        builder.setSelection(today);
-        builder.setCalendarConstraints(constraints.build());
-        MaterialDatePicker materialDatePicker = builder.build();
-
-
-        //MaterialDatePicker
-        datePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER");
-            }
-        });
-
-        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
-            @Override
-            public void onPositiveButtonClick(Long selection) {
-                calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-                calendar.setTimeInMillis(selection);
-                calendar.add(Calendar.DATE, 1);
-                date = format.format(calendar.getTime());
-                selectedDateText.setText("Selected Date: " + date);
-
-                databaseReference = FirebaseDatabase.getInstance().getReference();
-                Query q = databaseReference.child("Transactions").orderByChild("date").
-                        equalTo(date);
-                q.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        long total = 0;
-                        for (DataSnapshot ds : snapshot.getChildren()) {
-                            String db_amount = ds.child("amount").getValue(String.class);
-                            total += Long.parseLong(db_amount);
-                        }
-                        amount.setText("Expenses: " + total);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-        });
     }
 
     //hamburger icon

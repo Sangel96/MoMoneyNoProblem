@@ -43,7 +43,7 @@ public class FinancialCalendar extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.calendar);
 
         datePicker = (Button) findViewById(R.id.date_picker);
         selectedDateText = (TextView) findViewById(R.id.selectedDate);
