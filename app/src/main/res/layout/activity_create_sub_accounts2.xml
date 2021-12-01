@@ -10,42 +10,47 @@
 
     <EditText
         android:id="@+id/subAccountNameInput"
-        android:layout_width="0dp"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
         android:hint="@string/SubAccountName"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="96dp" />
 
     <EditText
         android:id="@+id/reasonsSubAccount"
-        android:layout_width="0dp"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:hint="@string/ReasonsSubAccountName"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="text"
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
+        tools:layout_editor_absoluteY="152dp" />
+
+    <EditText
+        android:id="@+id/startingBalance"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter starting balance"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subAccountNameInput" />
+        tools:layout_editor_absoluteY="200dp" />
 
     <ImageView
         android:id="@+id/enterbuttonaddsubaccount"
         android:layout_width="305dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="158dp"
         android:src="@drawable/ic_enter_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="388dp">
 
     </ImageView>
 
@@ -53,12 +58,9 @@
         android:id="@+id/addsubaccount_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
         android:src="@drawable/ic_add_sub_account_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="36dp">
 
     </ImageView>
 
@@ -66,12 +68,9 @@
         android:id="@+id/enterbuttontextaddsubaccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:src="@drawable/ic_enter_button_text"
-        app:layout_constraintBottom_toBottomOf="@+id/enterbuttonaddsubaccount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent">
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="408dp">
 
     </ImageView>
 
