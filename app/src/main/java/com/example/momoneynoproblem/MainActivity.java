@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
         View headerView = navigationView.getHeaderView(0);
         account_name = (TextView) headerView.findViewById(R.id.account_name);
         account_email = (TextView) headerView.findViewById(R.id.account_email);
