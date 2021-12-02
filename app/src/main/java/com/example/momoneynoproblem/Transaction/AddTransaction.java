@@ -1,5 +1,6 @@
 package com.example.momoneynoproblem.Transaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.R;
 import com.example.momoneynoproblem.Singleton;
+import com.example.momoneynoproblem.scanner.scanner;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -99,14 +101,14 @@ public class AddTransaction extends AppCompatActivity {
                     }
                 });
 
-//        scanButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i= new Intent(AddTransaction.this, scanner.class);
-//                startActivity(i);
-//
-//            }
-//        });
+        scanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(AddTransaction.this, scanner.class);
+                startActivity(i);
+
+            }
+        });
 
         //adds functionality to Add Transaction
 
