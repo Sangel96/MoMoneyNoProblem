@@ -22,7 +22,7 @@ public class Goal {
         this.uID = uID;
     }
 
-    public Goal() {}
+    public Goal(String name, double monthlyLimit, String date) {}
 
     public String getName() {
         return name;
