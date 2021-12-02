@@ -3,10 +3,8 @@ package com.example.momoneynoproblem.UserSignUp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,10 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.Login.Login;
 import com.example.momoneynoproblem.R;
-import com.example.momoneynoproblem.UserSignUp.User;
+import com.example.momoneynoproblem.Singleton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -71,7 +68,7 @@ public class UserSignUp extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {  //Registration feedback
-                        User user = new User(name, email);
+                        User user = new User(name, email, Singleton.getInstance().getUserID());
                         FirebaseDatabase.getInstance().getReference("Users")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                 .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
