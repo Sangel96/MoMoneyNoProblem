@@ -104,7 +104,7 @@ public class ManageTransaction extends AppCompatActivity {
 //                            + " / " + "Store Name " + storeName + " / " + "Soruce Type: " + transaction_source_type + " / " + "Amount: " +  amount +"$");
                         arrList.add("Transaction ID: " + transID
                                 + "\nDate: " + date
-                                + "\n$Amount: " + amount
+                                + "\nAmount: $" + amount
                                 + "\nStore: " + storeName);
 
                         //arrList.add("--------------------------------------------------");
