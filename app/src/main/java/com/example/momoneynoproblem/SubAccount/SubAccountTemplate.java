@@ -21,6 +21,6 @@ public class SubAccountTemplate extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
 //        TextView textView = new TextView();
 //        textView = findViewById(R.id.selection_Sub_Account);
-        textView.setText(message);
+        //textView.setText(message);
     }
 }
