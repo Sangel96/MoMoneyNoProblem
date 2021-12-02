@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.R;
+import com.example.momoneynoproblem.Singleton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -48,11 +49,11 @@ public class CreateGoal extends AppCompatActivity {
     private void insertGoal() {
         //Basic variable declaration
         String name = etName.getText().toString().trim();
-        double monthlyLimit = Double.parseDouble(etMonthlyLimit.getText().toString().trim());
+        String monthlyLimit = etMonthlyLimit.getText().toString().trim();
         String date = etDate.getText().toString().trim();
 
         //Create new Goal object
-        Goal newGoal = new Goal(name,monthlyLimit,date);
+        Goal newGoal = new Goal(name,monthlyLimit,date, Singleton.getInstance().getUserID());
 
         //insert value into database
         goalDb.push().setValue(newGoal);
