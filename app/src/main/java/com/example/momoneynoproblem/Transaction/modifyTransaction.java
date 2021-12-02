@@ -113,15 +113,14 @@ public class modifyTransaction extends AppCompatActivity {
                     hashMap.put("transID", ID);
                     hashMap.put("transaction_source_type", transaction_source_type);
                     hashMap.put("transaction_type", transaction_type);
-
-                    //hashMap.put("accountId", accountId);
+                    hashMap.put("accountId", accountId);
 
                     databaseReference.child(ID).setValue(hashMap);
 
                 }
             }
         });
-        Toast.makeText(modifyTransaction.this,"Your Data is Successfully Updated",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(modifyTransaction.this,"Your Data is Successfully Updated",Toast.LENGTH_SHORT).show();
 
     }
 }

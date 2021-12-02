@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.R;
+import com.example.momoneynoproblem.Singleton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -86,23 +87,31 @@ public class ManageTransaction extends AppCompatActivity {
 
                 arrList.clear();
                 for (DataSnapshot temp : snapshot.getChildren()){
-                    String transID = temp.child("transID").getValue(String.class);
-                    String accountId = temp.child("accountId").getValue(String.class);
-                    String transaction_type = temp.child("transaction_type").getValue(String.class);
-                    String date = temp.child("date").getValue(String.class);
-                    String storeName = temp.child("storeName").getValue(String.class);
-                    String transaction_source_type = temp.child("transaction_source_type").getValue(String.class);
-                    String amount = temp.child("amount").getValue(String.class);
-                    arrList.add("Transaction ID: " + transID);
-                    arrList.add("Sub_Account ID: " + accountId + " / " + "transaction Type: "
-                            + transaction_type + " / " + "Date: " + date
-                            + " / " + "Store Name " + storeName + " / " + "Soruce Type: " + transaction_source_type + " / " + "Amount: " +  amount +"$");
 
-                    arrList.add("--------------------------------------------------");
-                   // arrList.add("Transaction: " + temp.getValue().toString());
-                    Log.d("TAG", transID + " / " + accountId + " / " + transaction_type + " / " + date
-                            + " / "+ storeName + " / " + transaction_source_type + " / " + amount +"$");
+                    if (temp.child("accountId").getValue(String.class).compareTo(Singleton.getInstance().getUserID()) == 0) {
+                        String transID = temp.child("transID").getValue(String.class);
+                        String accountId = temp.child("accountId").getValue(String.class);
+                        String transaction_type = temp.child("transaction_type").getValue(String.class);
+                        String date = temp.child("date").getValue(String.class);
+                        String storeName = temp.child("storeName").getValue(String.class);
+                        String transaction_source_type = temp.child("transaction_source_type").getValue(String.class);
+                        String amount = temp.child("amount").getValue(String.class);
 
+
+                        // arrList.add("Transaction ID: " + transID);
+//                    arrList.add("Sub_Account ID: " + accountId + " / " + "transaction Type: "
+//                            + transaction_type + " / " + "Date: " + date
+//                            + " / " + "Store Name " + storeName + " / " + "Soruce Type: " + transaction_source_type + " / " + "Amount: " +  amount +"$");
+                        arrList.add("Transaction ID: " + transID
+                                + "\nDate: " + date
+                                + "\n$Amount: " + amount
+                                + "\nStore: " + storeName);
+
+                        //arrList.add("--------------------------------------------------");
+                        // arrList.add("Transaction: " + temp.getValue().toString());
+                        Log.d("TAG", transID + " / " + accountId + " / " + transaction_type + " / " + date
+                                + " / " + storeName + " / " + transaction_source_type + " / " + amount + "$");
+                    }
                 }
 
                 arrAdp.notifyDataSetChanged();
@@ -120,7 +129,8 @@ public class ManageTransaction extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selection[0] = position;
                 String text = "position: " + selection[0];
-                Toast.makeText(ManageTransaction.this, text, Toast.LENGTH_LONG).show();
+                //Toast.makeText(ManageTransaction.this, text, Toast.LENGTH_LONG).show();
+                //Log.i("Tag", "Position" + selection[0]);
             }
         });
     }
