@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.Login.Login;
 import com.example.momoneynoproblem.R;
-import com.example.momoneynoproblem.Singleton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -68,7 +67,7 @@ public class UserSignUp extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {  //Registration feedback
-                        User user = new User(name, email, Singleton.getInstance().getUserID());
+                        User user = new User(name, email, FirebaseAuth.getInstance().getCurrentUser().getUid());
                         FirebaseDatabase.getInstance().getReference("Users")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                 .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

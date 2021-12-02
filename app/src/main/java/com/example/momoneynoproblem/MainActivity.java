@@ -36,8 +36,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -79,14 +77,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Singleton user = Singleton.getInstance();
-        Toast.makeText(this, Singleton.getInstance().getUserID(), Toast.LENGTH_SHORT).show();
-//        if (mAuth.getCurrentUser().getUid() != null) {
-//            //user_ID = mAuth.getCurrentUser().getUid();
-//            //Log.i("Main Activity: ",mAuth.getCurrentUser().getUid().toString());
-//            user.setUserID(mAuth.getCurrentUser().getUid());
-//
-//        }
+        if (mAuth.getCurrentUser().getUid() != null) {
+            Toast.makeText(this, Singleton.getInstance().getUserID(), Toast.LENGTH_SHORT).show();
+        }
         //drawer layout
         drawer = findViewById(R.id.drawer_layout);
 
@@ -102,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View headerView = navigationView.getHeaderView(0);
         account_name = (TextView) headerView.findViewById(R.id.account_name);
         account_email = (TextView) headerView.findViewById(R.id.account_email);
-        account_name.setText(mAuth.getCurrentUser().getDisplayName());
+        account_name.setText("Default");
         account_email.setText(mAuth.getCurrentUser().getEmail());
 
         balance = (TextView) findViewById(R.id.balance);
@@ -114,12 +107,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 String email = mAuth.getCurrentUser().getEmail();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     String db_email = ds.child("email").getValue(String.class);
+                    Log.d("Main Activity: ", "DEBUGGING: " + ds.child("firstName").getValue(String.class) + ds.child("lastName").getValue(String.class));
+                    if (ds.child("ufirebaseID").getValue(String.class).compareTo(Singleton.getInstance().getUserID()) == 0) {
+                        account_name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
+                    }
                     Log.i("db_email", db_email);
                     Log.i("email", email);
                     if (db_email.equals(email)){
                         Long db_balance = ds.child("balance").getValue(Long.class);
                         //Log.i("balance", Long.parseLong(db_balance));
-                        balance.setText("Balance: \n" + "$" + db_balance);
+                        if (db_balance == null){
+                            balance.setText("Balance:\n $ 0");
+                        }
+                        else {
+                            balance.setText("Balance: \n" + "$" + db_balance);
+                        }
                     }
                 }
             }
