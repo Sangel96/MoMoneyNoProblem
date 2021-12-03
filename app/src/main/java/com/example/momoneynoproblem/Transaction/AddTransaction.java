@@ -66,7 +66,7 @@ public class AddTransaction extends AppCompatActivity {
         incomeRadioButton = findViewById(R.id.incomeRadioButton);
         expenseRadioButton = findViewById(R.id.expenseRadioButton);
         addButton = findViewById(R.id.addButton);
-        TranIDEdit = findViewById(R.id.TranIDEdit);
+        //TranIDEdit = findViewById(R.id.TranIDEdit);
         scanButton = findViewById(R.id.scanButton);
         amountEditText = findViewById(R.id.amountEditText);
         DateEdit = findViewById(R.id.DateEdit);

@@ -21,28 +21,28 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txtId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="70dp"
-            android:text="@string/Id"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/txtId"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginTop="70dp"-->
+<!--            android:text="@string/Id"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold" />-->
 
-        <EditText
-            android:id="@+id/TranIDEdit"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="105dp"
-            android:layout_marginTop="50dp"
-            android:autofillHints="Transaction ID"
-            android:ems="10"
-            android:minHeight="48dp"
-            android:inputType="text"
-            tools:ignore="SpeakableTextPresentCheck" />
+<!--        <EditText-->
+<!--            android:id="@+id/TranIDEdit"-->
+<!--            android:layout_width="75dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="105dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:autofillHints="Transaction ID"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="text"-->
+<!--            android:minHeight="48dp"-->
+<!--            tools:ignore="SpeakableTextPresentCheck" />-->
 <!-- XML for User ID: Disabled (No longer needed check discord for explanation-->
 <!--        <TextView-->
 <!--            android:id="@+id/txtSubAccount"-->
