@@ -36,12 +36,18 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.firebase.database.snapshot.Index;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import kotlin.text.Regex;
 
 public class scanner extends AppCompatActivity {
     private static final int SELECT_IMAGE_FROM_STORAGE =100;
@@ -152,9 +158,8 @@ public class scanner extends AppCompatActivity {
                     @Override
                     public void run() {
                         stringResult = stringText;
-                        //stringResult = stringResult.substring(stringResult.lastIndexOf("SUBTOTAL"));
-                        Log.i("Scanner Class", "Debugging Purposes: " + stringResult);
                         resultObtained(stringResult);
+                        //stringResult = stringResult.substring(stringResult.lastIndexOf("SUBTOTAL"));
 
                     }
                 });
@@ -200,10 +205,43 @@ public class scanner extends AppCompatActivity {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
+                            // PARSING RECEIPT TO AMOUNT AND DATE
+                            ///GALLERY
                             stringResult = stringText;
-                            //stringResult = stringResult.substring(stringResult.lastIndexOf("SUBTOTAL"));
-                            Log.i("Scanner Class", "Debugging Purposes: " + stringResult);
-                            resultObtained(stringResult);
+                            //stringResult = stringResult.substring(stringResult.lastIndexOf("TOTAL"));
+
+                            String stringDate = stringText;
+                            stringResult = stringResult.substring(stringResult.toLowerCase().lastIndexOf("TOTAL".toLowerCase())+1);
+
+                            //Filter by decimal numbers XX.XxXX.XXX
+                            String amount = stringResult.replaceAll("[^\\d.\\d]", "");
+                            //Filter extraneous decimals
+                            String[] words = amount.split("\\.");
+
+                            if (words[1].length() > 2) {
+                                    words[1] = words[1].substring(0,2);
+                            }
+                            if (words[1].length() == 1) { //adds zero if only 1 digit
+                                words[1] = words[1] + "0";
+                            }
+
+                            amount = words[0] + "." + words[1];
+
+                            // MM/DD/YY
+                            //First stage filtering ~~~~~MM/DD/YY
+                            String date = stringDate.replaceAll("[^\\d{2}/\\d{2}/\\d{2}]", "");
+
+                            //Second stage filtering
+                            String[] dateSplit = date.split("\\/");
+                            if (dateSplit[0].length() == 1) {
+                                dateSplit[0] = "0" + dateSplit[0];
+                            }
+                            if (dateSplit[0].length() > 2) {dateSplit[0] = dateSplit[0].substring(dateSplit[0].length() - 2);}
+                            if (dateSplit[2].length() > 2) {dateSplit[2] = dateSplit[2].substring(0, 2);}
+
+                            date = dateSplit[0] + "/" + dateSplit[1] + "/" + dateSplit[2];
+                           // Log.i("Scanner Class", "Debugging Purposes: " + m1.group(1));
+                            resultObtained("Total: $" + amount + "\n\nDate: " + date + "\n\nOriginal: " + stringText);
 
                         }
                     });
