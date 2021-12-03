@@ -35,8 +35,6 @@ public class ManageTransaction extends AppCompatActivity {
     public Button delete_Button = null;
     public Button modify_Button = null;
 
-
-
     ListView listshow;
     ArrayList<String> arrList = new ArrayList<>();
     ArrayAdapter<String> arrAdp;
@@ -80,6 +78,7 @@ public class ManageTransaction extends AppCompatActivity {
         arrAdp = new ArrayAdapter<String>(this, android.R.layout
                 .simple_list_item_1,arrList);
         listshow.setAdapter(arrAdp);
+
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

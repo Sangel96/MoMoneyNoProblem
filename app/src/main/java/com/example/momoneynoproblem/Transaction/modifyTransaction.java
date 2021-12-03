@@ -96,8 +96,9 @@ public class modifyTransaction extends AppCompatActivity {
                 String date = DateEdit.getText().toString().trim();
                 String storename = StoreNameEdit.getText().toString().trim();
                 String trans_type = transaction_type.trim();
-                //String trans_sourceType = transaction_source_type.trim();
-                String trans_sourceType = Singleton.getInstance().getTransType();
+                String trans_sourceType = transaction_source_type.trim();
+                //String trans_sourceType = Singleton.getInstance().getTransType();
+
                 String accountId = Singleton.getInstance().getUserID();
 
 
@@ -111,8 +112,8 @@ public class modifyTransaction extends AppCompatActivity {
                     hashMap.put("date", date);
                     hashMap.put("storeName", storename);
                     hashMap.put("transID", ID);
-                    hashMap.put("transaction_source_type", transaction_source_type);
-                    hashMap.put("transaction_type", transaction_type);
+                    hashMap.put("transaction_source_type", trans_sourceType);
+                    hashMap.put("transaction_type", trans_type);
                     hashMap.put("accountId", accountId);
 
                     databaseReference.child(ID).setValue(hashMap);
