@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.R;
-import com.example.momoneynoproblem.Singleton;
 import com.example.momoneynoproblem.SubAccount.SelectSubAccount;
 import com.example.momoneynoproblem.SubAccount.SubAccount;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,12 +60,10 @@ public class transaction extends AppCompatActivity implements AdapterView.OnItem
                         ArrayList<String> subAccountArrayList = new ArrayList<>();
 
                         for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                            if (snapshot1.child("user_ID").getValue(String.class).compareTo(Singleton.getInstance().getUserID()) == 0) {
-                                SubAccount subAccount = new SubAccount();
-                                subAccount = snapshot1.getValue(SubAccount.class);
-                                assert subAccount != null;
-                                subAccountArrayList.add(subAccount.getSubAccountName());
-                            }
+                            SubAccount subAccount = new SubAccount();
+                            subAccount = snapshot1.getValue(SubAccount.class);
+                            assert subAccount != null;
+                            subAccountArrayList.add(subAccount.getSubAccountName());
                         }
                         subAccountArray = subAccountArrayList.toArray(subAccountArray);
                         Spinner SubAccountSpinner = (Spinner) findViewById((R.id.SubAccountSpinner));
