@@ -48,6 +48,9 @@
             android:name=".DescribeBudgetAnalysis.EmergencyButton"
             android:exported="true" />
         <activity
+            android:name=".Notifications.NotificationsMainPage"
+            android:exported="true" />
+        <activity
             android:name=".balance.account_balance"
             android:exported="true" />
         <activity
