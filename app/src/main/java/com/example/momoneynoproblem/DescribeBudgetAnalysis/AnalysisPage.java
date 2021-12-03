@@ -23,7 +23,9 @@ public class AnalysisPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis_page);
-
+        Symptom symptom = new Symptom();
+        double current_budget = 5000;
+        double budget = createNewBudget(current_budget);
         // SeekBar Chhange
 //        seekbar = (SeekBar) findViewById(R.id.seekBar);
         seekbarRestaurant = (SeekBar) findViewById(R.id.seekBarRestaurant);
@@ -131,5 +133,9 @@ public class AnalysisPage extends AppCompatActivity {
             }
         });
 
+    }
+
+    private double createNewBudget(double currentBudget) {
+        return 5.0;
     }
 }
