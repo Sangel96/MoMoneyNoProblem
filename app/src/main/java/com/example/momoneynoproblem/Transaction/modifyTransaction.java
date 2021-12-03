@@ -1,6 +1,5 @@
 package com.example.momoneynoproblem.Transaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -9,25 +8,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.R;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.example.momoneynoproblem.Singleton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class modifyTransaction extends AppCompatActivity {
@@ -41,14 +33,12 @@ public class modifyTransaction extends AppCompatActivity {
     public RadioButton radioSourceButton;
 
     public Button modifyButton;
-    public EditText amountEditText, TranIDEdit, DateEdit, StoreNameEdit,EditAccountId;
+    public EditText amountEditText, TranIDEdit, DateEdit, StoreNameEdit;
     public String transaction_type = "";
     public String transaction_source_type = "";
     public Spinner transactionSourceTypeSpinner;
 
-    private static final String[] paths = {"Salary", "Rent", "Cloths", "Gifts", "Shopping",
-            "Eating out", "Entertainment", "Fuel", "Holiday",
-            "Kids", "Sports", "Travel", "Other sources"};
+    private static final String[] paths = {"Travel", "Shopping", "Sports", "Other", "Rent"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +55,7 @@ public class modifyTransaction extends AppCompatActivity {
         amountEditText = (EditText) findViewById(R.id.amountEditText);
         DateEdit = (EditText) findViewById(R.id.DateEdit);
         StoreNameEdit = (EditText) findViewById(R.id.StoreNameEdit);
-        EditAccountId = findViewById(R.id.EditAccountId);
+       // EditAccountId = findViewById(R.id.EditAccountId);
 
         // implement spinner
         transactionSourceTypeSpinner = (android.widget.Spinner) findViewById(R.id.transactionSourceTypeSpinner);
@@ -83,8 +73,9 @@ public class modifyTransaction extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> parent, View
                             view, int position, long id) {
                         Log.i("item", (String) parent.getItemAtPosition(position));
-                        transaction_source_type = (String)
-                                parent.getItemAtPosition(position);
+                        Singleton.getInstance().setTransType((String) parent.getItemAtPosition(position));
+                        //transaction_source_type = (String)
+                               // parent.getItemAtPosition(position);
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -99,13 +90,18 @@ public class modifyTransaction extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                final String ID = TranIDEdit.getText().toString().trim();
-                final String accountId = EditAccountId.getText().toString().trim();
-                final String amount = amountEditText.getText().toString().trim();
-                final String date = DateEdit.getText().toString().trim();
-                final String storename = StoreNameEdit.getText().toString().trim();
-                final String trans_type = transaction_type.trim();
-                final String trans_sourceType = transaction_source_type.trim();
+                String ID = TranIDEdit.getText().toString().trim();
+                //final String accountId = EditAccountId.getText().toString().trim();
+                String amount = amountEditText.getText().toString().trim();
+                String date = DateEdit.getText().toString().trim();
+                String storename = StoreNameEdit.getText().toString().trim();
+                String trans_type = transaction_type.trim();
+                String trans_sourceType = transaction_source_type.trim();
+                //String trans_sourceType = Singleton.getInstance().getTransType();
+
+                String accountId = Singleton.getInstance().getUserID();
+
+
                 if (TextUtils.isEmpty(ID)) {
                     TranIDEdit.setError("Please enter The Transaction ID!");
                 } else
@@ -116,8 +112,8 @@ public class modifyTransaction extends AppCompatActivity {
                     hashMap.put("date", date);
                     hashMap.put("storeName", storename);
                     hashMap.put("transID", ID);
-                    hashMap.put("transaction_source_type", transaction_source_type);
-                    hashMap.put("transaction_type", transaction_type);
+                    hashMap.put("transaction_source_type", trans_sourceType);
+                    hashMap.put("transaction_type", trans_type);
                     hashMap.put("accountId", accountId);
 
                     databaseReference.child(ID).setValue(hashMap);
@@ -125,7 +121,7 @@ public class modifyTransaction extends AppCompatActivity {
                 }
             }
         });
-        Toast.makeText(modifyTransaction.this,"Your Data is Successfully Updated",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(modifyTransaction.this,"Your Data is Successfully Updated",Toast.LENGTH_SHORT).show();
 
     }
 }

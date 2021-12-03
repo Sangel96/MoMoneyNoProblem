@@ -25,7 +25,7 @@
     <string name="EnterSubAccount">Enter</string>
     <string name="transaction_type_income_expenses">Transaction type (income/expenses)</string>
 
-    <string name="txtId">Transaction ID:</string>
+    <string name="txtId">Transaction ID</string>
     <string name="txtStoreName">Store Name</string>
     <string name="txtSourcetype">Source type</string>
 
@@ -63,9 +63,9 @@
     <string name="insert_date">Insert Date</string>
     <string name="Delete">Delete</string>
     <string name="store_name">Store Name</string>
-    <string name="do_you_want_to_scan_the_invoice">Do you want to scan the invoice ?</string>
+    <string name="scan_invoice">Scan Invoice</string>
 
-    <string name="Id">Trans ID:</string>
+    <string name="Id">Trans ID</string>
     <string name="source_type">Source type</string>
     <string name="amount">Amount($)</string>
     <string name="add">Add</string>
@@ -79,14 +79,14 @@
     <string name="Symptoms">Symptoms</string>
     <string name="emergency_critical_level">How critical is your emergency?</string>
     <string name="DateNeededBy">What date would you need this to be fixed?</string>
-    <string name="IncomeVerification">Will you be recieving income next month?</string>
+    <string name="IncomeVerification">Will you be receiving income next month?</string>
     <string name="EnterButton">Enter</string>
     <string name="yes_selection">Yes</string>
     <string name="no_selection">No</string>
-    <string name="select_account">Select a Sub Account</string>
+    <string name="select_account">Select Sub Account</string>
     <string name="Show_data">Show Data</string>
     <string name="update">Update</string>
-    <string name="SubAccountID">Account ID:</string>
+
     <string name="add_transaction">Add Transaction</string>
 
 

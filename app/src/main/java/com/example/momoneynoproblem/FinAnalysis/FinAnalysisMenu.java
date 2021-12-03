@@ -15,7 +15,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class FinAnalysisMenu extends AppCompatActivity {
 
-    private ImageView graphBtn, pieChartBtn;
+    private ImageView graphBtn, pieChartBtn, dataBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,7 @@ public class FinAnalysisMenu extends AppCompatActivity {
         //container of ImageView type declaration
         graphBtn = (ImageView) findViewById(R.id.graph);
         pieChartBtn = (ImageView) findViewById(R.id.pieChart);
+        dataBtn = (ImageView) findViewById(R.id.dOverviewText);
 
         //adds functionality graph Button which takes user to graph
         //analysis
@@ -39,5 +40,8 @@ public class FinAnalysisMenu extends AppCompatActivity {
             startActivity(new Intent(this, PieChart.class));
         });
 
+        dataBtn.setOnClickListener(view -> {
+            startActivity(new Intent(this, DataOverview.class));
+        });
     }
 }

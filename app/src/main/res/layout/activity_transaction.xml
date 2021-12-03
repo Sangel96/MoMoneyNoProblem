@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-  android:background="@drawable/gradient_background">
 
   <RelativeLayout
       android:layout_width="match_parent"
@@ -20,6 +18,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="91dp"
         android:src="@drawable/ic_transaction_title"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -31,7 +30,8 @@
         android:layout_marginTop="150dp"
         android:layout_marginBottom="91dp"
         android:text="@string/select_account"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <Spinner

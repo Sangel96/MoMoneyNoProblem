@@ -63,9 +63,6 @@
             android:name=".SubAccount.SubAccountTemplate"
             android:exported="true" />
         <activity
-            android:name=".SubAccount.SelectSubAccount"
-            android:exported="true" />
-        <activity
             android:name=".Login.ForgotPassword"
             android:exported="true" />
         <activity
@@ -84,6 +81,9 @@
             android:name=".FinAnalysis.PieChart"
             android:exported="true" />
         <activity
+            android:name=".FinAnalysis.DataOverview"
+            android:exported="true" />
+        <activity
             android:name=".Goals.AddGoals"
             android:exported="true" />
         <activity
@@ -92,7 +92,9 @@
         <activity
             android:name=".Calendar.FinancialCalendar"
             android:exported="true" />
-
+        <activity
+            android:name=".Refund.Refund"
+            android:exported="true" />
         <activity
             android:name=".scanner.scanner"
             android:exported="true" />

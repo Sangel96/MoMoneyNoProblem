@@ -26,6 +26,25 @@
         app:layout_constraintTop_toBottomOf="@+id/manage_rect" />
 
     <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:src="@drawable/ic_add_transaction_rect"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <ImageView
+        android:id="@+id/dOverviewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:src="@drawable/ic_dataoverview_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pieChart" />
+
+    <ImageView
         android:id="@+id/graph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

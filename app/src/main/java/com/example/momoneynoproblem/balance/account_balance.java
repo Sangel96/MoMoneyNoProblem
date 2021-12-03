@@ -55,6 +55,5 @@ public class account_balance extends AppCompatActivity {
         });
 
 
-
     }
 }
