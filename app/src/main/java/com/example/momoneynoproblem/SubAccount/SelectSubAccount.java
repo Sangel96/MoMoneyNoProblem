@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.momoneynoproblem.R;
+import com.example.momoneynoproblem.Singleton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,13 +38,15 @@ public class SelectSubAccount extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         ArrayList<String> subAccountArrayList = new ArrayList<>();
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            SubAccount subAccount = new SubAccount();
-                            subAccount = snapshot.getValue(SubAccount.class);
+                            Log.d("tag", "debug: " + snapshot.child("user_ID").getValue(String.class));
+                            if (snapshot.child("user_ID").getValue(String.class).compareTo(Singleton.getInstance().getUserID()) == 0) {
+                                SubAccount subAccount = new SubAccount();
+                                subAccount = snapshot.getValue(SubAccount.class);
 //                            Toast.makeText(SelectSubAccount.this, subAccount.subAccountName, Toast.LENGTH_SHORT).show();
 
-                            subAccountArrayList.add(subAccount.getSubAccountName());
+                                subAccountArrayList.add(subAccount.getSubAccountName());
 
-
+                            }
                         }
                         subAccountArray = subAccountArrayList.toArray(subAccountArray);
                         Spinner s = (Spinner) findViewById(R.id.SubAccountSpinner);
@@ -70,7 +74,9 @@ public class SelectSubAccount extends AppCompatActivity {
             public void onClick(View v) {
                 Spinner s = (Spinner) findViewById(R.id.SubAccountSpinner);
                 String selectedItem = s.getSelectedItem().toString();
+                Log.d("Tag", "DebugBefore: " + selectedItem);
                 openNewActivity(selectedItem);
+                Log.d("Tag", "DebugAfter: " + selectedItem);
             }
         });
 
