@@ -84,6 +84,10 @@ public class modifyTransaction extends AppCompatActivity {
 
                     }
                 });
+        DateEdit.setText(getIntent().getStringExtra("DateEdit"));
+        StoreNameEdit.setText(getIntent().getStringExtra("StoreNameEdit"));
+        amountEditText.setText(getIntent().getStringExtra("amountEditText"));
+
 
         modifyButton.setOnClickListener(new View.OnClickListener()
         {

@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -32,14 +33,14 @@ public class ManageTransaction extends AppCompatActivity {
     public FirebaseDatabase firebaseDatabase;
     public DatabaseReference databaseReference;
 
-    public Button delete_Button = null;
-    public Button modify_Button = null;
+//    public Button delete_Button = null;
+//    public Button modify_Button = null;
 
     ListView listshow;
     ArrayList<String> arrList = new ArrayList<>();
     ArrayAdapter<String> arrAdp;
 
-    final int[] selection = new int[1];
+    //final int[] selection = new int[1];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,27 +50,27 @@ public class ManageTransaction extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         // below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("Transactions");
-        modify_Button = (Button) findViewById(R.id.modify_Button);
-        delete_Button = (Button) findViewById(R.id.delete_Button);
+//        modify_Button = (Button) findViewById(R.id.modify_Button);
+//        delete_Button = (Button) findViewById(R.id.delete_Button);
 
-        modify_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent j = new Intent(ManageTransaction.this, modifyTransaction.class);
-                j.putExtra("Transaction",listshow.getItemIdAtPosition(selection[0]));
-                startActivity(j);
+//        modify_Button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent j = new Intent(ManageTransaction.this, modifyTransaction.class);
+//                j.putExtra("Transaction",listshow.getItemIdAtPosition(selection[0]));
+//                startActivity(j);
+//
+//            }
+//        });
 
-            }
-        });
 
-
-        delete_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent j = new Intent(ManageTransaction.this, deleteTransaction.class);
-                startActivity(j);
-            }
-        });
+//        delete_Button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent j = new Intent(ManageTransaction.this, deleteTransaction.class);
+//                startActivity(j);
+//            }
+//        });
 
         mAuth = FirebaseAuth.getInstance();  //Obtaining an instance of FireBase to be used later
         databaseReference = FirebaseDatabase.getInstance().getReference("Transactions");
@@ -126,8 +127,17 @@ public class ManageTransaction extends AppCompatActivity {
         listshow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selection[0] = position;
-                String text = "position: " + selection[0];
+                Intent ManageTransaction = new Intent(ManageTransaction.this, modifyTransaction.class);
+                Log.d("Tag",parent.getItemAtPosition(position).toString());
+                Transaction1 T =  ((Transaction1) parent.getItemAtPosition(position));
+                //Transaction1 transaction1 = new Transaction1(amount,transaction_type, transaction_source_type,ID,date, storename,accountId);
+                ManageTransaction.putExtra("transID",T.getTransID());
+                ManageTransaction.putExtra("date", T.getDate());
+                ManageTransaction.putExtra("storeName",T.getStoreName());
+                ManageTransaction.putExtra("amount", T.getAmount());
+                startActivity(ManageTransaction);
+//                selection[0] = position;
+//                String text = "position: " + selection[0];
                 //Toast.makeText(ManageTransaction.this, text, Toast.LENGTH_LONG).show();
                 //Log.i("Tag", "Position" + selection[0]);
             }

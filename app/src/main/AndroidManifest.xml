@@ -40,9 +40,11 @@
         <activity
             android:name=".DescribeBudgetAnalysis.AskSymptoms"
             android:exported="true" />
-        <activity android:name=".SubAccount.CreateSubAccounts"
+        <activity
+            android:name=".SubAccount.CreateSubAccounts"
             android:exported="true" />
-        <activity android:name=".SubAccount.SelectSubAccount"
+        <activity
+            android:name=".SubAccount.SelectSubAccount"
             android:exported="true" />
         <activity
             android:name=".DescribeBudgetAnalysis.EmergencyButton"
