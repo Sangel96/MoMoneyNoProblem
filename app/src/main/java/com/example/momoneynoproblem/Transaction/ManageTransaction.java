@@ -128,13 +128,26 @@ public class ManageTransaction extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent ManageTransaction = new Intent(ManageTransaction.this, modifyTransaction.class);
-                Log.d("Tag",parent.getItemAtPosition(position).toString());
-                Transaction1 T =  ((Transaction1) parent.getItemAtPosition(position));
-                //Transaction1 transaction1 = new Transaction1(amount,transaction_type, transaction_source_type,ID,date, storename,accountId);
-                ManageTransaction.putExtra("transID",T.getTransID());
-                ManageTransaction.putExtra("date", T.getDate());
-                ManageTransaction.putExtra("storeName",T.getStoreName());
-                ManageTransaction.putExtra("amount", T.getAmount());
+                //Log.d("Tag",parent.getItemAtPosition(position).toString());
+                String adapterObject =  (parent.getItemAtPosition(position).toString());
+                //Filter everything before first colon on each line
+                adapterObject = adapterObject.replaceAll("\\w+:", "");
+                String [] arrParse = adapterObject.split("\n");
+                //Remove "'Transaction' X"
+                arrParse[0] = arrParse[0].replaceAll("[^\\d.]", "");
+                //Remove $
+                arrParse[2] = arrParse[2].replaceAll("\\$", "").trim();
+                //Log.d("Tag", adapterObject);
+                Log.d("Tag",arrParse[0] + " " + arrParse[1] + " " + arrParse[2] + " " + arrParse[3] );
+                //arrParse[0] holds Transaction ID
+                //arrParse[1] holds Date
+                //arrParse[2] holds Amount
+                // arrParse[3] holds Store Name
+
+                ManageTransaction.putExtra("transID",arrParse[0]);
+                ManageTransaction.putExtra("date", arrParse[1]);
+                ManageTransaction.putExtra("storeName",arrParse[3]);
+                ManageTransaction.putExtra("amount", arrParse[2]);
                 startActivity(ManageTransaction);
 //                selection[0] = position;
 //                String text = "position: " + selection[0];
