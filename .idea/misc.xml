@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/13107/StudioProjects/MoMoneyNoProblem2/app/src/main/res/layout/activity_notifications_page.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/drawable/AddSubAccountText_background.xml" value="0.29375" />
         <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout-v26/activity_transaction.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Niji/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout-w936dp/activity_login.xml" value="0.15390625" />
@@ -71,8 +72,11 @@
         <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_data_overview.xml" value="0.1816123188405797" />
         <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_fin_analysis_menu.xml" value="0.1816123188405797" />
         <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_goals.xml" value="0.14221014492753623" />
-        <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_manage_transaction.xml" value="0.14221014492753623" />
+        <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_manage_transaction.xml" value="0.22" />
         <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_modify_transaction.xml" value="0.22" />
+        <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_sub_account_main_menu.xml" value="0.2164855072463768" />
+        <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_test_transaction.xml" value="0.2164855072463768" />
+        <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_transaction.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/taghr/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout-v26/activity_transaction.xml" value="0.1609375" />
         <entry key="..\:/Users/taghr/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_add_transaction.xml" value="0.22" />
         <entry key="..\:/Users/taghr/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_create_sub_accounts.xml" value="0.13134057971014493" />

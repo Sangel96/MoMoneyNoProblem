@@ -47,28 +47,6 @@
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/txtSubAccount"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="172dp"-->
-        <!--            android:layout_marginTop="70dp"-->
-        <!--            android:text="@string/SubAccountID"-->
-        <!--            android:textSize="16sp"-->
-        <!--            android:textStyle="bold" />-->
-
-        <!--        <EditText-->
-        <!--            android:id="@+id/EditAccountId"-->
-        <!--            android:layout_width="91dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="250dp"-->
-        <!--            android:layout_marginTop="50dp"-->
-        <!--            android:ems="10"-->
-        <!--            android:importantForAutofill="no"-->
-        <!--            android:inputType="text"-->
-        <!--            android:minHeight="48dp"-->
-        <!--            tools:ignore="SpeakableTextPresentCheck" />-->
-
 
         <TextView
             android:id="@+id/txtSourcetype"
@@ -120,14 +98,14 @@
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
+
         <View
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="380dp"
             android:background="#3F51B5" />
-
 
         <TextView
             android:id="@+id/txtDate"
@@ -192,7 +170,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:checked="true"
-                android:text="@string/expense"/>
+                android:text="@string/expense" />
 
             <RadioButton
                 android:id="@+id/incomeRadioButton"
@@ -200,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="80dp"
                 android:layout_marginEnd="50dp"
-                android:text="@string/income"/>
+                android:text="@string/income" />
         </RadioGroup>
 
 
@@ -211,7 +189,18 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="160dp"
             android:layout_marginTop="450dp"
-            android:text="@string/modify" />
+            android:text="@string/modify"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/delete_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="400dp"
+            android:text="@string/delete"
+            android:textColor="@color/black" />
 
     </RelativeLayout>
 

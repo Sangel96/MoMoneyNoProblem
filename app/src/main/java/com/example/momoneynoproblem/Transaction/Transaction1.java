@@ -12,9 +12,19 @@ public class Transaction1 implements Serializable {
     public String accountId;
 
 
-    public Transaction1() {
+    public Transaction1(){
 
     }
+    public Transaction1(Transaction1 T)  {
+        this.transaction_type = T.getTransaction_type();
+        this.transaction_source_type = T.getTransaction_source_type();
+        this.amount = T.getAmount();
+        this.date = T.getDate();
+        this.storeName = T.getStoreName();
+        this.transID = T.getTransID();
+        this.accountId = T.getAccountId();
+    }
+
     public Transaction1(String amount,String transaction_type, String transaction_source_type,
                         String transID, String date, String storeName, String accountId) {
         this.transaction_type = transaction_type;

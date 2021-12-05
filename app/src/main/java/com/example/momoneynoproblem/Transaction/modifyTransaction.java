@@ -1,5 +1,6 @@
 package com.example.momoneynoproblem.Transaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class modifyTransaction extends AppCompatActivity {
     public RadioButton radioSourceButton;
 
     public Button modifyButton;
+    public Button deleteBtn;
     public EditText amountEditText, TranIDEdit, DateEdit, StoreNameEdit;
     public String transaction_type = "";
     public String transaction_source_type = "";
@@ -51,11 +53,12 @@ public class modifyTransaction extends AppCompatActivity {
         incomeRadioButton = findViewById(R.id.incomeRadioButton);
         expenseRadioButton = findViewById(R.id.expenseRadioButton);
         modifyButton = (Button) findViewById(R.id.modify_Button);
+        deleteBtn = (Button) findViewById(R.id.delete_Button);
         TranIDEdit = (EditText) findViewById(R.id.TranIDEdit);
         amountEditText = (EditText) findViewById(R.id.amountEditText);
         DateEdit = (EditText) findViewById(R.id.DateEdit);
         StoreNameEdit = (EditText) findViewById(R.id.StoreNameEdit);
-       // EditAccountId = findViewById(R.id.EditAccountId);
+        //EditAccountId = findViewById(R.id.EditAccountId);
 
         // implement spinner
         transactionSourceTypeSpinner = (android.widget.Spinner) findViewById(R.id.transactionSourceTypeSpinner);
@@ -84,6 +87,11 @@ public class modifyTransaction extends AppCompatActivity {
 
                     }
                 });
+        DateEdit.setText(getIntent().getStringExtra("date"));
+        StoreNameEdit.setText(getIntent().getStringExtra("storeName"));
+        amountEditText.setText(getIntent().getStringExtra("amount"));
+        TranIDEdit.setText(getIntent().getStringExtra("transID"));
+
 
         modifyButton.setOnClickListener(new View.OnClickListener()
         {
@@ -122,7 +130,13 @@ public class modifyTransaction extends AppCompatActivity {
             }
         });
         //Toast.makeText(modifyTransaction.this,"Your Data is Successfully Updated",Toast.LENGTH_SHORT).show();
-
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent j = new Intent(modifyTransaction.this, deleteTransaction.class);
+                startActivity(j);
+            }
+        });
     }
 }
 
