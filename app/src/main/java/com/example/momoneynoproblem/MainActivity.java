@@ -69,138 +69,140 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //current user
         mAuth = FirebaseAuth.getInstance();
 
-
         //change name
 
 
-        //show toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        if (mAuth.getCurrentUser() != null) {       //If user is detected, run this block of code, otherwise redirect to login page
+            //show toolbar
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-        if (mAuth.getCurrentUser().getUid() != null) {
-            Toast.makeText(this, Singleton.getInstance().getUserID(), Toast.LENGTH_SHORT).show();
-        }
-        //drawer layout
-        drawer = findViewById(R.id.drawer_layout);
+            if (mAuth.getCurrentUser() != null) {
+                Toast.makeText(this, Singleton.getInstance().getUserID(), Toast.LENGTH_SHORT).show();
+            }
 
-        //toolbar
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+            //drawer layout
+            drawer = findViewById(R.id.drawer_layout);
 
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+            //toolbar
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                    R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
 
-        View headerView = navigationView.getHeaderView(0);
-        account_name = (TextView) headerView.findViewById(R.id.account_name);
-        account_email = (TextView) headerView.findViewById(R.id.account_email);
-        account_name.setText("Default");
-        account_email.setText(mAuth.getCurrentUser().getEmail());
+            navigationView = findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
 
-        balance = (TextView) findViewById(R.id.balance);
-        //balance
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String email = mAuth.getCurrentUser().getEmail();
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    String db_email = ds.child("email").getValue(String.class);
-                    Log.d("Main Activity: ", "DEBUGGING: " + ds.child("firstName").getValue(String.class) + ds.child("lastName").getValue(String.class));
-                    if (ds.child("ufirebaseID").getValue(String.class).compareTo(Singleton.getInstance().getUserID()) == 0) {
-                        account_name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
-                    }
-                    Log.i("db_email", db_email);
-                    Log.i("email", email);
-                    if (db_email.equals(email)){
-                        Long db_balance = ds.child("balance").getValue(Long.class);
-                        //Log.i("balance", Long.parseLong(db_balance));
-                        if (db_balance == null){
-                            balance.setText("Balance:\n $ 0");
+            View headerView = navigationView.getHeaderView(0);
+            account_name = (TextView) headerView.findViewById(R.id.account_name);
+            account_email = (TextView) headerView.findViewById(R.id.account_email);
+            account_name.setText("Default");
+            account_email.setText(mAuth.getCurrentUser().getEmail());
+
+            balance = (TextView) findViewById(R.id.balance);
+            //balance
+            databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String email = mAuth.getCurrentUser().getEmail();
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        String db_email = ds.child("email").getValue(String.class);
+                        Log.d("Main Activity: ", "DEBUGGING: " + ds.child("firstName").getValue(String.class) + ds.child("lastName").getValue(String.class));
+                        if (ds.child("ufirebaseID").getValue(String.class).compareTo(Singleton.getInstance().getUserID()) == 0) {
+                            account_name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
                         }
-                        else {
-                            balance.setText("Balance: \n" + "$" + db_balance);
+                        Log.i("db_email", db_email);
+                        Log.i("email", email);
+                        if (db_email.equals(email)) {
+                            Long db_balance = ds.child("balance").getValue(Long.class);
+                            //Log.i("balance", Long.parseLong(db_balance));
+                            if (db_balance == null) {
+                                balance.setText("Balance:\n $ 0");
+                            } else {
+                                balance.setText("Balance: \n" + "$" + db_balance);
+                            }
                         }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
+                }
+            });
 
 
-        //calendar
-        datePicker = (Button) findViewById(R.id.date_picker);
-        selectedDateText = (TextView) findViewById(R.id.selectedDate);
-        amount = (TextView) findViewById(R.id.amount);
-        calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC)"));
-        calendar.clear();
+            //calendar
+            datePicker = (Button) findViewById(R.id.date_picker);
+            selectedDateText = (TextView) findViewById(R.id.selectedDate);
+            amount = (TextView) findViewById(R.id.amount);
+            calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC)"));
+            calendar.clear();
 
-        long today = MaterialDatePicker.todayInUtcMilliseconds();
-        calendar.setTimeInMillis(today);
+            long today = MaterialDatePicker.todayInUtcMilliseconds();
+            calendar.setTimeInMillis(today);
 
-        calendar.set(Calendar.MONTH, Calendar.JANUARY);
-        Long january = calendar.getTimeInMillis();
+            calendar.set(Calendar.MONTH, Calendar.JANUARY);
+            Long january = calendar.getTimeInMillis();
 
-        calendar.set(Calendar.MONTH, Calendar.DECEMBER);
-        Long december = calendar.getTimeInMillis();
+            calendar.set(Calendar.MONTH, Calendar.DECEMBER);
+            Long december = calendar.getTimeInMillis();
 
-        //calendar constraints
-        CalendarConstraints.Builder constraints = new CalendarConstraints.Builder();
-        constraints.setStart(january);
-        constraints.setEnd(december);
-
-
-        MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
-        builder.setTitleText("SELECT A DATE");
-        builder.setSelection(today);
-        builder.setCalendarConstraints(constraints.build());
-        MaterialDatePicker materialDatePicker = builder.build();
+            //calendar constraints
+            CalendarConstraints.Builder constraints = new CalendarConstraints.Builder();
+            constraints.setStart(january);
+            constraints.setEnd(december);
 
 
-        //MaterialDatePicker
-        datePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER");
-            }
-        });
+            MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
+            builder.setTitleText("SELECT A DATE");
+            builder.setSelection(today);
+            builder.setCalendarConstraints(constraints.build());
+            MaterialDatePicker materialDatePicker = builder.build();
 
-        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
-            @Override
-            public void onPositiveButtonClick(Long selection) {
-                calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-                calendar.setTimeInMillis(selection);
-                calendar.add(Calendar.DATE, 1);
-                date = format.format(calendar.getTime());
-                selectedDateText.setText("Selected Date: " + date);
 
-                databaseReference = FirebaseDatabase.getInstance().getReference();
-                Query q = databaseReference.child("Transactions").orderByChild("date").
-                        equalTo(date);
-                q.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        long total = 0;
-                        for (DataSnapshot ds : snapshot.getChildren()) {
-                            String db_amount = ds.child("amount").getValue(String.class);
-                            total += Long.parseLong(db_amount);
+            //MaterialDatePicker
+            datePicker.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER");
+                }
+            });
+
+            materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+                @Override
+                public void onPositiveButtonClick(Long selection) {
+                    calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                    calendar.setTimeInMillis(selection);
+                    calendar.add(Calendar.DATE, 1);
+                    date = format.format(calendar.getTime());
+                    selectedDateText.setText("Selected Date: " + date);
+
+                    databaseReference = FirebaseDatabase.getInstance().getReference();
+                    Query q = databaseReference.child("Transactions").orderByChild("date").
+                            equalTo(date);
+                    q.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            long total = 0;
+                            for (DataSnapshot ds : snapshot.getChildren()) {
+                                String db_amount = ds.child("amount").getValue(String.class);
+                                total += Long.parseLong(db_amount);
+                            }
+                            amount.setText("Expenses: " + total);
                         }
-                        amount.setText("Expenses: " + total);
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
-            }
-        });
+                        }
+                    });
+                }
+            });
+        } else { //Redirect to login page if no user detected
+            startActivity(new Intent(MainActivity.this, Login.class));
+        }
     }
 
     //hamburger icon
@@ -250,8 +252,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) {
+        //FirebaseUser user = mAuth.getCurrentUser();
+        if (mAuth.getUid() == null) {
             startActivity(new Intent(MainActivity.this, Login.class));
         }
     }
