@@ -1,13 +1,12 @@
 package com.example.momoneynoproblem.SubAccount;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,7 +60,7 @@ public class CreateSubAccounts extends AppCompatActivity {
         Toast.makeText(CreateSubAccounts.this, "Successfully added Sub-Account", Toast.LENGTH_SHORT).show();
     }
 
-    private void addDatatoFirebase(String subAccountName, String reasonsForSubAccount) {
+    private void addDatatoFirebase(String subAccountName, String reasonsForSubAccount, String uID, String balance) {
         // below 3 lines of code is used to set
         // data in our object class.
         SubAccount subAccount = new SubAccount();

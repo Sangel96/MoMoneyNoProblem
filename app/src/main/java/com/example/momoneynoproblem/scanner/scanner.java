@@ -36,18 +36,12 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
-import com.google.firebase.database.snapshot.Index;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 import java.io.IOException;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import kotlin.text.Regex;
 
 public class scanner extends AppCompatActivity {
     private static final int SELECT_IMAGE_FROM_STORAGE =100;
@@ -91,6 +85,7 @@ public class scanner extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // text recognizier gets null reference exception,
         cameraSource.release();
     }
 
