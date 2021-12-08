@@ -1,23 +1,19 @@
 package com.example.momoneynoproblem.Transaction;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.R;
-import com.example.momoneynoproblem.SubAccount.SelectSubAccount;
+import com.example.momoneynoproblem.Singleton;
 import com.example.momoneynoproblem.SubAccount.SubAccount;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class transaction extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] subAccountArray = new String[]{};
@@ -60,10 +55,12 @@ public class transaction extends AppCompatActivity implements AdapterView.OnItem
                         ArrayList<String> subAccountArrayList = new ArrayList<>();
 
                         for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                            SubAccount subAccount = new SubAccount();
-                            subAccount = snapshot1.getValue(SubAccount.class);
-                            assert subAccount != null;
-                            subAccountArrayList.add(subAccount.getSubAccountName());
+                            if (snapshot1.child("user_ID").getValue(String.class).compareTo(Singleton.getInstance().getUserID()) == 0) {
+                                SubAccount subAccount = new SubAccount();
+                                subAccount = snapshot1.getValue(SubAccount.class);
+                                assert subAccount != null;
+                                subAccountArrayList.add(subAccount.getSubAccountName());
+                            }
                         }
                         subAccountArray = subAccountArrayList.toArray(subAccountArray);
                         Spinner SubAccountSpinner = (Spinner) findViewById((R.id.SubAccountSpinner));

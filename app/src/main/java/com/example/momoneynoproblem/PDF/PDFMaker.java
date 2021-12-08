@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
@@ -114,7 +115,10 @@ public class PDFMaker extends AppCompatActivity {
         File file = new File(pdfpath, mFileName + ".pdf");
         OutputStream outputStream = null;
         Log.i("PDFMaker", String.valueOf(data.size()));
-
+        String name = Singleton.getInstance().getName();
+        String email = Singleton.getInstance().getEmail();
+        Log.i("PDFMAker", "name: " +  name);
+        Log.i("PDFMAker, email: ", email    );
         try {
             outputStream = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
@@ -142,7 +146,7 @@ public class PDFMaker extends AppCompatActivity {
 
             ImageData imageData1 = ImageDataFactory.create(bitmapData1);
             Image image1 = new Image(imageData1);
-            image1.setHeight(150f);
+            image1.setHeight(250f);
             image1.setWidth(250f);
             //end image declaration
             float columnWidth[] = {140,140,140,140};
@@ -164,30 +168,41 @@ public class PDFMaker extends AppCompatActivity {
             //table1.addCell(new Cell().add(new Paragraph("")));
             //table1.addCell(new Cell().add(new Paragraph("")));
             table1.addCell(new Cell().add(new Paragraph("Account Holder: ")).setBorder(Border.NO_BORDER));
-            table1.addCell(new Cell().add(new Paragraph("Reference to User Name")).setBorder(Border.NO_BORDER));
+            table1.addCell(new Cell().add(new Paragraph("" + Singleton.getInstance().getName()).setBorder(Border.NO_BORDER)));
             //table 1 ---- 05
             //table1.addCell(new Cell().add(new Paragraph("")));
             //table1.addCell(new Cell().add(new Paragraph("")));
             table1.addCell(new Cell().add(new Paragraph("Email:")).setBorder(Border.NO_BORDER));
-            table1.addCell(new Cell().add(new Paragraph("Reference to Email")).setBorder(Border.NO_BORDER));
+            table1.addCell(new Cell().add(new Paragraph(Singleton.getInstance().getEmail() + "").setBorder(Border.NO_BORDER)));
 
             float columnWidth2[] = {112,112,112,112,112};
             Table table2 = new Table(columnWidth2);
-
+            //color for background
+            DeviceRgb greenish = new DeviceRgb(71,190,160);
+            DeviceRgb gold = new DeviceRgb(255,221,26);
             //table 2 ---- 01
-            table2.addCell(new Cell().add(new Paragraph("Date: ")));
-            table2.addCell(new Cell().add(new Paragraph("Vendor: ")));
-            table2.addCell(new Cell().add(new Paragraph("Category: ")));
-            table2.addCell(new Cell().add(new Paragraph("Type: ")));
-            table2.addCell(new Cell().add(new Paragraph("Amount: ")));
+            table2.addCell(new Cell().add(new Paragraph("Date: ")).setBackgroundColor(gold));
+            table2.addCell(new Cell().add(new Paragraph("Vendor: ")).setBackgroundColor(gold));
+            table2.addCell(new Cell().add(new Paragraph("Category: ")).setBackgroundColor(gold));
+            table2.addCell(new Cell().add(new Paragraph("Type: ")).setBackgroundColor(gold));
+            table2.addCell(new Cell().add(new Paragraph("Amount: ")).setBackgroundColor(gold));
 
             for (int i = 0; i< data.size(); i++){
                 //document.add(new Paragraph(data.get(i).toString()));
-                table2.addCell(new Cell().add(new Paragraph(data.get(i).date)));
-                table2.addCell(new Cell().add(new Paragraph(data.get(i).storeName)));
-                table2.addCell(new Cell().add(new Paragraph(data.get(i).transaction_source_type)));
-                table2.addCell(new Cell().add(new Paragraph(data.get(i).transaction_type)));
-                table2.addCell(new Cell().add(new Paragraph(data.get(i).amount)));
+                if (i%2 == 0){
+                    table2.addCell(new Cell().add(new Paragraph(data.get(i).date)).setBackgroundColor(greenish));
+                    table2.addCell(new Cell().add(new Paragraph(data.get(i).storeName)).setBackgroundColor(greenish));
+                    table2.addCell(new Cell().add(new Paragraph(data.get(i).transaction_source_type)).setBackgroundColor(greenish));
+                    table2.addCell(new Cell().add(new Paragraph(data.get(i).transaction_type)).setBackgroundColor(greenish));
+                    table2.addCell(new Cell().add(new Paragraph(data.get(i).amount)).setBackgroundColor(greenish));
+                }
+                else{
+                    table2.addCell(new Cell().add(new Paragraph(data.get(i).date)));
+                    table2.addCell(new Cell().add(new Paragraph(data.get(i).storeName)));
+                    table2.addCell(new Cell().add(new Paragraph(data.get(i).transaction_source_type)));
+                    table2.addCell(new Cell().add(new Paragraph(data.get(i).transaction_type)));
+                    table2.addCell(new Cell().add(new Paragraph(data.get(i).amount)));
+                }
             }
             //table1.setBorder(Border.NO_BORDER);
             //table2.setBorder(Border.NO_BORDER);

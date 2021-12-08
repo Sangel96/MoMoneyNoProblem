@@ -8,6 +8,8 @@ public class Singleton {
     private String TransType;
     //Only used within AddTranscation Class and variable should be set to null after each usage to avoid bad data
     private String TransID;
+    private String name;
+    private String email;
 
     public String getTransID() {
         return TransID;
@@ -33,7 +35,14 @@ public class Singleton {
         TransType = transType;
     }
 
-    // Getter/setter
+    public void setEmail(String email) { this.email = email; }
+
+    public String getEmail(){ return this.email; }
+
+    public void setName(String name) { this.name = name; }
+
+    public String getName() { return this.name; }
+
 
     private static Singleton instance;
 
@@ -52,6 +61,8 @@ public class Singleton {
         this.userID = null;
         this.TransID = null;
         this.TransType = null;
+        this.email = null;
+        this.name = null;
         this.instance = null;
     }
 
@@ -59,5 +70,8 @@ public class Singleton {
         if (instance != null){
             throw new RuntimeException("Use getInstance() method to get the single instance of this class.");
         }
+    }
+
+    public void setEmail() {
     }
 }
