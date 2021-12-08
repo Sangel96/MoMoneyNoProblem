@@ -16,10 +16,6 @@
             android:icon="@drawable/ic_accounts"
             android:title="Accounts" />
         <item
-            android:id="@+id/nav_balance"
-            android:icon="@drawable/account_balance"
-            android:title="Balance" />
-        <item
             android:id="@+id/nav_report"
             android:icon="@drawable/report"
             android:title="Report" />
