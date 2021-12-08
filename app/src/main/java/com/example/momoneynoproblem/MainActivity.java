@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.momoneynoproblem.FinAnalysis.FinAnalysisMenu;
 import com.example.momoneynoproblem.Goals.AddGoals;
 import com.example.momoneynoproblem.Login.Login;
 import com.example.momoneynoproblem.Report.Report;
@@ -35,6 +36,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,6 +64,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String date;
     SimpleDateFormat format = new SimpleDateFormat("MM-dd-yy", Locale.US);
     Calendar calendar;
+
+    //graph
+    GraphView graphView;
+    ArrayList<Integer> arrayList = new ArrayList<>();
+    LineGraphSeries<DataPoint> series;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             balance = (TextView) findViewById(R.id.balance);
             //balance
             databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-            databaseReference.addValueEventListener(new ValueEventListener() {
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String email = mAuth.getCurrentUser().getEmail();
@@ -118,9 +128,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             Long db_balance = ds.child("balance").getValue(Long.class);
                             //Log.i("balance", Long.parseLong(db_balance));
                             if (db_balance == null) {
-                                balance.setText("Balance:\n $ 0");
+                                balance.setText("Balance:\n    $ 0");
                             } else {
-                                balance.setText("Balance: \n" + "$" + db_balance);
+                                balance.setText("Balance: \n" + "   $" + db_balance);
                             }
                         }
                     }
@@ -131,9 +141,52 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 }
             });
+            //graph
+            databaseReference = FirebaseDatabase.getInstance().getReference("Transactions");
+            graphView = findViewById(R.id.idGraphView);
 
+            // Attach a listener to read the data at our posts reference
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // TransactionData t = dataSnapshot.getValue(TransactionData.class);
 
-            //calendar
+                    list.clear();
+
+                    for (DataSnapshot ds: dataSnapshot.getChildren()) {
+                        Double amount = Double.parseDouble(ds.child("amount").getValue(String.class));
+                        list.add(amount);
+                    }
+                    DataPoint[] dp = new DataPoint[29];
+                    for (int i = 0; i < 29; ++i) {
+                        dp[i] = new DataPoint(i, list.get(i));
+                    }
+                    series = new LineGraphSeries<>(dp);
+
+                    graphView.setTitle("Monthly Graph Analysis");
+
+                    graphView.setTitleColor(R.color.black);
+
+                    graphView.setTitleTextSize(26);
+
+                    graphView.addSeries(series);
+
+                    graphView.getViewport().setMinX(1);
+                    graphView.getViewport().setMaxX(30);
+                    graphView.getViewport().setMinY(0.0);
+                    graphView.getViewport().setMaxY(1500.0);
+
+                    graphView.getViewport().setYAxisBoundsManual(true);
+                    graphView.getViewport().setXAxisBoundsManual(true);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+                //calendar
             datePicker = (Button) findViewById(R.id.date_picker);
             selectedDateText = (TextView) findViewById(R.id.selectedDate);
             amount = (TextView) findViewById(R.id.amount);
@@ -238,6 +291,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, account_balance.class));
         } else if (id == R.id.nav_report) {
             startActivity(new Intent(MainActivity.this, Report.class));
+        } else if (id == R.id.fin_analysis_menu) {
+            startActivity(new Intent(MainActivity.this, FinAnalysisMenu.class));
         } else if (id == R.id.nav_logout) {
             mAuth.signOut();
             //Singleton.getInstance().reset();

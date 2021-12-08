@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,15 +26,15 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ForgotPassword extends AppCompatActivity {
     FirebaseAuth mAuth;
     private EditText enterEmail;
-    private Button resetPassword;
+    private ImageView resetPassword;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
         //assign variable with respective layout
-        enterEmail = findViewById(R.id.enterEmail);
-        resetPassword = findViewById(R.id.resetPassword);
+        enterEmail = findViewById(R.id.enter_email);
+        resetPassword = findViewById(R.id.reset_password);
 
         mAuth = FirebaseAuth.getInstance();
 
