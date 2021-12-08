@@ -15,12 +15,17 @@ public class Goal {
 
     private String uID;
 
+    public Goal() {
+
+    }
+
     public Goal(String name, String monthlyLimit, String date, String uID) {
         this.name = name;
         this.monthlyLimit = monthlyLimit;
         this.date = date;
         this.uID = uID;
     }
+
 
     public Goal(String name, double monthlyLimit, String date) {}
 
