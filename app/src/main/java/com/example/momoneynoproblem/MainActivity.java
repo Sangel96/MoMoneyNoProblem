@@ -284,8 +284,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, transaction.class));
         } else if (id == R.id.nav_accounts) {
             startActivity(new Intent(MainActivity.this, SubAccountMainMenu.class));
-        } else if (id == R.id.nav_balance) {
-            startActivity(new Intent(MainActivity.this, account_balance.class));
         } else if (id == R.id.nav_report) {
             startActivity(new Intent(MainActivity.this, Report.class));
         } else if (id == R.id.nav_report) {
