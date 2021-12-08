@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.example.momoneynoproblem.MainActivity;
 import com.example.momoneynoproblem.R;
 import com.example.momoneynoproblem.Singleton;
 import com.google.firebase.database.DataSnapshot;
@@ -83,7 +84,7 @@ public class SelectSubAccount extends AppCompatActivity {
     }
 
     private void openNewActivity(String selectedItem) {
-        Intent intent = new Intent(this, SubAccountTemplate.class);
+        Intent intent = new Intent(this, MainActivity.class);
 //        EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
         String message = selectedItem;
         intent.putExtra(EXTRA_MESSAGE, message);
