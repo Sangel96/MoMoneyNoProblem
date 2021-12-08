@@ -17,7 +17,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.momoneynoproblem.FinAnalysis.FinAnalysisMenu;
 import com.example.momoneynoproblem.Goals.AddGoals;
 import com.example.momoneynoproblem.Login.Login;
 import com.example.momoneynoproblem.Report.Report;
@@ -291,8 +290,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, account_balance.class));
         } else if (id == R.id.nav_report) {
             startActivity(new Intent(MainActivity.this, Report.class));
-        } else if (id == R.id.fin_analysis_menu) {
-            startActivity(new Intent(MainActivity.this, FinAnalysisMenu.class));
+        } else if (id == R.id.nav_report) {
+            startActivity(new Intent(MainActivity.this, Report.class));
         } else if (id == R.id.nav_logout) {
             mAuth.signOut();
             //Singleton.getInstance().reset();

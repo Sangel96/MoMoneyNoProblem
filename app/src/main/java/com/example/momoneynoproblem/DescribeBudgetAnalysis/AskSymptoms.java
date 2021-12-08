@@ -43,15 +43,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class AskSymptoms extends AppCompatActivity {
     String radioButtonSelection;
     DatePicker mdate;
-    Date mDateOfficial;
-    String mDateOfficialString;
     String emergLevelSelection;
     DatabaseReference dbReference;
     FirebaseDatabase firebaseDatabase;
@@ -88,7 +85,7 @@ public class AskSymptoms extends AppCompatActivity {
 
         // Date Input
         mdate = (DatePicker) findViewById(R.id.DateInput);
-        mDateOfficialString = getDateFromDatePicker(mdate).toString();
+
         // Radio Button Select
         // Is the button now checked?
         RadioGroup yesNoGroup;
@@ -121,22 +118,12 @@ public class AskSymptoms extends AppCompatActivity {
 
     private void submitSypmtom() {
         //Create new Goal object
-        Symptom newSymptom = new Symptom(radioButtonSelection,emergLevelSelection,mDateOfficialString);
+        Symptom newSymptom = new Symptom("Yes",emergLevelSelection);
 
         //insert value into database
         dbReference.push().setValue(newSymptom);
         Toast.makeText(AskSymptoms.this, "Successfully added symptom", Toast.LENGTH_SHORT).show();
 
-    }
-    public static java.util.Date getDateFromDatePicker(DatePicker datePicker){
-        int day = datePicker.getDayOfMonth();
-        int month = datePicker.getMonth();
-        int year =  datePicker.getYear();
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
-
-        return calendar.getTime();
     }
 
 
