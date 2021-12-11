@@ -4,6 +4,7 @@ import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Point;
@@ -20,6 +21,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -266,5 +268,23 @@ public class scanner extends AppCompatActivity {
     public void buttonStart(View view){
         setContentView(R.layout.surfaceview);
         textRecognizer();
+    }
+
+// My code
+    //send text back button click
+    public void buttonTextBack(View view) {
+        // get the text from the EditText
+        setContentView(R.layout.activity_scanner);
+        textView = findViewById(R.id.textView);
+        String amount = textView.getText().toString();
+        String date = textView.getText().toString();
+
+        //put the String to pass back into an Intent and close this activity
+        Intent intent = new Intent();
+        intent.putExtra("amount",amount);
+        intent.putExtra("date",date);
+        setResult(RESULT_OK,intent);
+        finish();
+
     }
 }
