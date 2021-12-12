@@ -69,7 +69,7 @@ public class modifyTransaction extends AppCompatActivity {
         amountEditText = (EditText) findViewById(R.id.amountEditText);
         DateEdit = (EditText) findViewById(R.id.DateEdit);
         StoreNameEdit = (EditText) findViewById(R.id.StoreNameEdit);
-        //EditAccountId = findViewById(R.id.EditAccountId);
+
 
         // implement spinner
         transactionSourceTypeSpinner = (android.widget.Spinner) findViewById(R.id.transactionSourceTypeSpinner);
@@ -88,8 +88,7 @@ public class modifyTransaction extends AppCompatActivity {
                             view, int position, long id) {
                         Log.i("item", (String) parent.getItemAtPosition(position));
                         Singleton.getInstance().setTransType((String) parent.getItemAtPosition(position));
-                        //transaction_source_type = (String)
-                               // parent.getItemAtPosition(position);
+
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -116,7 +115,6 @@ public class modifyTransaction extends AppCompatActivity {
 
                 String trans_type = transaction_type.toString().trim();
                 String trans_sourceType = transaction_source_type.toString().trim();
-                //String trans_sourceType = Singleton.getInstance().getTransType();
 
                 String accountId = Singleton.getInstance().getUserID();
 
@@ -132,50 +130,20 @@ public class modifyTransaction extends AppCompatActivity {
 
                     databaseReference.child(ID).setValue(hashMap);
 
-              //  }
+
             }
         });
-//        delete_Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Intent j = new Intent(modifyTransaction.this, deleteTransaction.class);
-////                startActivity(j);
-//                String transID = TranIDEdit.getText().toString();
-//                Singleton.getInstance().setTransID(null);
-//                Singleton.getInstance().setUserID(null);
-//
-//
-//
-//                Task<Void>  databaseReference = FirebaseDatabase.getInstance().getReference("Transactions").child(transID).
-//                        removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        if (task.isSuccessful()){
-//                            Toast.makeText(modifyTransaction.this, "Record Deleted Scucessfuly",Toast.LENGTH_SHORT).show();
-//                            modifyTransaction.this.finish();
-//                    }else {
-//                            Toast.makeText(modifyTransaction.this,"Record Not Deleted....!",Toast.LENGTH_SHORT).show();
-//                        }
-//                }
-//
-//                });
-//            }
-//        });
 
-
-        delete_Button.setOnClickListener(new View.OnClickListener() {            @Override
+        delete_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 String ID = TranIDEdit.getText().toString().trim();
-                //final String accountId = EditAccountId.getText().toString().trim();
+
                 String amount = amountEditText.getText().toString().trim();
                 String date = DateEdit.getText().toString().trim();
                 String storename = StoreNameEdit.getText().toString().trim();
                 String trans_type = transaction_type.trim();
                 String trans_sourceType = transaction_source_type.trim();
-                //String trans_sourceType = Singleton.getInstance().getTransType();
-
-
-
 
                 HashMap hashMap = new HashMap();
                 hashMap.put("amount", amount);
@@ -188,7 +156,7 @@ public class modifyTransaction extends AppCompatActivity {
 
                 databaseReference.child(ID).setValue(hashMap);
 
-                //  }
+
             }
 
         });

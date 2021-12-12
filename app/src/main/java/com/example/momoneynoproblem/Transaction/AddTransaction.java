@@ -53,9 +53,7 @@ public class AddTransaction extends AppCompatActivity {
     public String transaction_source_type = "";
     public Spinner transactionSourceTypeSpinner = null;
     public Transaction1 trans;
-//    private static final String[] paths = {"Salary", "Rent", "Cloths", "Gifts", "Shopping",
-//            "Eating out", "Entertainment", "Fuel", "Holiday",
-//            "Kids", "Sports", "Travel", "Other sources"};
+
     private static final String[] paths = {"Travel", "Shopping", "Sports", "Other", "Rent"};
 
     @Override
@@ -108,7 +106,6 @@ public class AddTransaction extends AppCompatActivity {
 
 
         //adds functionality to Add Transaction
-
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,8 +141,7 @@ public class AddTransaction extends AppCompatActivity {
                     // else call the method to add data to our database.
                     addDatatoFirebase(amount, String.valueOf(radioSourceButton.getText()), trans_sourceType, date, storeName, "0", accountId);
                     //sets the Transaction Type to null because the value doesn't need to be stored after passing it to the method above
-//                    Singleton.getInstance().setTransType(null);
-//                    Singleton.getInstance().setTransID(null);
+//
                 }
             }
         });
@@ -208,21 +204,10 @@ public class AddTransaction extends AppCompatActivity {
                 Singleton.getInstance().setTransID(String.valueOf( snapshot.getChildrenCount() + 1));
                 trans.setTransID(Singleton.getInstance().getTransID());
                 databaseReference.child(Singleton.getInstance().getTransID()).setValue(trans);
-//                trans.setTransID(String.valueOf(Singleton.getInstance().setTransID(String.valueOf(snapshot.getChildrenCount())));
-
-//                DatabaseReference transChild = databaseReference.push();
-
-                //databaseReference.child(transChild.getKey()).setValue(trans);
-//                databaseReference.child(String.valueOf(temp)).setValue(trans);
-
-                // after adding this data we are showing toast message.
+          // after adding this data we are showing toast message.
                 Log.i("AddTranscation:", trans.toString());
                 Toast.makeText(AddTransaction.this, "data added", Toast.LENGTH_SHORT).show();
-//                amountEditText.setText("");
-//                DateEdit.setText("");
-//                StoreNameEdit.setText("");
-//                TranIDEdit.setText("");
-                //EditAccountId.setText("");
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

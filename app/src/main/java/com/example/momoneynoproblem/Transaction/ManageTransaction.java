@@ -33,14 +33,10 @@ public class ManageTransaction extends AppCompatActivity {
     public FirebaseDatabase firebaseDatabase;
     public DatabaseReference databaseReference;
 
-//    public Button delete_Button = null;
-//    public Button modify_Button = null;
-
     ListView listshow;
     ArrayList<String> arrList = new ArrayList<>();
     ArrayAdapter<String> arrAdp;
 
-    //final int[] selection = new int[1];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,27 +46,6 @@ public class ManageTransaction extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         // below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("Transactions");
-//        modify_Button = (Button) findViewById(R.id.modify_Button);
-//        delete_Button = (Button) findViewById(R.id.delete_Button);
-
-//        modify_Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent j = new Intent(ManageTransaction.this, modifyTransaction.class);
-//                j.putExtra("Transaction",listshow.getItemIdAtPosition(selection[0]));
-//                startActivity(j);
-//
-//            }
-//        });
-
-
-//        delete_Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent j = new Intent(ManageTransaction.this, deleteTransaction.class);
-//                startActivity(j);
-//            }
-//        });
 
         mAuth = FirebaseAuth.getInstance();  //Obtaining an instance of FireBase to be used later
         databaseReference = FirebaseDatabase.getInstance().getReference("Transactions");
@@ -96,18 +71,12 @@ public class ManageTransaction extends AppCompatActivity {
                         String transaction_source_type = temp.child("transaction_source_type").getValue(String.class);
                         String amount = temp.child("amount").getValue(String.class);
 
-
-                        // arrList.add("Transaction ID: " + transID);
-//                    arrList.add("Sub_Account ID: " + accountId + " / " + "transaction Type: "
-//                            + transaction_type + " / " + "Date: " + date
-//                            + " / " + "Store Name " + storeName + " / " + "Soruce Type: " + transaction_source_type + " / " + "Amount: " +  amount +"$");
-                        arrList.add("Transaction ID: " + transID
+                       arrList.add("Transaction ID: " + transID
                                 + "\nDate: " + date
                                 + "\nAmount: $" + amount
                                 + "\nStore: " + storeName);
 
-                        //arrList.add("--------------------------------------------------");
-                        // arrList.add("Transaction: " + temp.getValue().toString());
+
                         Log.d("TAG", transID + " / " + accountId + " / " + transaction_type + " / " + date
                                 + " / " + storeName + " / " + transaction_source_type + " / " + amount + "$");
                     }
@@ -137,20 +106,13 @@ public class ManageTransaction extends AppCompatActivity {
                 arrParse[2] = arrParse[2].replaceAll("\\$", "").trim();
                 //Log.d("Tag", adapterObject);
                 Log.d("Tag",arrParse[0] + " " + arrParse[1] + " " + arrParse[2] + " " + arrParse[3] );
-                //arrParse[0] holds Transaction ID
-                //arrParse[1] holds Date
-                //arrParse[2] holds Amount
-                // arrParse[3] holds Store Name
 
                 ManageTransaction.putExtra("transID",arrParse[0]);
                 ManageTransaction.putExtra("date", arrParse[1]);
                 ManageTransaction.putExtra("storeName",arrParse[3]);
                 ManageTransaction.putExtra("amount", arrParse[2]);
                 startActivity(ManageTransaction);
-//                selection[0] = position;
-//                String text = "position: " + selection[0];
-                //Toast.makeText(ManageTransaction.this, text, Toast.LENGTH_LONG).show();
-                //Log.i("Tag", "Position" + selection[0]);
+
             }
         });
     }
