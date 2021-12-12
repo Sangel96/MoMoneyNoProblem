@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.MainActivity;
 import com.example.momoneynoproblem.R;
+import com.example.momoneynoproblem.Singleton;
 import com.example.momoneynoproblem.UserSignUp.UserSignUp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -67,6 +68,7 @@ public class Login extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+                        Singleton.getInstance().setEmail(email);
                         Toast.makeText(Login.this, "User logged in", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(Login.this, MainActivity.class));
                     } else {

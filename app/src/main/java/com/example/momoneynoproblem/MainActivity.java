@@ -40,7 +40,6 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -243,7 +242,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     calendar.add(Calendar.DATE, 1);
                     date = format.format(calendar.getTime());
                     selectedDateText.setText("Selected Date: " + date);
-
                     databaseReference = FirebaseDatabase.getInstance().getReference();
                     Query q = databaseReference.child("Transactions").orderByChild("date").
                             equalTo(date);
@@ -307,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, NotificationsMainPage.class));
         } else if (id == R.id.nav_logout) {
             mAuth.signOut();
-            //Singleton.getInstance().reset();
+            Singleton.getInstance().reset();
             startActivity(new Intent(MainActivity.this, Login.class));
         }
 
