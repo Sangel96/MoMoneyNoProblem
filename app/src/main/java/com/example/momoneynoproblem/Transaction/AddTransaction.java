@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AddTransaction extends AppCompatActivity {
+    // add different request code for every activity we are starting
+    public static final int SECOND_ACTIVITY_RECUEST_CODE = 0;
 
     public FirebaseAuth mAuth;
     public FirebaseDatabase firebaseDatabase;
@@ -54,10 +57,12 @@ public class AddTransaction extends AppCompatActivity {
 //            "Eating out", "Entertainment", "Fuel", "Holiday",
 //            "Kids", "Sports", "Travel", "Other sources"};
     private static final String[] paths = {"Travel", "Shopping", "Sports", "Other", "Rent"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
+
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         // below line is used to get reference for our database.
@@ -101,14 +106,6 @@ public class AddTransaction extends AppCompatActivity {
                     }
                 });
 
-        scanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(AddTransaction.this, scanner.class);
-                startActivity(i);
-
-            }
-        });
 
         //adds functionality to Add Transaction
 
@@ -171,7 +168,34 @@ public class AddTransaction extends AppCompatActivity {
             }
         });
 
+        scanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int SECOND_ACTIVITY_RECUEST_CODE = 1;
+                Intent intent= new Intent(AddTransaction.this, scanner.class);
+                startActivityForResult(intent,SECOND_ACTIVITY_RECUEST_CODE);
+                //startActivity(intent);
+
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();  //Obtaining an instance of FireBase to be used later
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode == SECOND_ACTIVITY_RECUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                //Get string data from Intent
+                String amount = data.getStringExtra("amount");
+                String date= data.getStringExtra("date");
+
+                // set text view with string
+                TextView textView = (TextView) findViewById(R.id.textView);
+                textView.setText(amount);
+                textView.setText(date);
+
+            }
+        }
     }
 
 

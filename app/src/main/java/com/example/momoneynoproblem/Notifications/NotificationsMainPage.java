@@ -41,15 +41,76 @@ import java.util.Random;
 
 public class NotificationsMainPage extends AppCompatActivity {
     DataSnapshot transactionSnapshot;
-
+//    double monthlyGoal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications_main_page);
+//        createNotificationChannel("test");
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"test" )
+//                .setSmallIcon(R.drawable.ic_money_background)
+//                .setContentTitle("Creation")
+//                .setContentText("Testing")
+//                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+//        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
 
 
 // notificationId is a unique int for each notification that you must define
+//        notificationManager.notify(0123456, builder.build());
+
+        FirebaseDatabase.getInstance().getReference().child("Goals")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String transaction_number;
+                        transaction_number = String.valueOf(dataSnapshot.getChildrenCount());
+                        final TextView helloTextView = (TextView) findViewById(R.id.balance_updates_notifications);
+                        helloTextView.setText(transaction_number);
+                        double monthlyGoal;
+                        for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+//                            User user1 = userSnapshot.getValue(User.class);
+                            HashMap gl = (HashMap) userSnapshot.getValue();
+                            String goalID = "Goal" + gl.toString();
+
+                            String goalText = "Goal " + gl.get("date");
+                            String goalDescription = "Monthly Limit: $" + gl.get("monthlyLimit");
+                            monthlyGoal = Double.parseDouble((String) gl.get("monthlyLimit"));
+                            createNotificationChannel(goalID);
+                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),goalID)
+                                    .setSmallIcon(R.drawable.ic_money_background)
+                                    .setContentTitle(goalText)
+                                    .setContentText(goalDescription)
+                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                            // Create an Intent for the activity you want to start
+                            Intent resultIntent = new Intent(getApplicationContext(), CreateGoal.class);
+// Create the TaskStackBuilder and add the intent, which inflates the back stack
+                            TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
+                            stackBuilder.addNextIntentWithParentStack(resultIntent);
+// Get the PendingIntent containing the entire back stack
+                            PendingIntent resultPendingIntent =
+                                    stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                            builder.setContentIntent(resultPendingIntent);
+                            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+                            Random random = new Random();
+                            int rand = random.nextInt(1000);
+                            notificationManager.notify(rand, builder.build());
+                            if (monthlyGoal > 1000) {
+                                 builder = new NotificationCompat.Builder(getApplicationContext(), goalID)
+                                        .setSmallIcon(R.drawable.ic_money_background)
+                                        .setContentTitle("WARNING")
+                                        .setContentText("You are over your monthly goal limit")
+                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                                notificationManager = NotificationManagerCompat.from(getApplicationContext());
+                                notificationManager.notify(rand, builder.build());
+                        }
+
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
         FirebaseDatabase.getInstance().getReference().child("Transactions")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -60,11 +121,12 @@ public class NotificationsMainPage extends AppCompatActivity {
                         final TextView helloTextView = (TextView) findViewById(R.id.recent_transactions_notifications);
                         helloTextView.setText(transaction_number);
                         int count = 0;
+                        double sumTransactions = 0;
                         for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
 //                            User user1 = userSnapshot.getValue(User.class);
                             HashMap tr = (HashMap) userSnapshot.getValue();
                             String transactionID = "Transaction" + tr.toString();
-
+                            sumTransactions += Double.parseDouble((String) tr.get("amount"));
                             String transactionText = "Transaction " + tr.get("date") ;
                             createNotificationChannel(transactionID);
                             String transactionDescription = "$" + tr.get("amount") + " " + tr.get("storeName") + ".";
@@ -94,12 +156,14 @@ public class NotificationsMainPage extends AppCompatActivity {
                             }
                             break;
                         }
+
+
+
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
-
         FirebaseDatabase.getInstance().getReference().child("reports")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -108,51 +172,31 @@ public class NotificationsMainPage extends AppCompatActivity {
                         transaction_number = String.valueOf(dataSnapshot.getChildrenCount());
                         final TextView helloTextView = (TextView) findViewById(R.id.recent_reports_notifications);
                         helloTextView.setText(transaction_number);
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
-        FirebaseDatabase.getInstance().getReference().child("Goals")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String transaction_number;
-                        transaction_number = String.valueOf(dataSnapshot.getChildrenCount());
-                        final TextView helloTextView = (TextView) findViewById(R.id.balance_updates_notifications);
-                        helloTextView.setText(transaction_number);
-                        for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-//                            User user1 = userSnapshot.getValue(User.class);
-                            HashMap gl = (HashMap) userSnapshot.getValue();
-                            String goalID = "Goal" + gl.toString();
+//                        for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+////                            User user1 = userSnapshot.getValue(User.class);
+//                            UserReport rt = (Report) userSnapshot.getValue();
+//                            String transactionID = "Transaction" + rt.;
+//
+//                            String transactionText = "Transaction" + transactionID;
+//                            createNotificationChannel(transactionID);
+//                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),transactionID )
+//                                    .setSmallIcon(R.drawable.ic_money_background)
+//                                    .setContentTitle(transactionText)
+//                                    .setContentText(dataSnapshot.getValue().toString())
+//                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+//                            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+//                            Random random = new Random();
+//                            int rand = random.nextInt(1000);
+//                            notificationManager.notify(rand, builder.build());
+//                        }
 
-                            String goalText = "Goal " + gl.get("date");
-                            String goalDescription = "Monthly Limit: $" + gl.get("monthlyLimit");
-                            createNotificationChannel(goalID);
-                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),goalID)
-                                    .setSmallIcon(R.drawable.ic_money_background)
-                                    .setContentTitle(goalText)
-                                    .setContentText(goalDescription)
-                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-                            // Create an Intent for the activity you want to start
-                            Intent resultIntent = new Intent(getApplicationContext(), CreateGoal.class);
-// Create the TaskStackBuilder and add the intent, which inflates the back stack
-                            TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-                            stackBuilder.addNextIntentWithParentStack(resultIntent);
-// Get the PendingIntent containing the entire back stack
-                            PendingIntent resultPendingIntent =
-                                    stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                            builder.setContentIntent(resultPendingIntent);
-                            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-                            Random random = new Random();
-                            int rand = random.nextInt(1000);
-                            notificationManager.notify(rand, builder.build());
-                        }
+
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
+
 
         // if they click on recent transactions
         ImageView recentTransaction = findViewById(R.id.recent_transactions); //Initializes Emergency Button

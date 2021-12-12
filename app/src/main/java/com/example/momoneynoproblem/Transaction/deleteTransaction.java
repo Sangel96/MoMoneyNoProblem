@@ -50,7 +50,7 @@ public class deleteTransaction extends AppCompatActivity {
                     delteData(transID);
 
                 } else {
-                    Toast.makeText(deleteTransaction.this, "Enter the transaction date for deleting",
+                    Toast.makeText(deleteTransaction.this, "Enter the transaction ID for deleting",
                             Toast.LENGTH_SHORT).show();
 
                 }

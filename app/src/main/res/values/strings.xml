@@ -68,7 +68,7 @@
     <string name="Id">Trans ID</string>
     <string name="source_type">Source type</string>
     <string name="amount">Amount($)</string>
-    <string name="add">Add</string>
+
     <string name="receipt_date">Receipt Date</string>
     <string name="income">Income</string>
     <string name="expense">Expense</string>
@@ -88,6 +88,7 @@
     <string name="update">Update</string>
 
     <string name="add_transaction">Add Transaction</string>
+    <string name="add">Add</string>
 
 
 </resources>
