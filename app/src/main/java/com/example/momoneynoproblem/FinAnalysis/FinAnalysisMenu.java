@@ -40,6 +40,7 @@ public class FinAnalysisMenu extends AppCompatActivity {
             startActivity(new Intent(this, PieChart.class));
         });
 
+        //adds functionality for dataoverview which has spending statistics
         dataBtn.setOnClickListener(view -> {
             startActivity(new Intent(this, DataOverview.class));
         });

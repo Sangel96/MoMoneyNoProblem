@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.momoneynoproblem.R;
+import com.example.momoneynoproblem.Singleton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,18 +45,19 @@ public class FinAnalysis extends AppCompatActivity {
                 list.clear();
 
                 for (DataSnapshot ds: dataSnapshot.getChildren()) {
-                    Double amount = Double.parseDouble(ds.child("amount").getValue(String.class));
-                    list.add(amount);
+                        Double amount = Double.parseDouble(ds.child("amount").getValue(String.class));
+                        list.add(amount);
                 }
+
                 DataPoint[] dp = new DataPoint[29];
-                for (int i = 0; i < 29; ++i) {
-                    dp[i] = new DataPoint(i, list.get(i));
-                }
-                series = new LineGraphSeries<>(dp);
+                    for (int i = 0; i < 29; ++i) {
+                        dp[i] = new DataPoint(i, list.get(i));
+                    }
+                    series = new LineGraphSeries<>(dp);
 
                 graphView.setTitle("Monthly Graph Analysis");
 
-                 graphView.setTitleColor(R.color.black);
+                graphView.setTitleColor(R.color.black);
 
                 graphView.setTitleTextSize(26);
 
@@ -68,6 +70,8 @@ public class FinAnalysis extends AppCompatActivity {
 
                 graphView.getViewport().setYAxisBoundsManual(true);
                 graphView.getViewport().setXAxisBoundsManual(true);
+
+
             }
 
             @Override

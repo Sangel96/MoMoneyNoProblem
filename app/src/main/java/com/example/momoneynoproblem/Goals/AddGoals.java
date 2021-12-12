@@ -44,8 +44,11 @@ public class AddGoals extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_goals);
 
+        //Retrieve goal key in the firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("Goals");
        // databaseReference = FirebaseDatabase.getInstance().getReference().child("Goals");
+
+        //instantiate listView
         listView = (ListView) findViewById(R.id.listView);
         faButton = findViewById(R.id.floatingActionButton2);
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
@@ -79,7 +82,8 @@ public class AddGoals extends AppCompatActivity {
             }
         });
 
-
+        //Takes user to createGoal page when clicking on the + button
+            //createGoal  has specifics about a goal users want to create
         faButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
