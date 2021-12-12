@@ -112,24 +112,7 @@ public class AddTransaction extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /**
-                 * the add Value Event Listener below was returning null value regardless of using Singleton
-                 * FIX: move snapshot.getChildren to AddDataToFirebase under SingleValueEventListner
-                 */
-                // getting text from our edittext fields
-//                databaseReference.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        long temp= snapshot.getChildrenCount() + 1;
-////                        Log.i("HELPPPPPPPPPPPP:", String.valueOf(temp));
-//                        Singleton.getInstance().setTransID(String.valueOf(temp));
-////                        Log.i("HELPPPPPPPPPPPP:", Singleton.getInstance().getTransID());
-//                    }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+
                 String trans_type = transaction_type.trim();
                 String trans_sourceType = Singleton.getInstance().getTransType();
                 String amount = amountEditText.getText().toString().trim();
@@ -138,7 +121,6 @@ public class AddTransaction extends AppCompatActivity {
                 //String transID = Singleton.getInstance().getTransID();
                 String accountId = Singleton.getInstance().getUserID();
 
-                //Log.i("HELPPPPPPPPPPPP:", transID);
                 // get selected radio button from radioGroup
                 int selectedId = radioGroup.getCheckedRadioButtonId();
 

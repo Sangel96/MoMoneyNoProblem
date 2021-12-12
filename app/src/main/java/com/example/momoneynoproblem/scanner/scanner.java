@@ -48,6 +48,7 @@ import java.io.IOException;
 public class scanner extends AppCompatActivity {
     private static final int SELECT_IMAGE_FROM_STORAGE =100;
     private TextView textView;
+    private Button buttonTextBack;
     private SurfaceView surfaceView;
 
     private CameraSource cameraSource;
@@ -240,6 +241,7 @@ public class scanner extends AppCompatActivity {
                            // Log.i("Scanner Class", "Debugging Purposes: " + m1.group(1));
                             resultObtained("Total: $" + amount + "\n\nDate: " + date + "\n\nOriginal: " + stringText);
 
+
                         }
                     });
 
@@ -250,6 +252,7 @@ public class scanner extends AppCompatActivity {
 
                 }
             });
+
 
 
 
