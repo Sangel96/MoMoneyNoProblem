@@ -46,18 +46,10 @@ public class NotificationsMainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications_main_page);
-//        createNotificationChannel("test");
-//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"test" )
-//                .setSmallIcon(R.drawable.ic_money_background)
-//                .setContentTitle("Creation")
-//                .setContentText("Testing")
-//                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-//        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
 
 
 // notificationId is a unique int for each notification that you must define
-//        notificationManager.notify(0123456, builder.build());
         FirebaseDatabase.getInstance().getReference().child("Transactions")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -116,25 +108,6 @@ public class NotificationsMainPage extends AppCompatActivity {
                         transaction_number = String.valueOf(dataSnapshot.getChildrenCount());
                         final TextView helloTextView = (TextView) findViewById(R.id.recent_reports_notifications);
                         helloTextView.setText(transaction_number);
-//                        for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-////                            User user1 = userSnapshot.getValue(User.class);
-//                            UserReport rt = (Report) userSnapshot.getValue();
-//                            String transactionID = "Transaction" + rt.;
-//
-//                            String transactionText = "Transaction" + transactionID;
-//                            createNotificationChannel(transactionID);
-//                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),transactionID )
-//                                    .setSmallIcon(R.drawable.ic_money_background)
-//                                    .setContentTitle(transactionText)
-//                                    .setContentText(dataSnapshot.getValue().toString())
-//                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-//                            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-//                            Random random = new Random();
-//                            int rand = random.nextInt(1000);
-//                            notificationManager.notify(rand, builder.build());
-//                        }
-
-
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
