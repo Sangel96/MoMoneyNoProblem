@@ -2,6 +2,8 @@ package com.example.momoneynoproblem.FinAnalysis;
 
 import java.util.Objects;
 
+//TransactionData to hold relevant information related to transactio
+
 public class TransactionData {
     private double amount;
     private String date;

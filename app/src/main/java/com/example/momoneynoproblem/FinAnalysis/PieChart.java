@@ -58,15 +58,15 @@ public class PieChart extends AppCompatActivity {
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long total = 0;
+                double total = 0;
 
                 for (DataSnapshot ds: snapshot.getChildren()) {
                     String amount = ds.child("amount").getValue(String.class);
-                    total += Long.parseLong(amount);
+                    total += Double.parseDouble(amount);
                     Log.d("Debug", "String amount: " + amount);
                 }
                 Log.d("Debug", "Travel Total: " + total);
-                transactionData.add(new SliceValue(total, Color.GRAY).setLabel("Travel: $" + total));   //"Travel: $1332
+                transactionData.add(new SliceValue((float) total, Color.GRAY).setLabel("Travel: $" + total));   //"Travel: $1332
 
                 //PieChartData class instance to pass data in
                 PieChartData pieTransData = new PieChartData(transactionData);
@@ -93,15 +93,15 @@ public class PieChart extends AppCompatActivity {
         q1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long total = 0;
+                double total = 0;
 
                 for (DataSnapshot ds: snapshot.getChildren()) {
                     String amount = ds.child("amount").getValue(String.class);
-                    total += Long.parseLong(amount);
+                    total += Double.parseDouble(amount);
                     Log.d("Debug", "String amount: " + amount);
                 }
                 Log.d("Debug", "Travel Total: " + total);
-                transactionData.add(new SliceValue(total, Color.RED).setLabel("Shopping: $" + total));   //"Travel: $1332
+                transactionData.add(new SliceValue((float) total, Color.RED).setLabel("Shopping: $" + total));   //"Travel: $1332
 
                 //PieChartData class instance to pass data in
                 PieChartData pieTransData = new PieChartData(transactionData);
@@ -128,15 +128,15 @@ public class PieChart extends AppCompatActivity {
         q2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long total = 0;
+                double total = 0;
 
                 for (DataSnapshot ds: snapshot.getChildren()) {
                     String amount = ds.child("amount").getValue(String.class);
-                    total += Long.parseLong(amount);
+                    total += Double.parseDouble(amount);
                     Log.d("Debug", "String amount: " + amount);
                 }
                 Log.d("Debug", "Travel Total: " + total);
-                transactionData.add(new SliceValue(total, Color.BLUE).setLabel("Rent: $" + total));   //"Travel: $1332
+                transactionData.add(new SliceValue((float) total, Color.BLUE).setLabel("Rent: $" + total));   //"Travel: $1332
 
                 //PieChartData class instance to pass data in
                 PieChartData pieTransData = new PieChartData(transactionData);
@@ -163,15 +163,15 @@ public class PieChart extends AppCompatActivity {
         q3.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long total = 0;
+                double total = 0;
 
                 for (DataSnapshot ds: snapshot.getChildren()) {
                     String amount = ds.child("amount").getValue(String.class);
-                    total += Long.parseLong(amount);
+                    total += Double.parseDouble(amount);
                     Log.d("Debug", "String amount: " + amount);
                 }
                 Log.d("Debug", "Travel Total: " + total);
-                transactionData.add(new SliceValue(total, Color.YELLOW).setLabel("Sports: $" + total));   //"Travel: $1332
+                transactionData.add(new SliceValue((float) total, Color.YELLOW).setLabel("Sports: $" + total));   //"Travel: $1332
 
                 //PieChartData class instance to pass data in
                 PieChartData pieTransData = new PieChartData(transactionData);
@@ -198,15 +198,15 @@ public class PieChart extends AppCompatActivity {
         q4.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long total = 0;
+                double total = 0;
 
                 for (DataSnapshot ds: snapshot.getChildren()) {
                     String amount = ds.child("amount").getValue(String.class);
-                    total += Long.parseLong(amount);
+                    total += Double.parseDouble(amount);
                     Log.d("Debug", "String amount: " + amount);
                 }
                 Log.d("Debug", "Travel Total: " + total);
-                transactionData.add(new SliceValue(total, Color.GREEN).setLabel("Other: $" + total));   //"Travel: $1332
+                transactionData.add(new SliceValue((float) total, Color.GREEN).setLabel("Other: $" + total));   //"Travel: $1332
 
                 //PieChartData class instance to pass data in
                 PieChartData pieTransData = new PieChartData(transactionData);

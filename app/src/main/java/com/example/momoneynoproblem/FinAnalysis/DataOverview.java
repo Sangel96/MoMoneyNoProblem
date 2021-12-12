@@ -28,6 +28,7 @@ public class DataOverview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_overview);
 
+        //Declare and initializing t buttons
         t1 = (TextView) findViewById(R.id.result1);
         t2  = (TextView) findViewById(R.id.textView17);
         t3  = (TextView) findViewById(R.id.textView14);
@@ -39,24 +40,26 @@ public class DataOverview extends AppCompatActivity {
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long total = 0;
+                double total = 0;
 
+                //Loop through firebase to retrieve amount
                 for (DataSnapshot ds: snapshot.getChildren()) {
                     String amount = ds.child("amount").getValue(String.class);
-                    total += Long.parseLong(amount);
+                    total += Double.parseDouble(amount);
                     Log.d("Debug", "String amount: " + amount);
                 }
                 t1.setTextColor(Color.BLACK);
                 t2.setTextColor(Color.BLACK);
                 t3.setTextColor(Color.BLACK);
-                t1.setText("$" + Long.toString(total));
-                long weekly = total/4;
-                t2.setText("$" + Long.toString(weekly));
+                t1.setText("$" + Double.toString(total));
+                double weekly = total/4;
+                t2.setText("$" + Double.toString(weekly));
                 t3.setText("Travel,\n" +
                         "Shopping,\n" +
                         "Rent,\n" +
                         "Sports,\n" +
                         "Other\n");
+                //Set color of Weekly/Monthly and categories to grey to differentiate
                 t1.setTextColor(Color.GRAY);
                 t2.setTextColor(Color.GRAY);
                 t3.setTextColor(Color.GRAY);
