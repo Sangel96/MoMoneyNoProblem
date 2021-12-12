@@ -52,6 +52,8 @@
         <entry key="..\:/Users/dustin/StudioProjects/MoMoneyNoProblem-1/app/src/main/res/layout/activity_forgot_password.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/dustin/StudioProjects/MoMoneyNoProblem-1/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/dustin/StudioProjects/MoMoneyNoProblem-1/app/src/main/res/layout/activity_main.xml" value="0.2767210144927536" />
+        <entry key="..\:/Users/dustin/StudioProjects/MoMoneyNoProblem-1/app/src/main/res/layout/activity_manage_transaction.xml" value="0.16822916666666668" />
+        <entry key="..\:/Users/dustin/StudioProjects/MoMoneyNoProblem-1/app/src/main/res/layout/activity_notifications_main_page.xml" value="0.67" />
         <entry key="..\:/Users/dustin/StudioProjects/MoMoneyNoProblem-1/app/src/main/res/layout/activity_notifications_page.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/dustin/StudioProjects/MoMoneyNoProblem-1/app/src/main/res/layout/activity_scanner.xml" value="0.22604166666666667" />
         <entry key="..\:/Users/dustin/StudioProjects/MoMoneyNoProblem-1/app/src/main/res/layout/calendar.xml" value="0.36666666666666664" />
@@ -79,6 +81,11 @@
         <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_transaction.xml" value="0.1" />
         <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_transaction_test.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem/app/src/main/res/layout/sub_account_selection.xml" value="0.10740740740740741" />
+        <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_add_transaction.xml" value="0.13722826086956522" />
+        <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_delete_transaction.xml" value="0.20244565217391305" />
+        <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_login.xml" value="0.20244565217391305" />
+        <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_manage_transaction.xml" value="0.13722826086956522" />
+        <entry key="..\:/Users/omar1/StudioProjects/MoMoneyNoProblem4/app/src/main/res/layout/activity_modify_transaction.xml" value="0.13722826086956522" />
         <entry key="..\:/Users/taghr/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout-v26/activity_transaction.xml" value="0.1609375" />
         <entry key="..\:/Users/taghr/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_add_transaction.xml" value="0.22" />
         <entry key="..\:/Users/taghr/AndroidStudioProjects/MoMoneyNoProblem/app/src/main/res/layout/activity_create_sub_accounts.xml" value="0.13134057971014493" />

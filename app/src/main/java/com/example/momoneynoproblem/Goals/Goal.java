@@ -1,5 +1,7 @@
 package com.example.momoneynoproblem.Goals;
 
+// Goal class to hold name, monthly limit, date, and user the goals belong to
+
 public class Goal {
     private String name;
     private String monthlyLimit;

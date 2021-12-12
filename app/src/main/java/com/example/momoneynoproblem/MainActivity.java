@@ -1,12 +1,18 @@
 package com.example.momoneynoproblem;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,14 +20,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.momoneynoproblem.FinAnalysis.FinAnalysisMenu;
 import com.example.momoneynoproblem.Goals.AddGoals;
+import com.example.momoneynoproblem.Goals.CreateGoal;
 import com.example.momoneynoproblem.Login.Login;
+import com.example.momoneynoproblem.Notifications.NotificationsMainPage;
 import com.example.momoneynoproblem.Report.Report;
 import com.example.momoneynoproblem.SubAccount.SubAccountMainMenu;
+import com.example.momoneynoproblem.Transaction.ManageTransaction;
 import com.example.momoneynoproblem.Transaction.transaction;
 import com.example.momoneynoproblem.balance.account_balance;
 import com.google.android.material.datepicker.CalendarConstraints;
@@ -42,7 +53,9 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -152,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     list.clear();
 
-                    for (DataSnapshot ds: dataSnapshot.getChildren()) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Double amount = Double.parseDouble(ds.child("amount").getValue(String.class));
                         list.add(amount);
                     }
@@ -184,8 +197,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 }
             });
-
-                //calendar
+            //calendar
             datePicker = (Button) findViewById(R.id.date_picker);
             selectedDateText = (TextView) findViewById(R.id.selectedDate);
             amount = (TextView) findViewById(R.id.amount);
@@ -241,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 String db_amount = ds.child("amount").getValue(String.class);
                                 total += Long.parseLong(db_amount);
                             }
-                            amount.setText("Expenses: " + total);
+                            amount.setText("Expenses: $" + total);
                         }
 
                         @Override
@@ -289,6 +301,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, Report.class));
         } else if (id == R.id.fin_analysis_menu) {
             startActivity(new Intent(MainActivity.this, FinAnalysisMenu.class));
+        } else if (id == R.id.notifications) {
+            startActivity(new Intent(MainActivity.this, NotificationsMainPage.class));
         } else if (id == R.id.nav_logout) {
             mAuth.signOut();
             Singleton.getInstance().reset();

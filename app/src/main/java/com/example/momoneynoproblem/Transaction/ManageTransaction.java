@@ -86,8 +86,7 @@ public class ManageTransaction extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 arrList.clear();
-                for (DataSnapshot temp : snapshot.getChildren()){
-
+                for (DataSnapshot temp : snapshot.getChildren())
                     if (temp.child("accountId").getValue(String.class).compareTo(Singleton.getInstance().getUserID()) == 0) {
                         String transID = temp.child("transID").getValue(String.class);
                         String accountId = temp.child("accountId").getValue(String.class);
@@ -112,7 +111,6 @@ public class ManageTransaction extends AppCompatActivity {
                         Log.d("TAG", transID + " / " + accountId + " / " + transaction_type + " / " + date
                                 + " / " + storeName + " / " + transaction_source_type + " / " + amount + "$");
                     }
-                }
 
                 arrAdp.notifyDataSetChanged();
 
