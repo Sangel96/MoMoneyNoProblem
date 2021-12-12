@@ -52,8 +52,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -84,9 +82,9 @@ public class Report extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Report.clear();
                 for (DataSnapshot temp : snapshot.getChildren()) {
-                    if (temp.child("accountId").getValue(String.class).compareTo(Singleton.getInstance().getUserID()) == 0  ) {
-                        DateTimeFormatter f = DateTimeFormatter.ofPattern("MM-dd-yy");
-                        LocalDate month = LocalDate.parse(temp.child("date").getValue(String.class), f);
+                    if (temp.child("accountId").getValue(String.class).compareTo(Singleton.getInstance().getUserID()) == 0) { //temp.child("transID").getValue(String.class).compareTo("Notinuse") != 0 )
+                        //DateTimeFormatter f = DateTimeFormatter.ofPattern("MM-dd-yy");
+                        //LocalDate month = LocalDate.parse(temp.child("date").getValue(String.class), f);
 
                         Transaction1 tempData = new Transaction1(temp.child("amount").getValue(String.class),temp.child("transaction_type").getValue(String.class) , temp.child("transaction_source_type").getValue(String.class) ,
                         temp.child("transID").getValue(String.class), temp.child("date").getValue(String.class), temp.child("storeName").getValue(String.class) , temp.child("accountId").getValue(String.class));
