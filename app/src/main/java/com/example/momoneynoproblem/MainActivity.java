@@ -165,31 +165,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     list.clear();
 
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        Double amount = Double.parseDouble(ds.child("amount").getValue(String.class));
-                        list.add(amount);
+                    for (DataSnapshot ds: dataSnapshot.getChildren()) {
+                        if (ds.child("accountId").getValue(String.class).compareTo(Singleton.getInstance().getUserID()) == 0) {
+                            Double amount = Double.parseDouble(ds.child("amount").getValue(String.class));
+                            list.add(amount);
+                        }
+                        //Log.d("tag", String.valueOf(list.size()));
                     }
-                    DataPoint[] dp = new DataPoint[29];
-                    for (int i = 0; i < 29; ++i) {
-                        dp[i] = new DataPoint(i, list.get(i));
+                    if (list.size() != 0) {
+                        DataPoint[] dp = new DataPoint[29];
+                        for (int i = 0; i < 29; ++i) {
+                            dp[i] = new DataPoint(i, list.get(i));
+                        }
+                        series = new LineGraphSeries<>(dp);
+
+                        graphView.setTitle("Monthly Graph Analysis");
+
+                        graphView.setTitleColor(R.color.black);
+
+                        graphView.setTitleTextSize(26);
+
+                        graphView.addSeries(series);
+
+                        graphView.getViewport().setMinX(1);
+                        graphView.getViewport().setMaxX(30);
+                        graphView.getViewport().setMinY(0.0);
+                        graphView.getViewport().setMaxY(1500.0);
+
+                        graphView.getViewport().setYAxisBoundsManual(true);
+                        graphView.getViewport().setXAxisBoundsManual(true);
                     }
-                    series = new LineGraphSeries<>(dp);
-
-                    graphView.setTitle("Monthly Graph Analysis");
-
-                    graphView.setTitleColor(R.color.black);
-
-                    graphView.setTitleTextSize(26);
-
-                    graphView.addSeries(series);
-
-                    graphView.getViewport().setMinX(1);
-                    graphView.getViewport().setMaxX(30);
-                    graphView.getViewport().setMinY(0.0);
-                    graphView.getViewport().setMaxY(1500.0);
-
-                    graphView.getViewport().setYAxisBoundsManual(true);
-                    graphView.getViewport().setXAxisBoundsManual(true);
                 }
 
                 @Override

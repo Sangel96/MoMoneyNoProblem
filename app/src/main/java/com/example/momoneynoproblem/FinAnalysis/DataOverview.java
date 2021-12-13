@@ -51,9 +51,10 @@ public class DataOverview extends AppCompatActivity {
                 t1.setTextColor(Color.BLACK);
                 t2.setTextColor(Color.BLACK);
                 t3.setTextColor(Color.BLACK);
-                t1.setText("$" + Double.toString(total));
+
+                t1.setText("$" + String.format("%.2f", total));
                 double weekly = total/4;
-                t2.setText("$" + Double.toString(weekly));
+                t2.setText("$" + String.format("%.2f", weekly));
                 t3.setText("Travel,\n" +
                         "Shopping,\n" +
                         "Rent,\n" +
