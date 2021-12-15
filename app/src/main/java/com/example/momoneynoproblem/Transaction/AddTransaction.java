@@ -12,9 +12,12 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -146,36 +149,42 @@ public class AddTransaction extends AppCompatActivity {
             }
         });
 
-        scanButton.setOnClickListener(new View.OnClickListener() {
+        ActivityResultLauncher startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
-            public void onClick(View v) {
-                int SECOND_ACTIVITY_RECUEST_CODE = 1;
-                Intent intent= new Intent(AddTransaction.this, scanner.class);
-                startActivityForResult(intent,SECOND_ACTIVITY_RECUEST_CODE);
-                //startActivity(intent);
+            public void onActivityResult(ActivityResult result) {
+                // opens activity to scanner and returns the parse values
+                DateEdit.setText(result.getData().getStringExtra("date"));
 
+                amountEditText.setText(result.getData().getStringExtra("amount"));
             }
         });
 
-        mAuth = FirebaseAuth.getInstance();  //Obtaining an instance of FireBase to be used later
-    }
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if(requestCode == SECOND_ACTIVITY_RECUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                //Get string data from Intent
-                String amount = data.getStringExtra("amount");
-                String date= data.getStringExtra("date");
-
-                // set text view with string
-                TextView textView = (TextView) findViewById(R.id.textView);
-                textView.setText(amount);
-                textView.setText(date);
-
+        scanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(AddTransaction.this, scanner.class);
+                startForResult.launch(intent);
             }
-        }
-    }
+        });
 
+        //mAuth = FirebaseAuth.getInstance();  //Obtaining an instance of FireBase to be used later
+    }
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+//        super.onActivityResult(requestCode,resultCode,data);
+//        if(requestCode == SECOND_ACTIVITY_RECUEST_CODE) {
+//            if (resultCode == RESULT_OK) {
+//                //Get string data from Intent
+//                String amount = data.getStringExtra("amount");
+//                String date= data.getStringExtra("date");
+//
+//                // set text view with string
+//                TextView textView = (TextView) findViewById(R.id.textView);
+//                textView.setText(amount);
+//                textView.setText(date);
+//
+//            }
+//        }
+//    }
 
 
     private void addDatatoFirebase(String amount, String transaction_type,

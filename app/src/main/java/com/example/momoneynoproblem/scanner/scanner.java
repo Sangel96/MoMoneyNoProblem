@@ -21,7 +21,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -44,6 +43,7 @@ import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class scanner extends AppCompatActivity {
     private static final int SELECT_IMAGE_FROM_STORAGE =100;
@@ -61,6 +61,7 @@ public class scanner extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
+
 
         Button btnupload = (Button) findViewById(R.id.uploadfile);
         ActivityCompat.requestPermissions(this, new String[]{CAMERA}, PackageManager.PERMISSION_GRANTED);
@@ -88,8 +89,10 @@ public class scanner extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // text recognizier gets null reference exception,
-        cameraSource.release();
+        if(cameraSource != null) {
+            // text recognizier gets null reference exception,
+            cameraSource.release();
+        }
     }
 
     private void textRecognizer() {
@@ -155,10 +158,60 @@ public class scanner extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+                        // PARSING RECEIPT TO AMOUNT AND DATE
+                        ///GALLERY
                         stringResult = stringText;
-                        resultObtained(stringResult);
-                        //stringResult = stringResult.substring(stringResult.lastIndexOf("SUBTOTAL"));
+                        //stringResult = stringResult.substring(stringResult.lastIndexOf("TOTAL"));
 
+                        String stringDate = stringText;
+                        //this code below saves a substring starting at total
+                        stringResult = stringResult.substring(stringResult.toLowerCase().lastIndexOf("TOTAL".toLowerCase()) ); // Total: 80.00
+                        Log.i("Scanner: ", stringResult);
+                        //Filter by decimal numbers XX.XxXX.XXX
+                        //\\d
+                        String amount = stringResult.replaceAll("[^\\d.\\d]", "");
+                        Log.i("Scanner: ", amount);
+                        //Filter extraneous decimals
+                        String[] words = amount.split("\\.");
+                        Log.i("Scanner3", Arrays.toString(words));
+
+
+                        if (words[1].length() > 2) {
+                            words[1] = words[1].substring(0,2);
+                        }
+                        if (words[1].length() == 1) { //adds zero if only 1 digit
+                            words[1] = words[1] + "0";
+                        }
+
+                        amount = words[0] + "." + words[1];
+                        Log.i("Scanner4: ", "$" + amount);
+                        // MM/DD/YY
+                        //First stage filtering ~~~~~MM/DD/YY
+                        String date = "";
+                        if(stringDate.contains("/")) {
+                            date = stringDate.replaceAll("[^\\d{2}/\\d{2}/\\d{2}]", "");
+                        }
+                        else if (stringDate.contains("-")){
+                            date = stringDate.replaceAll("[^\\d{2}\\-\\d{2}\\-\\d{2}]", "");
+                        }
+                        //Second stage filtering
+                        String[] dateSplit = date.split("\\/|\\-");
+                        if (dateSplit[0].length() == 1) {
+                            dateSplit[0] = "0" + dateSplit[0];
+                        }
+                        if (dateSplit[0].length() > 2) {dateSplit[0] = dateSplit[0].substring(dateSplit[0].length() - 2);}
+                        if (dateSplit[2].length() > 2) {dateSplit[2] = dateSplit[2].substring(0, 2);}
+
+                        date = dateSplit[0] + "-" + dateSplit[1] + "-" + dateSplit[2];
+                        Log.i("Scanner 5", date );
+                        // Log.i("Scanner Class", "Debugging Purposes: " + m1.group(1));
+                        resultObtained("Total: $" + amount + "\n\nDate: " + date + "\n\nOriginal: " + stringText);
+
+                        Intent intent = new Intent();
+                        intent.putExtra("amount",amount);
+                        intent.putExtra("date",date);
+                        setResult(RESULT_OK,intent);
+                        finish();
                     }
                 });
             }
@@ -209,12 +262,17 @@ public class scanner extends AppCompatActivity {
                             //stringResult = stringResult.substring(stringResult.lastIndexOf("TOTAL"));
 
                             String stringDate = stringText;
-                            stringResult = stringResult.substring(stringResult.toLowerCase().lastIndexOf("TOTAL".toLowerCase())+1);
-
+                            //this code below saves a substring starting at total
+                            stringResult = stringResult.substring(stringResult.toLowerCase().lastIndexOf("TOTAL".toLowerCase()) ); // Total: 80.00
+                            Log.i("Scanner: ", stringResult);
                             //Filter by decimal numbers XX.XxXX.XXX
+                            //\\d
                             String amount = stringResult.replaceAll("[^\\d.\\d]", "");
+                            Log.i("Scanner: ", amount);
                             //Filter extraneous decimals
                             String[] words = amount.split("\\.");
+                            Log.i("Scanner3", Arrays.toString(words));
+
 
                             if (words[1].length() > 2) {
                                     words[1] = words[1].substring(0,2);
@@ -224,23 +282,34 @@ public class scanner extends AppCompatActivity {
                             }
 
                             amount = words[0] + "." + words[1];
-
+                            Log.i("Scanner4: ", "$" + amount);
                             // MM/DD/YY
                             //First stage filtering ~~~~~MM/DD/YY
-                            String date = stringDate.replaceAll("[^\\d{2}/\\d{2}/\\d{2}]", "");
-
+                            String date = "";
+                            if(stringDate.contains("/")) {
+                                date = stringDate.replaceAll("[^\\d{2}/\\d{2}/\\d{2}]", "");
+                            }
+                            else if (stringDate.contains("-")){
+                                date = stringDate.replaceAll("[^\\d{2}\\-\\d{2}\\-\\d{2}]", "");
+                            }
                             //Second stage filtering
-                            String[] dateSplit = date.split("\\/");
+                            String[] dateSplit = date.split("\\/|\\-");
                             if (dateSplit[0].length() == 1) {
                                 dateSplit[0] = "0" + dateSplit[0];
                             }
                             if (dateSplit[0].length() > 2) {dateSplit[0] = dateSplit[0].substring(dateSplit[0].length() - 2);}
                             if (dateSplit[2].length() > 2) {dateSplit[2] = dateSplit[2].substring(0, 2);}
 
-                            date = dateSplit[0] + "/" + dateSplit[1] + "/" + dateSplit[2];
+                            date = dateSplit[0] + "-" + dateSplit[1] + "-" + dateSplit[2];
+                            Log.i("Scanner 5", date );
                            // Log.i("Scanner Class", "Debugging Purposes: " + m1.group(1));
                             resultObtained("Total: $" + amount + "\n\nDate: " + date + "\n\nOriginal: " + stringText);
 
+                            Intent intent = new Intent();
+                            intent.putExtra("amount",amount);
+                            intent.putExtra("date",date);
+                            setResult(RESULT_OK,intent);
+                            finish();
 
                         }
                     });
@@ -263,8 +332,11 @@ public class scanner extends AppCompatActivity {
 
     private void resultObtained(String s){
         setContentView(R.layout.activity_scanner);
+        //the code below displays the full converted text
         textView = findViewById(R.id.textView);
         textView.setText(s);
+        // the code below is for return result
+        //buttonTextBack(textView);
         //textToSpeech.speak(stringResult, TextToSpeech.QUEUE_FLUSH, null, null);
     }
 
@@ -288,6 +360,6 @@ public class scanner extends AppCompatActivity {
         intent.putExtra("date",date);
         setResult(RESULT_OK,intent);
         finish();
-
     }
+
 }

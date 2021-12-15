@@ -46,6 +46,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * REMOVE THIS LATER - This java file
+ */
 public class PDFMaker extends AppCompatActivity {
     // variables for our buttons.
     // Button btnPDFMake;
@@ -56,7 +59,7 @@ public class PDFMaker extends AppCompatActivity {
     int pagewidth = 792;
     ArrayList<Transaction1> userData = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("Transcation");
+    DatabaseReference myRef = database.getReference("Transactions");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
